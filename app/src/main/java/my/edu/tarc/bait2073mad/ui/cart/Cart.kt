@@ -1,4 +1,4 @@
-package my.edu.tarc.bait2073mad.ui.Cart
+package my.edu.tarc.bait2073mad.ui.cart
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
