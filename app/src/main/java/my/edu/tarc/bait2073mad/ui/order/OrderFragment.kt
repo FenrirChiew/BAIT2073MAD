@@ -23,7 +23,7 @@ class OrderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val orderViewModel =
-            ViewModelProvider(this).get(OrderViewModel::class.java)
+            ViewModelProvider(this)[OrderViewModel::class.java]
 
         _binding = FragmentOrderBinding.inflate(inflater, container, false)
         val root: View = binding.root
