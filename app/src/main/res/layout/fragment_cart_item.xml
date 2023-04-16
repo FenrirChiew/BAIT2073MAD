@@ -34,10 +34,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewProductName" />
 
     <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:id="@+id/imageButtonDelete"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="32dp"
+        android:contentDescription="Delete Product"
         android:src="@drawable/ic_delete_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewProductName"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -49,26 +50,28 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="1"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton"
-        app:layout_constraintStart_toStartOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonDelete"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonDelete"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonDelete" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:id="@+id/imageButtonPlus"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginStart="12dp"
+        android:contentDescription="plusProductNo"
         android:src="@drawable/ic_plus_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewProductNum"
         app:layout_constraintStart_toEndOf="@+id/textViewProductNum"
         app:layout_constraintTop_toTopOf="@+id/textViewProductNum" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:id="@+id/imageButtonMinus"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="12dp"
+        android:contentDescription="reduceProductNo"
         android:src="@drawable/ic_minus_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewProductNum"
         app:layout_constraintEnd_toStartOf="@+id/textViewProductNum"
@@ -79,6 +82,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="0.68" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
