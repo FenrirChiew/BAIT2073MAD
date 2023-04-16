@@ -27,6 +27,8 @@
     <!-- Voucher -->
     <string name="titleVoucher">Select Voucher</string>
     <string name="okButton">OK</string>
+    <string name="labelShippingVoucher">Shipping Voucher(s)
+        Voucher(s) can be selected: </string>
     <string name="voucherCodeHint">Enter Voucher Code</string>
 
 </resources>
