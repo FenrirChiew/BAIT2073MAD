@@ -7,10 +7,6 @@ android {
     namespace 'my.edu.tarc.bait2073mad'
     compileSdk 33
 
-    buildFeatures {
-        dataBinding true
-    }
-
     defaultConfig {
         applicationId "my.edu.tarc.bait2073mad"
         minSdk 24
@@ -35,7 +31,7 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures {
-        viewBinding true
+        dataBinding true
     }
 }
 
