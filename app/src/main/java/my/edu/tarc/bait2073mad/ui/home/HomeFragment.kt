@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.SearchView.OnQueryTextListener
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -28,10 +30,13 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+/*        val products = arrayOf("Product A", "Product B", "Product C")
+
+        val productAdaptor = activity?.let { ArrayAdapter<String>(it, android.R.layout.simple_list_item_1, products) };
+
+        binding.searchView.setOnQueryTextListener(object : SerachView.OnQueryTextListener)*/
+
+        // val chipTags
         return root
     }
 

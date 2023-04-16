@@ -4,7 +4,7 @@
     <string name="title_order">Order</string>
     <string name="title_account">Account</string>
 
-    //cart
+    <!-- cart -->
     <string name="cart">Cart</string>
     <string name="selectAll">Select All</string>
     <string name="productName">Product Name</string>
@@ -16,5 +16,8 @@
     <string name="orderDateTitle">Order Date:</string>
     <string name="paymentMethodTitle">Payment Method:</string>
     <string name="totalPaymentTitle">Total Payment:</string>
+
+    <!-- search -->
+    <string name="search_query_hint">Search Products!</string>
 
 </resources>
