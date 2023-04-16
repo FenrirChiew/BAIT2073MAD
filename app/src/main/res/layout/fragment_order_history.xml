@@ -46,4 +46,5 @@
         app:layout_constraintBottom_toBottomOf="@+id/textViewStatusTitle"
         app:layout_constraintStart_toEndOf="@+id/textViewStatusTitle"
         app:layout_constraintTop_toTopOf="@+id/textViewStatusTitle" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
