@@ -9,6 +9,12 @@
     <string name="selectAll">Select All</string>
     <string name="productName">Product Name</string>
     <string name="productPrice">Product Price</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="addressTitle">Delivery Address</string>
+    <string name="address">ADDRESS</string>
+    <string name="statusTitle">Status:</string>
+    <string name="orderIDTitle">Order ID:</string>
+    <string name="orderDateTitle">Order Date:</string>
+    <string name="paymentMethodTitle">Payment Method:</string>
+    <string name="totalPaymentTitle">Total Payment:</string>
 
 </resources>
