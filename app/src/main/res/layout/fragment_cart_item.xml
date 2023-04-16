@@ -6,9 +6,10 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="Image of Product"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
@@ -20,8 +21,8 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="@string/productName"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintStart_toEndOf="@+id/imageViewProduct"
+        app:layout_constraintTop_toTopOf="@+id/imageViewProduct" />
 
     <TextView
         android:id="@+id/textViewProductPrice"
@@ -30,7 +31,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:text="@string/productPrice"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/imageViewProduct"
         app:layout_constraintTop_toBottomOf="@+id/textViewProductName" />
 
     <ImageButton
