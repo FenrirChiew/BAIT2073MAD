@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="my.edu.tarc.bait2073mad.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_order"
+        android:name="my.edu.tarc.bait2073mad.ui.order.OrderFragment"
+        android:label="@string/title_order"
+        tools:layout="@layout/fragment_order" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="my.edu.tarc.bait2073mad.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_account"
+        android:name="my.edu.tarc.bait2073mad.ui.account.AccountFragment"
+        android:label="@string/title_account"
+        tools:layout="@layout/fragment_account" />
 </navigation>
