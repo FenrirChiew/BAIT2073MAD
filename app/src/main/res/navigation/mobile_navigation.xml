@@ -22,4 +22,9 @@
         android:name="my.edu.tarc.bait2073mad.ui.account.AccountFragment"
         android:label="@string/title_account"
         tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/navigation_cart"
+        android:name="my.edu.tarc.bait2073mad.ui.cart.Cart"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 </navigation>

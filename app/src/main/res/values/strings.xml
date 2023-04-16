@@ -3,4 +3,9 @@
     <string name="title_home">Home</string>
     <string name="title_order">Order</string>
     <string name="title_account">Account</string>
+
+    //cart
+    <string name="cart">Cart</string>
+    <string name="selectAll">Select All</string>
+
 </resources>
