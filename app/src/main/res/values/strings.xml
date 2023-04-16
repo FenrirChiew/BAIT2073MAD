@@ -20,4 +20,13 @@
     <!-- search -->
     <string name="search_query_hint">Search Products!</string>
 
+    <!-- Check Out -->
+    <string name="titleCheckOut">Check Out</string>
+    <string name="placeOrderButton">Place Order</string>
+
+    <!-- Voucher -->
+    <string name="titleVoucher">Select Voucher</string>
+    <string name="okButton">OK</string>
+    <string name="voucherCodeHint">Enter Voucher Code</string>
+
 </resources>
