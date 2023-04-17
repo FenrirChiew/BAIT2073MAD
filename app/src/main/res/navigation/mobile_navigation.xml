@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/productFragment">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -24,7 +24,25 @@
         tools:layout="@layout/fragment_account" />
     <fragment
         android:id="@+id/navigation_cart"
-        android:name="my.edu.tarc.bait2073mad.ui.cart.Cart"
+        android:name="my.edu.tarc.bait2073mad.ui.cart.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_navigation_cart_to_checkOutFragment"
+            app:destination="@id/checkOutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productFragment"
+        android:name="my.edu.tarc.bait2073mad.ui.product.ProductFragment"
+        android:label="fragment_product"
+        tools:layout="@layout/fragment_product">
+        <action
+            android:id="@+id/action_productFragment_to_navigation_cart"
+            app:destination="@id/navigation_cart" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkOutFragment"
+        android:name="my.edu.tarc.bait2073mad.ui.checkOut.CheckOutFragment"
+        android:label="fragment_check_out"
+        tools:layout="@layout/fragment_check_out" />
 </navigation>
