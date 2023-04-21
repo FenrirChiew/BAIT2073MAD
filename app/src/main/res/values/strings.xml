@@ -30,7 +30,12 @@
     <string name="labelShippingVoucher">Shipping Voucher(s)
         Voucher(s) can be selected: </string>
     <string name="voucherCodeHint">Enter Voucher Code</string>
+
+    <!-- Payment method -->
+    <string name="titlePaymentMethod">Payment Method</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>
