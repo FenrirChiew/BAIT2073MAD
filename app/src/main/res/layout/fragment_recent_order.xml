@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.recentOrder.RecentOrder">
+
+    <TextView
+        android:id="@+id/textViewTotalSpending"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="RM 569.00"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotalSpendingTitle" />
+
+    <TextView
+        android:id="@+id/textViewTotalSpendingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Spending"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotalSpending"
+        tools:layout_editor_absoluteX="16dp">
+
+        <TextView
+            android:id="@+id/textViewNoTitle"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="No"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewOrderIDTitle"
+            android:layout_width="139dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Order ID"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewOrderDateTitle"
+            android:layout_width="139dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Order Date"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewRecentOrder"
+        android:layout_width="0dp"
+        android:layout_height="192dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:listitem="@layout/fragment_recent_order_item" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
