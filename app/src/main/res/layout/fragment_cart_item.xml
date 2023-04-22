@@ -49,7 +49,7 @@
         app:layout_constraintTop_toTopOf="@+id/textViewProductName" />
 
     <TextView
-        android:id="@+id/textViewProductNum"
+        android:id="@+id/textViewProductQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -67,9 +67,9 @@
         android:contentDescription="plusProductNo"
         android:scaleType="centerInside"
         android:src="@drawable/ic_plus_24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewProductNum"
-        app:layout_constraintStart_toEndOf="@+id/textViewProductNum"
-        app:layout_constraintTop_toTopOf="@+id/textViewProductNum" />
+        app:layout_constraintBottom_toBottomOf="@+id/textViewProductQuantity"
+        app:layout_constraintStart_toEndOf="@+id/textViewProductQuantity"
+        app:layout_constraintTop_toTopOf="@+id/textViewProductQuantity" />
 
     <ImageButton
         android:id="@+id/imageButtonMinus"
@@ -79,9 +79,9 @@
         android:contentDescription="reduceProductNo"
         android:scaleType="centerInside"
         android:src="@drawable/ic_minus_24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewProductNum"
-        app:layout_constraintEnd_toStartOf="@+id/textViewProductNum"
-        app:layout_constraintTop_toTopOf="@+id/textViewProductNum" />
+        app:layout_constraintBottom_toBottomOf="@+id/textViewProductQuantity"
+        app:layout_constraintEnd_toStartOf="@+id/textViewProductQuantity"
+        app:layout_constraintTop_toTopOf="@+id/textViewProductQuantity" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

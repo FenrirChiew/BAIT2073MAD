@@ -39,11 +39,17 @@ class CartFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var checkOutNavButton = view.findViewById<View>(R.id.buttonCheckOut)
-        checkOutNavButton.setOnClickListener {
+        view.findViewById<View>(R.id.buttonCheckOut).setOnClickListener {
             Navigation.findNavController(view)
                 .navigate(R.id.action_navigation_cart_to_checkOutFragment)
         }
+
+        //cannot put here, will crash
+//        view.findViewById<View>(R.id.imageButtonPlus).setOnClickListener {
+//            var cartItemQuantity = R.id.textViewProductQuantity.toString().toInt()
+//            cartItemQuantity++
+//            //TODO: Pass back to class and store
+//        }
 
     }
 

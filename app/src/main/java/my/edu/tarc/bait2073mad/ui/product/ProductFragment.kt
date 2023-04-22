@@ -48,8 +48,8 @@ class ProductFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_productFragment_to_navigation_cart)
         }
 
-        view.findViewById<View>(R.id.buttonAddToCart).setOnClickListener {
-            //insert data to cart database
+//        view.findViewById<View>(R.id.buttonAddToCart).setOnClickListener {
+//            insert data to cart database
 //            binding.apply{
 //                val productName = productNameid.text.toString
 //                val productImage = pass image here
@@ -57,7 +57,7 @@ class ProductFragment : Fragment() {
 //                val addToCartItem = CartItem(productName,productImage,productPrice)
 //                cartViewModel.addCartItem(addToCartItem)
 //            }
-        }
+//        }
         super.onViewCreated(view, savedInstanceState)
     }
 

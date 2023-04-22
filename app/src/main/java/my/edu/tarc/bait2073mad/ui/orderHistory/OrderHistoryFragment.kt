@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import my.edu.tarc.bait2073mad.R
 
-class orderHistory : Fragment() {
+class OrderHistoryFragment : Fragment() {
 
     companion object {
-        fun newInstance() = orderHistory()
+        fun newInstance() = OrderHistoryFragment()
     }
 
     private lateinit var viewModel: OrderHistoryViewModel
