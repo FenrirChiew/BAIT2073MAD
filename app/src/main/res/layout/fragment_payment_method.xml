@@ -25,7 +25,7 @@
         android:layout_width="402dp"
         android:layout_height="130dp"
         android:layout_marginTop="16dp"
-        android:text="@string/textLabelOnlinePaymentMethod"
+        android:text="@string/textOnlinePaymentMethod"
         app:icon='@drawable/online_payment'
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
         android:layout_width="402dp"
         android:layout_height="130dp"
         android:layout_marginTop="16dp"
-        android:text="@string/labelWallet"
+        android:text="@string/textWallet"
         app:icon='@drawable/wallet'
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

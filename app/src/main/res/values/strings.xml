@@ -33,13 +33,16 @@
     <!-- voucher -->
     <string name="titleVoucher">Select Voucher</string>
     <string name="okButton">OK</string>
+    <string name="voucherName">Voucher Name</string>
+    <string name="voucherExpired">Voucher Expired Date</string>
+    <string name="voucherTermsCondition">Terms and Conditions</string>
     <string name="labelShippingVoucher">Shipping Voucher(s)
         Voucher(s) can be selected: </string>
     <string name="voucherCodeHint">Enter Voucher Code</string>
 
     <!-- payment method -->
     <string name="titlePaymentMethod">Payment Method</string>
-    <string name="textLabelFpxPaymentMethod">FPX Payment</string>
+    <string name="textOnlinePaymentMethod">Online Payment</string>
     <string name="labelCardPaymentMethod">Credit/Debit Card</string>
-    <string name="imageLabelFpxPaymentMethod">FPX payment</string>
+    <string name="textWallet">Meow Meow Wallet</string>
 </resources>
