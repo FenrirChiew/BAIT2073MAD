@@ -23,6 +23,7 @@
     <!-- Check Out -->
     <string name="titleCheckOut">Check Out</string>
     <string name="placeOrderButton">Place Order</string>
+    <string name="labelVoucher">Apply Voucher</string>
 
     <!-- Voucher -->
     <string name="titleVoucher">Select Voucher</string>
@@ -33,9 +34,10 @@
 
     <!-- Payment method -->
     <string name="titlePaymentMethod">Payment Method</string>
-    <string name="textLabelFpxPaymentMethod">FPX Payment</string>
+    <string name="textLabelOnlinePaymentMethod">Online Payment</string>
     <string name="labelCardPaymentMethod">Credit/Debit Card</string>
-    <string name="imageLabelFpxPaymentMethod">FPX payment</string>
+    <string name="labelWallet">MeowMeow Wallet</string>
+    <string name="labelConfirmPaymentMethod">Confirm</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
