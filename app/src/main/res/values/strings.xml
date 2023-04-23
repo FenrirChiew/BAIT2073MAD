@@ -24,10 +24,14 @@
     <string name="titleCheckOut">Check Out</string>
     <string name="placeOrderButton">Place Order</string>
     <string name="labelVoucher">Apply Voucher</string>
+    <string name="productQuantity">Product Quantity</string>
 
     <!-- Voucher -->
     <string name="titleVoucher">Select Voucher</string>
     <string name="okButton">OK</string>
+    <string name="voucherName">Voucher Name</string>
+    <string name="voucherExpired">Voucher Expired Date</string>
+    <string name="voucherTermsCondition">Terms and Conditions</string>
     <string name="labelShippingVoucher">Shipping Voucher(s)
         Voucher(s) can be selected: </string>
     <string name="voucherCodeHint">Enter Voucher Code</string>
@@ -41,7 +45,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
 
 </resources>
