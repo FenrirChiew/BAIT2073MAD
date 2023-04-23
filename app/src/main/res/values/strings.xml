@@ -29,6 +29,7 @@
     <!-- check out -->
     <string name="titleCheckOut">Check Out</string>
     <string name="placeOrderButton">Place Order</string>
+    <string name="productQuantity">Product Quantity</string>
 
     <!-- voucher -->
     <string name="titleVoucher">Select Voucher</string>
