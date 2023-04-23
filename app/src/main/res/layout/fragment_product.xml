@@ -11,6 +11,7 @@
             android:id="@+id/imageButtonCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="cartButton"
             android:src="@drawable/ic_shopping_cart_black_24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
