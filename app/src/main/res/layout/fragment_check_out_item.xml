@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:text="@string/productName"
+        android:text="@string/product_name_label"
         app:layout_constraintStart_toEndOf="@+id/productImageView"
         app:layout_constraintTop_toTopOf="@+id/productImageView" />
 
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="@string/productPrice"
+        android:text="@string/product_price_label"
         app:layout_constraintStart_toEndOf="@+id/ProductQuantityTextView"
         app:layout_constraintTop_toTopOf="@+id/ProductQuantityTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

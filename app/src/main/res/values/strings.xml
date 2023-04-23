@@ -7,8 +7,6 @@
     <!-- cart -->
     <string name="cart">Cart</string>
     <string name="selectAll">Select All</string>
-    <string name="productName">Product Name</string>
-    <string name="productPrice">Product Price</string>
     <string name="addressTitle">Delivery Address</string>
     <string name="address">ADDRESS</string>
     <string name="statusTitle">Status:</string>
@@ -18,7 +16,12 @@
     <string name="totalPaymentTitle">Total Payment:</string>
 
     <!-- product -->
-    <string name="no_product">No product</string>
+    <string name="product_name_label">Product Name</string>
+    <string name="product_price_label">Product Price</string>
+    <string name="product_description_label">Product Description</string>
+    <string name="product_status_label">Product Status</string>
+    <string name="product_seller_label">Product Seller</string>
+    <string name="no_product">No Product</string>
 
     <!-- search -->
     <string name="search_query_hint">Search Products!</string>

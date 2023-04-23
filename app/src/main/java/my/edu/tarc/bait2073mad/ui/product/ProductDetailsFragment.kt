@@ -15,7 +15,7 @@ class ProductDetailsFragment : Fragment() {
 
     private var _binding: FragmentProductDetailsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: ProductViewModel
+    private val productViewModel: ProductViewModel by activityViewModels()
     //view model of cart
     private val cartViewModel: CartViewModel by activityViewModels()
 
