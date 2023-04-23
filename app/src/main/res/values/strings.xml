@@ -4,6 +4,22 @@
     <string name="title_order">Order</string>
     <string name="title_account">Account</string>
 
+    <!-- login -->
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="forgotPassword">Forgot Password</string>
+    <string name="doNotHaveAcc">Don\'t have account?</string>
+    <string name="signUp">\u0020Sign up\u0020</string>
+    <string name="now">now</string>
+
+    <!-- Sign Up -->
+    <string name="createAccount">Create Account</string>
+    <string name="email">Email</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="agreeCondition">I agree with terms and conditions</string>
+    <string name="signUpButton">Sign Up</string>
+
     <!-- cart -->
     <string name="cart">Cart</string>
     <string name="selectAll">Select All</string>
@@ -41,7 +57,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
 
 </resources>
