@@ -1,6 +1,5 @@
 package my.edu.tarc.bait2073mad.ui.product
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,44 +7,34 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import my.edu.tarc.bait2073mad.R
-import my.edu.tarc.bait2073mad.databinding.FragmentProductBinding
-import my.edu.tarc.bait2073mad.ui.cart.CartItem
+import my.edu.tarc.bait2073mad.databinding.FragmentProductDetailsBinding
 import my.edu.tarc.bait2073mad.ui.cart.CartViewModel
 
-class ProductFragment : Fragment() {
+class ProductDetailsFragment : Fragment() {
 
-    private var _binding: FragmentProductBinding? = null
+    private var _binding: FragmentProductDetailsBinding? = null
     private val binding get() = _binding!!
+    private lateinit var viewModel: ProductViewModel
     //view model of cart
     private val cartViewModel: CartViewModel by activityViewModels()
 
-    companion object {
-        fun newInstance() = ProductFragment()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
-    private lateinit var viewModel: ProductViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentProductBinding.inflate(inflater, container, false)
+        _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         return binding.root
-        //return inflater.inflate(R.layout.fragment_product, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
-        // TODO: Use the ViewModel
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         view.findViewById<View>(R.id.imageButtonCart).setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_productFragment_to_navigation_cart)
+            Navigation.findNavController(view)
+                .navigate(R.id.action_productFragment_to_navigation_cart)
         }
 
 //        view.findViewById<View>(R.id.buttonAddToCart).setOnClickListener {
@@ -60,5 +49,4 @@ class ProductFragment : Fragment() {
 //        }
         super.onViewCreated(view, savedInstanceState)
     }
-
 }

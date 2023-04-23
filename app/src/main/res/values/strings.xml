@@ -4,22 +4,6 @@
     <string name="title_order">Order</string>
     <string name="title_account">Account</string>
 
-    <!-- login -->
-    <string name="username">Username</string>
-    <string name="password">Password</string>
-    <string name="login">Login</string>
-    <string name="forgotPassword">Forgot Password</string>
-    <string name="doNotHaveAcc">Don\'t have account?</string>
-    <string name="signUp">\u0020Sign up\u0020</string>
-    <string name="now">now</string>
-
-    <!-- Sign Up -->
-    <string name="createAccount">Create Account</string>
-    <string name="email">Email</string>
-    <string name="confirmPassword">Confirm Password</string>
-    <string name="agreeCondition">I agree with terms and conditions</string>
-    <string name="signUpButton">Sign Up</string>
-
     <!-- cart -->
     <string name="cart">Cart</string>
     <string name="selectAll">Select All</string>
@@ -33,34 +17,26 @@
     <string name="paymentMethodTitle">Payment Method:</string>
     <string name="totalPaymentTitle">Total Payment:</string>
 
+    <!-- product -->
+    <string name="no_product">No product</string>
+
     <!-- search -->
     <string name="search_query_hint">Search Products!</string>
 
-    <!-- Check Out -->
+    <!-- check out -->
     <string name="titleCheckOut">Check Out</string>
     <string name="placeOrderButton">Place Order</string>
-    <string name="labelVoucher">Apply Voucher</string>
-    <string name="productQuantity">Product Quantity</string>
 
-    <!-- Voucher -->
+    <!-- voucher -->
     <string name="titleVoucher">Select Voucher</string>
     <string name="okButton">OK</string>
-    <string name="voucherName">Voucher Name</string>
-    <string name="voucherExpired">Voucher Expired Date</string>
-    <string name="voucherTermsCondition">Terms and Conditions</string>
     <string name="labelShippingVoucher">Shipping Voucher(s)
         Voucher(s) can be selected: </string>
     <string name="voucherCodeHint">Enter Voucher Code</string>
 
-    <!-- Payment method -->
+    <!-- payment method -->
     <string name="titlePaymentMethod">Payment Method</string>
-    <string name="textLabelOnlinePaymentMethod">Online Payment</string>
+    <string name="textLabelFpxPaymentMethod">FPX Payment</string>
     <string name="labelCardPaymentMethod">Credit/Debit Card</string>
-    <string name="labelWallet">MeowMeow Wallet</string>
-    <string name="labelConfirmPaymentMethod">Confirm</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
+    <string name="imageLabelFpxPaymentMethod">FPX payment</string>
 </resources>
