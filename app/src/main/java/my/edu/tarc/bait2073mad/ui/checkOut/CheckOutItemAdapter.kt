@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 import my.edu.tarc.bait2073mad.R
 
-
-class CartItemAdapter: RecyclerView.Adapter<CartItemAdapter.ViewHolder>() {
+class CheckOutItemAdapter: RecyclerView.Adapter<CheckOutItemAdapter.ViewHolder>() {
     private var checkOutItemList = emptyList<CheckOutItem>()
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
