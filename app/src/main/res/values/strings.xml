@@ -46,6 +46,7 @@
     <string name="titleCheckOut">Check Out</string>
     <string name="placeOrderButton">Place Order</string>
     <string name="productQuantity">Product Quantity</string>
+    <string name="labelVoucher">Apply Voucher</string>
 
     <!-- voucher -->
     <string name="titleVoucher">Select Voucher</string>
@@ -62,4 +63,5 @@
     <string name="textOnlinePaymentMethod">Online Payment</string>
     <string name="labelCardPaymentMethod">Credit/Debit Card</string>
     <string name="textWallet">Meow Meow Wallet</string>
+    <string name="labelConfirmPaymentMethodButton">Confirm</string>
 </resources>
