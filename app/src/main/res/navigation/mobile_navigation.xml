@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/paymentMethodFragment">
+    app:startDestination="@id/products_fragment">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -58,7 +58,7 @@
         android:id="@+id/products_fragment"
         android:name="my.edu.tarc.bait2073mad.ui.product.ProductsFragment"
         android:label="fragment_product"
-        tools:layout="@layout/fragment_product" >
+        tools:layout="@layout/fragment_product">
         <action
             android:id="@+id/action_products_fragment_to_product_details_fragment"
             app:destination="@id/product_details_fragment" />
@@ -67,7 +67,7 @@
         android:id="@+id/product_details_fragment"
         android:name="my.edu.tarc.bait2073mad.ui.product.ProductDetailsFragment"
         android:label="fragment_product_details"
-        tools:layout="@layout/fragment_product_details" >
+        tools:layout="@layout/fragment_product_details">
         <action
             android:id="@+id/action_product_details_fragment_to_navigation_cart"
             app:destination="@id/navigation_cart" />
