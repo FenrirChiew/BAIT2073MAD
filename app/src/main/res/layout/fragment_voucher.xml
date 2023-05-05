@@ -7,6 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.voucher.VoucherFragment" >
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="409dp"
+        android:layout_height="590dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="92dp"
+        tools:listitem="@layout/fragment_voucher_item" />
+
     <Button
         android:id="@+id/buttonOk"
         android:layout_width="0dp"
