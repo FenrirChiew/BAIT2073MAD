@@ -42,6 +42,9 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
                 "Contact name:" + productList[position].productName,
                 Toast.LENGTH_SHORT
             ).show()
+
+            androidx.navigation.Navigation.findNavController(it)
+                .navigate(R.id.action_products_fragment_to_product_details_fragment)
         }
     }
 
