@@ -54,9 +54,9 @@
     <string name="voucherName">Voucher Name</string>
     <string name="voucherExpired">Voucher Expired Date</string>
     <string name="voucherTermsCondition">Terms and Conditions</string>
-    <string name="labelShippingVoucher">Shipping Voucher(s)
-        Voucher(s) can be selected: </string>
+    <string name="labelShippingVoucher">Voucher(s) can be selected: </string>
     <string name="voucherCodeHint">Enter Voucher Code</string>
+    <string name="noVoucherMsg">No voucher available!</string>
 
     <!-- payment method -->
     <string name="titlePaymentMethod">Payment Method</string>

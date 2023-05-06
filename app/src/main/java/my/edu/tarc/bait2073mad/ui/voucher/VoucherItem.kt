@@ -4,4 +4,5 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "voucherItem")
-data class VoucherItem(@PrimaryKey var voucherName: String, var voucherImage: Int, var voucherTerms: String)
+data class VoucherItem(@PrimaryKey var voucherName: String, var voucherTerms: String)
+

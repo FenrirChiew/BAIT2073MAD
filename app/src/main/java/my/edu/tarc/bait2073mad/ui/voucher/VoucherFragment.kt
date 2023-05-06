@@ -6,15 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import my.edu.tarc.bait2073mad.R
+import my.edu.tarc.bait2073mad.databinding.FragmentVoucherBinding
 
 class VoucherFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = VoucherFragment()
-    }
-
-    private lateinit var viewModel: VoucherViewModel
+    private var _binding: FragmentVoucherBinding? = null
+    private val binding get() = _binding!!
+    private val myVoucherViewModel: VoucherViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,10 +23,5 @@ class VoucherFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_voucher, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(VoucherViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
 }
