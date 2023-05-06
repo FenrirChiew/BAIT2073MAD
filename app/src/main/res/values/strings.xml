@@ -64,4 +64,13 @@
     <string name="labelCardPaymentMethod">Credit/Debit Card</string>
     <string name="textWallet">Meow Meow Wallet</string>
     <string name="labelConfirmPaymentMethodButton">Confirm</string>
+    <string name="cardNumber">Card Number: </string>
+    <string name="cardHolderName">"Card Holder's Name: "</string>
+    <string name="cardExpiredDay">Expired Day: </string>
+    <string name="hintCardNumber">"1234 1234 1234 1234"</string>
+    <string name="hintCardExpiredDay">05/26</string>
+    <string name="hintCardHolderName">Chong Hao Wei</string>
+    <string name="cardCvc">"CVC Number: "</string>
+    <string name="hintCardCvc">123</string>
+    <string name="addCard">Add Card</string>
 </resources>
