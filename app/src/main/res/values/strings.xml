@@ -5,7 +5,7 @@
     <string name="title_account">Account</string>
 
     <!-- login -->
-    <string name="username">Username</string>
+    <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="forgotPassword">Forgot Password</string>
@@ -15,7 +15,6 @@
 
     <!-- Sign Up -->
     <string name="createAccount">Create Account</string>
-    <string name="email">Email</string>
     <string name="confirmPassword">Confirm Password</string>
     <string name="agreeCondition">I agree with terms and conditions</string>
     <string name="signUpButton">Sign Up</string>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "277801359111",
+    "project_id": "mad-assignment-1967d",
+    "storage_bucket": "mad-assignment-1967d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277801359111:android:916dd386fd01433cb617a2",
+        "android_client_info": {
+          "package_name": "my.edu.tarc.bait2073mad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "277801359111-ikcbjbe32pq3l94lv7kkqn2q8a403cqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBq_LzFG8glzmG-EVF2-OVlz_XCTwPwxkk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "277801359111-ikcbjbe32pq3l94lv7kkqn2q8a403cqg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
