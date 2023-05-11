@@ -21,4 +21,18 @@ class VoucherViewModel (application: Application): AndroidViewModel(application)
     fun addVoucher(voucherItem: VoucherItem) = viewModelScope.launch{
         repository.add(voucherItem)
     }
+
+    fun updateContact(voucherItem: VoucherItem) = viewModelScope.launch {
+        repository.update(voucherItem)
+    }
+
+    //used to delete the contact
+    fun deleteContact(voucherItem: VoucherItem) = viewModelScope.launch {
+        repository.delete(voucherItem)
+    }
+
+    //override the local data when cloud data is downloaded
+    fun deleteAll() = viewModelScope.launch {
+        repository.deleteAll()
+    }
 }

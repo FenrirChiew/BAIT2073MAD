@@ -21,4 +21,9 @@ class VoucherItemRepository(private val voucherItemDao: VoucherItemDao) {
     suspend fun update(voucherItem: VoucherItem){
         voucherItemDao.update(voucherItem)
     }
+
+    @WorkerThread
+    suspend fun deleteAll(){
+        voucherItemDao.deleteAll()
+    }
 }

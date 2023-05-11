@@ -9,8 +9,8 @@ interface VoucherItemDao {
     @Query("SELECT * FROM voucherItem ORDER BY voucherName ASC")
     fun getAllVoucherItem(): LiveData<List<VoucherItem>>
 
-//    @Query("DELETE FROM voucherItem")
-//    suspend fun deleteAll()
+    @Query("DELETE FROM voucherItem")
+    suspend fun deleteAll()
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(voucherItem: VoucherItem)

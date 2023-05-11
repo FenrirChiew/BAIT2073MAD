@@ -8,18 +8,20 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 import my.edu.tarc.bait2073mad.R
+import my.edu.tarc.bait2073mad.ui.cart.RecordClickListener
 
-class VoucherItemAdapter: RecyclerView.Adapter<VoucherItemAdapter.ViewHolder>() {
+class VoucherItemAdapter(private val recordClickListener: RecordClickListener): RecyclerView.Adapter<VoucherItemAdapter.ViewHolder>() {
     private var voucherItemList = emptyList<VoucherItem>()
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         val voucherName: TextView = view.findViewById(R.id.textViewVoucherName)
-        val voucherImage: ShapeableImageView = view.findViewById(R.id.imageViewVoucher)
         val voucherTerms: TextView = view.findViewById(R.id.textViewVoucherTerm)
+        val voucherDate: TextView = view.findViewById(R.id.textViewVoucherExpired)
     }
 
     internal fun setVoucherItem(voucherItem: List<VoucherItem>){
         this.voucherItemList = voucherItem
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,12 +34,21 @@ class VoucherItemAdapter: RecyclerView.Adapter<VoucherItemAdapter.ViewHolder>() 
         //holder.voucherImage.setImageResource(currentItem.voucherImage)
         holder.voucherName.text = currentItem.voucherName.toString()
         holder.voucherTerms.text = currentItem.voucherTerms.toString()
+        holder.voucherDate.text = currentItem.voucherDate.toString()
+
+        //Not sure the check box how do in this case
+        //set event when click the contact
         holder.itemView.setOnClickListener {
-            Toast.makeText(it.context,"Clicked",Toast.LENGTH_SHORT).show()
+            //Item click event handler
+            recordClickListener.onRecordClickListener(position)
         }
     }
 
     override fun getItemCount(): Int {
         return voucherItemList.size
+    }
+
+    interface RecordClickListener{
+        fun onRecordClickListener(index: Int)
     }
 }
