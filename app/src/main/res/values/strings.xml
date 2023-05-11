@@ -5,7 +5,7 @@
     <string name="title_account">Account</string>
 
     <!-- login -->
-    <string name="username">Username</string>
+    <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="forgotPassword">Forgot Password</string>
@@ -15,7 +15,6 @@
 
     <!-- Sign Up -->
     <string name="createAccount">Create Account</string>
-    <string name="email">Email</string>
     <string name="confirmPassword">Confirm Password</string>
     <string name="agreeCondition">I agree with terms and conditions</string>
     <string name="signUpButton">Sign Up</string>
@@ -54,9 +53,9 @@
     <string name="voucherName">Voucher Name</string>
     <string name="voucherExpired">Voucher Expired Date</string>
     <string name="voucherTermsCondition">Terms and Conditions</string>
-    <string name="labelShippingVoucher">Shipping Voucher(s)
-        Voucher(s) can be selected: </string>
+    <string name="labelShippingVoucher">Voucher(s) can be selected: </string>
     <string name="voucherCodeHint">Enter Voucher Code</string>
+    <string name="noVoucherMsg">No voucher available!</string>
 
     <!-- payment method -->
     <string name="titlePaymentMethod">Payment Method</string>
@@ -64,4 +63,13 @@
     <string name="labelCardPaymentMethod">Credit/Debit Card</string>
     <string name="textWallet">Meow Meow Wallet</string>
     <string name="labelConfirmPaymentMethodButton">Confirm</string>
+    <string name="cardNumber">Card Number: </string>
+    <string name="cardHolderName">"Card Holder's Name: "</string>
+    <string name="cardExpiredDay">Expired Day: </string>
+    <string name="hintCardNumber">"1234 1234 1234 1234"</string>
+    <string name="hintCardExpiredDay">05/26</string>
+    <string name="hintCardHolderName">Chong Hao Wei</string>
+    <string name="cardCvc">"CVC Number: "</string>
+    <string name="hintCardCvc">123</string>
+    <string name="addCard">Add Card</string>
 </resources>
