@@ -13,9 +13,9 @@ class VoucherItemAdapter: RecyclerView.Adapter<VoucherItemAdapter.ViewHolder>() 
     private var voucherItemList = emptyList<VoucherItem>()
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
-        val voucherName: TextView = view.findViewById(R.id.voucherNameTextView)
-        val voucherImage: ShapeableImageView = view.findViewById(R.id.voucherImageView)
-        val voucherTerms: TextView = view.findViewById(R.id.vouchetTermsConditionTextView)
+        val voucherName: TextView = view.findViewById(R.id.textViewVoucherName)
+        val voucherImage: ShapeableImageView = view.findViewById(R.id.imageViewVoucher)
+        val voucherTerms: TextView = view.findViewById(R.id.textViewVoucherTerm)
     }
 
     internal fun setVoucherItem(voucherItem: List<VoucherItem>){

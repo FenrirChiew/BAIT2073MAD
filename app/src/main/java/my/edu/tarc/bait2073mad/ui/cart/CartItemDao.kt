@@ -5,7 +5,7 @@ import androidx.room.*
 
 @Dao
 interface CartItemDao {
-    @Query("SELECT * FROM cartItem ORDER BY product ASC")
+    @Query("SELECT * FROM cartItem ORDER BY productID ASC")
     fun getAllCartItem(): LiveData<List<CartItem>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

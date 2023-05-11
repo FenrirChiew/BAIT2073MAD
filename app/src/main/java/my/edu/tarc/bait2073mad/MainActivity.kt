@@ -2,8 +2,10 @@ package my.edu.tarc.bait2073mad
 
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -32,11 +34,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_order, R.id.navigation_account
             )
         )
-
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-
 
 
     }

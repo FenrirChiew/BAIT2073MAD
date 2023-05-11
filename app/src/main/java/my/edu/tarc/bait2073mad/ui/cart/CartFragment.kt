@@ -1,16 +1,21 @@
 package my.edu.tarc.bait2073mad.ui.cart
 
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.icu.text.AlphabeticIndex.Record
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentCartBinding
 import my.edu.tarc.bait2073mad.ui.product.Product
@@ -19,7 +24,7 @@ class CartFragment : Fragment(){
 
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
-    private val cartItemViewModel: CartViewModel by activityViewModels()
+    private val cartViewModel: CartViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +37,7 @@ class CartFragment : Fragment(){
 //            this,viewLifecycleOwner,
 //            Lifecycle.State.RESUMED
 //        )
+
         return binding.root
     }
 
@@ -39,7 +45,7 @@ class CartFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         val adapter = CartItemAdapter()
 
-        cartItemViewModel.cartItemList.observe(
+        cartViewModel.cartItemList.observe(
             viewLifecycleOwner,
             Observer {
                 if (it.isEmpty()) {
@@ -48,27 +54,17 @@ class CartFragment : Fragment(){
                     binding.buttonCheckOut.isActivated = false
                 } else {
                     binding.textViewCartItemCount.isVisible = false
-                    adapter.setCartItem(it)
                     binding.buttonCheckOut.isActivated = true
                 }
+                adapter.setCartItem(it)
             }
         )
+        binding.recyclerViewCartItem.adapter=adapter
 
         binding.buttonCheckOut.setOnClickListener {
             Navigation.findNavController(view)
-                .navigate(R.id.action_navigation_cart_to_checkOutFragment)
+                .navigate(R.id.action_navigation_cart_to_tryFragment)
         }
-
-        //try input picture for test
-        val icon = BitmapFactory.decodeResource(
-            this.getResources(),
-            android.R.drawable.btn_plus
-        )
-        var product: Product = Product("1000", "Product1",13.00, icon,"Good",true,"good", "12345")
-        var cartItem: CartItem = CartItem(product,1)
-        cartItemViewModel.addCartItem(cartItem)
-
-        binding.recyclerViewCartItem.adapter = adapter
     }
 
     override fun onDestroyView() {
@@ -81,10 +77,10 @@ class CartFragment : Fragment(){
 //    }
 //
 //    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+//
+//        if(menuItem.itemId == R.id.menu_cart){
+//
+//        }
 //        return true
 //    }
-
-    private fun saveCartItem(){
-
-    }
 }
