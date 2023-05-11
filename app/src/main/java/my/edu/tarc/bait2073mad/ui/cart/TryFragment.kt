@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -29,7 +30,6 @@ class TryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = CartItemAdapter()
 
         binding.buttonAddCart.setOnClickListener {
 //            //try input picture for test
@@ -38,8 +38,8 @@ class TryFragment : Fragment() {
 //                android.R.drawable.btn_plus
 //            )
 //            var image1 = R.drawable.credit_card
-            var cartItem = CartItem("P001","Product1", 1.50,1)
-            cartViewModel.addCartItem(cartItem)
+            cartViewModel.addCartItem(CartItem("P001", "Product1", 1.50, 2))
+            Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show()
             findNavController().navigateUp()
 //        binding.recyclerViewCartItem.adapter = CartItemAdapter()
         }

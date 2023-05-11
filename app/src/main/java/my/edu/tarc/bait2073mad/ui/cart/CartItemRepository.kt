@@ -4,7 +4,6 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 
 class CartItemRepository(private val cartItemDao: CartItemDao) {
-    //Room execute all queries on a separate thread
     val allCartItem: LiveData<List<CartItem>> = cartItemDao.getAllCartItem()
 
     @Suppress("RedundantSuspendModifier")
@@ -22,5 +21,10 @@ class CartItemRepository(private val cartItemDao: CartItemDao) {
     //call the function coroutine --> asynchronous task
     suspend fun update(cartItem: CartItem){
         cartItemDao.update(cartItem)
+    }
+
+    @WorkerThread
+    suspend fun deleteAll(){
+        cartItemDao.deleteAll()
     }
 }

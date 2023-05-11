@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_cart">
+    app:startDestination="@id/cartFragment">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -22,18 +22,6 @@
         android:name="my.edu.tarc.bait2073mad.ui.account.AccountFragment"
         android:label="@string/title_account"
         tools:layout="@layout/fragment_account" />
-    <fragment
-        android:id="@+id/navigation_cart"
-        android:name="my.edu.tarc.bait2073mad.ui.cart.CartFragment"
-        android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart">
-        <action
-            android:id="@+id/action_navigation_cart_to_checkOutFragment"
-            app:destination="@id/checkOutFragment" />
-        <action
-            android:id="@+id/action_navigation_cart_to_tryFragment"
-            app:destination="@id/tryFragment" />
-    </fragment>
     <fragment
         android:id="@+id/checkOutFragment"
         android:name="my.edu.tarc.bait2073mad.ui.checkOut.CheckOutFragment"
@@ -70,10 +58,30 @@
         android:id="@+id/product_details_fragment"
         android:name="my.edu.tarc.bait2073mad.ui.product.ProductDetailsFragment"
         android:label="fragment_product_details"
-        tools:layout="@layout/fragment_product_details">
+        tools:layout="@layout/fragment_product_details" />
+    <fragment
+        android:id="@+id/cartItemDetailFragment"
+        android:name="my.edu.tarc.bait2073mad.ui.cart.CartItemDetailFragment"
+        android:label="fragment_cart_item_detail"
+        tools:layout="@layout/fragment_cart_item_detail">
         <action
-            android:id="@+id/action_product_details_fragment_to_navigation_cart"
-            app:destination="@id/navigation_cart" />
+            android:id="@+id/action_cartItemDetailFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="my.edu.tarc.bait2073mad.ui.cart.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_cartFragment_to_cartItemDetailFragment"
+            app:destination="@id/cartItemDetailFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_checkOutFragment"
+            app:destination="@id/checkOutFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_tryFragment"
+            app:destination="@id/tryFragment" />
     </fragment>
     <fragment
         android:id="@+id/tryFragment"

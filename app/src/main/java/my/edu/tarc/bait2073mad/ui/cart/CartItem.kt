@@ -4,4 +4,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "cartItem")
-data class CartItem(@PrimaryKey var productID: String, var productName: String, var productPrice: Double, var quantity: Int)
+data class CartItem(@PrimaryKey var productID: String, var productName: String, var productPrice: Double, var quantity: Int){
+    override fun toString(): String {
+        return "$productName: $productPrice"
+    }
+}

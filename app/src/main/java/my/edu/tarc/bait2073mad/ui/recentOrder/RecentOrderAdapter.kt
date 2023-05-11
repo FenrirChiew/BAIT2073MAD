@@ -6,9 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.imageview.ShapeableImageView
 import my.edu.tarc.bait2073mad.R
-import my.edu.tarc.bait2073mad.ui.cart.CartItem
 
 class RecentOrderAdapter: RecyclerView.Adapter<RecentOrderAdapter.ViewHolder>() {
     private var recentOrderList = emptyList<RecentOrder>()

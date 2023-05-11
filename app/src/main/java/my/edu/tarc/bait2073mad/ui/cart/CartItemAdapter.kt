@@ -1,23 +1,22 @@
 package my.edu.tarc.bait2073mad.ui.cart
 
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.imageview.ShapeableImageView
 import my.edu.tarc.bait2073mad.R
 
-class CartItemAdapter(): RecyclerView.Adapter<CartItemAdapter.ViewHolder>() {
+class CartItemAdapter (private val recordClickListener: RecordClickListener) : RecyclerView.Adapter<CartItemAdapter.ViewHolder>(){
+    //Cached copy of contacts
     private var cartItemList = emptyList<CartItem>()
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view){
-        val productName: TextView = view.findViewById(R.id.textViewProductName)
-        val productImage: ShapeableImageView = view.findViewById(R.id.imageViewProduct)
-        val productPrice: TextView = view.findViewById(R.id.textViewProductPrice)
+    class ViewHolder (view: View): RecyclerView.ViewHolder(view) {
+        val imageViewProductImage: ImageView = view.findViewById(R.id.imageViewCartItemProductImg)
+        val textViewProductName: TextView = view.findViewById(R.id.textViewCartItemProductName)
+        val textViewProductPrice: TextView = view.findViewById(R.id.textViewCartItemProductPrice)
+        val textViewProductQuantity: TextView = view.findViewById(R.id.textViewCartItemProductQuantity)
     }
 
     internal fun setCartItem(cartItem: List<CartItem>){
@@ -25,21 +24,24 @@ class CartItemAdapter(): RecyclerView.Adapter<CartItemAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.fragment_cart_item,parent,false)
-        return ViewHolder(itemView)
+        //Create a new view, which define the UI of the list item
+        val view =  LayoutInflater.from(parent.context).inflate(R.layout.cart_record, parent, false)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentItem = cartItemList[position]
-        holder.productImage.setImageResource(R.drawable.credit_card)
-        holder.productName.text = currentItem.productName
-        holder.productPrice.text = currentItem.productPrice.toString()
+        //Get element from the dataset at this position and replace the contents of the view with that element
+        holder.imageViewProductImage.setImageResource(R.drawable.credit_card)
+        holder.textViewProductName.text = cartItemList[position].productName
+        holder.textViewProductQuantity.text = cartItemList[position].quantity.toString()
+        holder.textViewProductPrice.text = cartItemList[position].productPrice.toString()
 
-        //event when click the contact
+        //set event when click the contact
         holder.itemView.setOnClickListener {
-            Toast.makeText(it.context,"Clicked",Toast.LENGTH_SHORT).show()
+            //Item click event handler
+            recordClickListener.onRecordClickListener(position)
+//            Toast.makeText(it.context, "Contact name:" + contactList[position].name, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -47,7 +49,8 @@ class CartItemAdapter(): RecyclerView.Adapter<CartItemAdapter.ViewHolder>() {
         return cartItemList.size
     }
 
-    interface RecordClickListener{
-        fun onRecordClickListener(index: Int)
-    }
+}// End of Adapter Class
+
+interface RecordClickListener{
+    fun onRecordClickListener(index: Int)
 }

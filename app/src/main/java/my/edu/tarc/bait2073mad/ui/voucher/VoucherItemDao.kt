@@ -3,9 +3,10 @@ package my.edu.tarc.bait2073mad.ui.voucher
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
+@Dao
 interface VoucherItemDao {
 
-    @Query("SELECT * FROM voucherItem ORDER BY name ASC")
+    @Query("SELECT * FROM voucherItem ORDER BY voucherName ASC")
     fun getAllVoucherItem(): LiveData<List<VoucherItem>>
 
 //    @Query("DELETE FROM voucherItem")

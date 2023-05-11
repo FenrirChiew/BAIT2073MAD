@@ -14,9 +14,9 @@ class CheckOutItemAdapter: RecyclerView.Adapter<CheckOutItemAdapter.ViewHolder>(
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         val productName: TextView = view.findViewById(R.id.textViewProductName)
-        val productImage: ShapeableImageView = view.findViewById(R.id.imageViewProduct)
+        //val productImage: ShapeableImageView = view.findViewById(R.id.imageViewProduct)
         val productPrice: TextView = view.findViewById(R.id.textViewProductPrice)
-        val productQuantity: TextView = view.findViewById(R.id.textViewProductQuantity)
+        val productQuantity: TextView = view.findViewById(R.id.textViewCartItemProductQuantity)
     }
 
     internal fun setCheckOutItem(checkOutItem: List<CheckOutItem>){
@@ -31,7 +31,7 @@ class CheckOutItemAdapter: RecyclerView.Adapter<CheckOutItemAdapter.ViewHolder>(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = checkOutItemList[position]
-        holder.productImage.setImageResource(currentItem.productImage)
+//        holder.productImage.setImageResource(currentItem.productImage)
         holder.productName.text = currentItem.productName.toString()
         holder.productPrice.text = currentItem.productPrice.toString()
         holder.productQuantity.text = currentItem.productQuantity.toString()

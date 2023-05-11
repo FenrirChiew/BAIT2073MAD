@@ -29,6 +29,7 @@
     <string name="orderDateTitle">Order Date:</string>
     <string name="paymentMethodTitle">Payment Method:</string>
     <string name="totalPaymentTitle">Total Payment:</string>
+    <string name="noRecord">No Record!</string>
 
     <!-- product -->
     <string name="product_name_label">Product Name</string>
@@ -72,4 +73,8 @@
     <string name="cardCvc">"CVC Number: "</string>
     <string name="hintCardCvc">123</string>
     <string name="addCard">Add Card</string>
+    <string name="complete">Complete</string>
+    <string name="delete">Delete</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

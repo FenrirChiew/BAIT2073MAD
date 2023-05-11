@@ -29,7 +29,7 @@ class VoucherItemAdapter: RecyclerView.Adapter<VoucherItemAdapter.ViewHolder>() 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = voucherItemList[position]
-        holder.voucherImage.setImageResource(currentItem.voucherImage)
+        //holder.voucherImage.setImageResource(currentItem.voucherImage)
         holder.voucherName.text = currentItem.voucherName.toString()
         holder.voucherTerms.text = currentItem.voucherTerms.toString()
         holder.itemView.setOnClickListener {
