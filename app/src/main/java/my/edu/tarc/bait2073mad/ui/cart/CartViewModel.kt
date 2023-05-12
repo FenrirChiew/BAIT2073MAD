@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
 class CartViewModel (application: Application): AndroidViewModel(application) {
-    // TODO: Implement the ViewModel
     var cartItemList : LiveData<List<CartItem>>
     private val repository: CartItemRepository //instance of repository
 
@@ -17,7 +16,7 @@ class CartViewModel (application: Application): AndroidViewModel(application) {
 
     init {
         val cartItemDao = CartItemDatabase.getDatabase(application).cartItemDao()
-        repository = CartItemRepository(cartItemDao)
+        repository = CartItemRepository((cartItemDao))
         cartItemList = repository.allCartItem
     }
 
@@ -26,12 +25,10 @@ class CartViewModel (application: Application): AndroidViewModel(application) {
         repository.add(cartItem)
     }
 
-    //used to update the contact information
     fun updateCartItem(cartItem: CartItem) = viewModelScope.launch {
         repository.update(cartItem)
     }
 
-    //used to delete the contact
     fun deleteCartItem(cartItem: CartItem) = viewModelScope.launch {
         repository.delete(cartItem)
     }

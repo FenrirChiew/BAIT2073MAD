@@ -17,11 +17,11 @@ class CartItemDetailFragment : Fragment() {
     private var _binding: FragmentCartItemDetailBinding? = null
     private val binding get() = _binding!!
     private val cartViewModel: CartViewModel by activityViewModels()
+    private var currentIndex: Int = cartViewModel.selectedIndex
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentCartItemDetailBinding.inflate(inflater, container, false)
 
         //Let ProfileFragment to manage the Menu
@@ -30,26 +30,38 @@ class CartItemDetailFragment : Fragment() {
 //            this, viewLifecycleOwner,
 //            Lifecycle.State.RESUMED
 //        )
-
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //indicate which view user is looking at (view mode - edit? new?)
-        //if != -1, isEditing = True
-        //isEditing = myContactViewModel.selectedIndex != -1
 
         with(binding) {
             //value!! is for the current contactList information
             val cartItem: CartItem =
-                cartViewModel.cartItemList.value!!.get(cartViewModel.selectedIndex)
+                cartViewModel.cartItemList.value!!.get(currentIndex)
             //to pass the current value to the edit text
+            imageViewCartItemDetailProductImage.setImageResource(R.drawable.ic_product_black_24dp)
             textViewCartItemDetailName.setText(cartItem.productName)
             textViewCartItemDetailPrice.setText(cartItem.productPrice.toString())
             textViewCartItemDetailQuantity.setText(cartItem.quantity.toString())
         }
+
+        binding.imageButtonCartItemDetailDelete.setOnClickListener {
+        }
+
+        binding.imageButtonCartItemDetailPlus.setOnClickListener {
+
+        }
+
+        binding.imageButtonCartItemDetailMinus.setOnClickListener {
+
+        }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        cartViewModel.selectedIndex = -1
+    }
 }
