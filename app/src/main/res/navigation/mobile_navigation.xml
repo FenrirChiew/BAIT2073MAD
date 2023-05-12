@@ -83,15 +83,7 @@
         <action
             android:id="@+id/action_cartFragment_to_checkOutFragment"
             app:destination="@id/checkOutFragment" />
-        <action
-            android:id="@+id/action_cartFragment_to_tryFragment"
-            app:destination="@id/tryFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/tryFragment"
-        android:name="my.edu.tarc.bait2073mad.ui.cart.TryFragment"
-        android:label="fragment_try"
-        tools:layout="@layout/fragment_try" />
     <fragment
         android:id="@+id/addProductFragment"
         android:name="my.edu.tarc.bait2073mad.ui.product.AddProductFragment"
