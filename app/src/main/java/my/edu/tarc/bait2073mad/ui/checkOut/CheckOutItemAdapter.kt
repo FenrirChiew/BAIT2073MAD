@@ -25,7 +25,7 @@ class CheckOutItemAdapter: RecyclerView.Adapter<CheckOutItemAdapter.ViewHolder>(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.fragment_check_out_item,parent,false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.fragment_check_out,parent,false)
         return ViewHolder(itemView)
     }
 
