@@ -47,6 +47,11 @@
     <string name="placeOrderButton">Place Order</string>
     <string name="productQuantity">Product Quantity</string>
     <string name="labelVoucher">Apply Voucher</string>
+    <string name="totalCartItemInCheckOut">Total Items: </string>
+    <string name="DeliveryAddress">Delivery Address: </string>
+    <string name="checkOutRemark">Remark: </string>
+    <string name="applyVoucherButton">Apply Voucher</string>
+    <string name="paymentMethodButton">Payment Method</string>
 
     <!-- voucher -->
     <string name="titleVoucher">Select Voucher</string>

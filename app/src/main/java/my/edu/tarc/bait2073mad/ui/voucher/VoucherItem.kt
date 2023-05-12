@@ -5,5 +5,5 @@ import androidx.room.PrimaryKey
 import java.util.Date
 
 @Entity(tableName = "voucherItem")
-data class VoucherItem(@PrimaryKey var voucherName: String, var voucherTerms: String, var voucherDate: Date)
+data class VoucherItem(@PrimaryKey var voucherName: String, var voucherTerms: String, var voucherDate: Int)
 
