@@ -9,7 +9,7 @@ data class Product(
     @PrimaryKey var productID: String,
     var productName: String,
     var productPrice: Double,
-    var productImage: Bitmap,
+    //var productImage: Bitmap,
     var productStatus: String,
     var favorite: Boolean,
     var productDescriptions: String,

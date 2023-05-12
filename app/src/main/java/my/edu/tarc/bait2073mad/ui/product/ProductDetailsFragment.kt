@@ -36,7 +36,7 @@ class ProductDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<View>(R.id.imageButtonCart).setOnClickListener {
             Navigation.findNavController(view)
-                .navigate(R.id.action_product_details_fragment_to_navigation_cart)
+                .navigate(R.id.action_products_fragment_to_product_details_fragment)
         }
 
 //        view.findViewById<View>(R.id.buttonAddToCart).setOnClickListener {

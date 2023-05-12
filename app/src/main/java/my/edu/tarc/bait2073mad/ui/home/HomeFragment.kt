@@ -9,6 +9,8 @@ import android.widget.SearchView.OnQueryTextListener
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -35,6 +37,10 @@ class HomeFragment : Fragment() {
         val productAdaptor = activity?.let { ArrayAdapter<String>(it, android.R.layout.simple_list_item_1, products) };
 
         binding.searchView.setOnQueryTextListener(object : SerachView.OnQueryTextListener)*/
+
+        _binding!!.chip.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_addProductFragment)
+        }
 
         // val chipTags
         return root

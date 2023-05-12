@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 class ProductViewModel(application: Application) : AndroidViewModel(application) {
     var productList: LiveData<List<Product>>
     private val repository: ProductRepository
+    var selectedIndex: Int = -1
 
     init {
         val productDao = ProductDatabase.getDatabase(application).productDao()
@@ -18,5 +19,9 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
 
     fun addProduct(product: Product) = viewModelScope.launch {
         repository.add(product)
+    }
+
+    fun updateProduct(product: Product) = viewModelScope.launch {
+        repository.update(product)
     }
 }
