@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextCardNumber" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextCardHolderName"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -57,7 +57,7 @@
         android:layout_marginTop="32dp"
         android:text="@string/cardExpiredDay"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextCardHolderName" />
 
     <EditText
         android:id="@+id/editTextDate"
@@ -67,7 +67,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/hintCardExpiredDay"
-        android:inputType="date"
+        android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCardExpiredDay" />
 
@@ -81,7 +81,7 @@
         app:layout_constraintTop_toTopOf="@+id/textViewCardExpiredDay" />
 
     <EditText
-        android:id="@+id/editTextNumber2"
+        android:id="@+id/editTextCvc"
         android:layout_width="134dp"
         android:layout_height="48dp"
         android:layout_marginStart="80dp"

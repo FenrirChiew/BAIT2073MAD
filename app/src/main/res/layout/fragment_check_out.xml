@@ -93,9 +93,44 @@
         android:id="@+id/paymentMethodButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/paymentMethodButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewlabelVoucherApplied" />
+
+    <TextView
+        android:id="@+id/textViewlabelVoucherApplied"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/labelVoucherApplied"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/applyVoucherbutton" />
+
+    <TextView
+        android:id="@+id/textViewVoucherApply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewlabelVoucherApplied"
+        app:layout_constraintTop_toTopOf="@+id/textViewlabelVoucherApplied" />
+
+    <TextView
+        android:id="@+id/textViewlabelChosenPaymentMethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/labelChosenPaymentMethod"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/paymentMethodButton" />
+
+    <TextView
+        android:id="@+id/textViewChosenPaymentMethod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/textViewlabelChosenPaymentMethod"
+        app:layout_constraintTop_toTopOf="@+id/textViewlabelChosenPaymentMethod" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

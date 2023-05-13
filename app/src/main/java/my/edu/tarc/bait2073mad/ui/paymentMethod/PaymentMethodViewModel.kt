@@ -12,28 +12,26 @@ import my.edu.tarc.bait2073mad.ui.voucher.VoucherItemRepository
 
 class PaymentMethodViewModel (application: Application): AndroidViewModel(application) {
     //LiveData gives us updated voucher item when they change
-    var voucherItemList : LiveData<List<VoucherItem>>
-    private val repository: VoucherItemRepository
-
-    var selectedIndex: Int = -1
+    var cardList : LiveData<List<Card>>
+    private val repository: CardRepository
 
     init {
-        val voucherItemDao = VoucherItemDatabase.getDatabase(application).voucherItemDao()
-        repository = VoucherItemRepository(voucherItemDao)
-        voucherItemList = repository.allVoucherItem
+        val cardDao = CardDatabase.getDatabase(application).CardDao()
+        repository = CardRepository(cardDao)
+        cardList = repository.allCard
     }
 
-    fun addVoucher(voucherItem: VoucherItem) = viewModelScope.launch{
-        repository.add(voucherItem)
+    fun addVoucher(card: Card) = viewModelScope.launch{
+        repository.add(card)
     }
 
-    fun updateContact(voucherItem: VoucherItem) = viewModelScope.launch {
-        repository.update(voucherItem)
+    fun updateContact(card: Card) = viewModelScope.launch {
+        repository.update(card)
     }
 
     //used to delete the contact
-    fun deleteContact(voucherItem: VoucherItem) = viewModelScope.launch {
-        repository.delete(voucherItem)
+    fun deleteContact(card: Card) = viewModelScope.launch {
+        repository.delete(card)
     }
 
     //override the local data when cloud data is downloaded

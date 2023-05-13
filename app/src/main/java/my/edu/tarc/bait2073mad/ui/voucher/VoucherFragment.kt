@@ -42,19 +42,19 @@ class VoucherFragment : Fragment(), RecordClickListener {
         voucherViewModel.addVoucher(
             VoucherItem(
                 "Free Shipping",
-                "Minimum Spend RM15.00", "12/06/2023", "C:/Users/User/Desktop/fpx-logo.jpg"
+                "Minimum Spend RM15.00", "12/06/2023", R.id.imageViewVoucher
             )
         )
         voucherViewModel.addVoucher(
             VoucherItem(
                 "Cashback 10%",
-                "Minimum Spend RM45.00", "19/06/2023", "C:/Users/User/Desktop/fpx-logo.jpg"
+                "Minimum Spend RM45.00", "19/06/2023", R.id.imageViewVoucher
             )
         )
         voucherViewModel.addVoucher(
             VoucherItem(
                 "RM10.00 Off",
-                "Minimum Spend RM75.00", "12/08/2023", "C:/Users/User/Desktop/fpx-logo.jpg"
+                "Minimum Spend RM75.00", "12/08/2023", R.id.imageViewVoucher
             )
         )
 
