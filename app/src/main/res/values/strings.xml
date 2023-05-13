@@ -13,7 +13,7 @@
     <string name="signUp">\u0020Sign up\u0020</string>
     <string name="now">now</string>
 
-    <!-- Sign Up -->
+    <!-- sign up -->
     <string name="createAccount">Create Account</string>
     <string name="confirmPassword">Confirm Password</string>
     <string name="agreeCondition">I agree with terms and conditions</string>
@@ -42,6 +42,7 @@
     <string name="save_product">Save Product</string>
     <string name="add_product">Add Product</string>
     <string name="product_saved">Product Saved</string>
+    <string name="currency_myr">RM</string>
 
     <!-- search -->
     <string name="search_query_hint">Search Products!</string>

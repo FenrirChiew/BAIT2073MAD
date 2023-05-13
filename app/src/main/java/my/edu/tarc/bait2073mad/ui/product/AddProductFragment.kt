@@ -11,27 +11,23 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import my.edu.tarc.bait2073mad.databinding.FragmentAddProductBinding
 import my.edu.tarc.bait2073mad.R
+import my.edu.tarc.bait2073mad.ui.home.HomeViewModel
 
 class AddProductFragment : Fragment(), MenuProvider {
 
     private var _binding: FragmentAddProductBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
-    // Refers to the ViewModel created by the Main Activity
-    private val myProductViewModel: ProductViewModel by activityViewModels()
+    private val homeViewModel: HomeViewModel by activityViewModels()
     private var isEditing: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentAddProductBinding.inflate(inflater, container, false)
 
-        //Let ProfileFragment to manage the Menu
         val menuHost: MenuHost = this.requireActivity()
         menuHost.addMenuProvider(
             this, viewLifecycleOwner,
@@ -45,11 +41,11 @@ class AddProductFragment : Fragment(), MenuProvider {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Determine the view mode; edit or new
-        isEditing = myProductViewModel.selectedIndex != -1
+        isEditing = homeViewModel.selectedIndex != -1
         if (isEditing) {
             with(binding) {
                 val product: Product =
-                    myProductViewModel.productList.value!!.get(myProductViewModel.selectedIndex)
+                    homeViewModel.productList.value!![homeViewModel.selectedIndex]
                 editTextProductID.setText(product.productID)
                 editTextProductName.setText(product.productName)
                 editTextProductPrice.setText(product.productPrice.toString())
@@ -65,7 +61,7 @@ class AddProductFragment : Fragment(), MenuProvider {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        myProductViewModel.selectedIndex = -1
+        homeViewModel.selectedIndex = -1
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -99,12 +95,20 @@ class AddProductFragment : Fragment(), MenuProvider {
                     val productFavorite = false
                     val productDescriptions = editTextProductDescriptions.text.toString()
                     val productSeller = editTextProductSeller.text.toString()
-                    val newProduct = Product(productID, productName, productPrice, productStatue, productFavorite, productDescriptions, productSeller)
-                    myProductViewModel.addProduct(newProduct)
+                    val newProduct = Product(
+                        productID,
+                        productName,
+                        productPrice,
+                        productStatue,
+                        productFavorite,
+                        productDescriptions,
+                        productSeller
+                    )
+                    homeViewModel.addProduct(newProduct)
                     if (isEditing) {
-                        myProductViewModel.updateProduct(newProduct)
+                        homeViewModel.updateProduct(newProduct)
                     } else {
-                        myProductViewModel.addProduct(newProduct)
+                        homeViewModel.addProduct(newProduct)
                     }
                 }
                 Toast.makeText(context, getString(R.string.product_saved), Toast.LENGTH_SHORT)
