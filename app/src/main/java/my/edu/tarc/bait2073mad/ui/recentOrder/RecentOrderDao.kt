@@ -13,6 +13,9 @@ interface RecentOrderDao {
     @Query("SELECT * FROM recentOrder ORDER BY orderID ASC")
     fun getAllRecentOrder(): LiveData<List<RecentOrder>>
 
+    @Query("DELETE FROM recentOrder")
+    suspend fun deleteAll()
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(recentOrder: RecentOrder)
 
