@@ -33,7 +33,9 @@ class SignUp : AppCompatActivity() {
             val password: String = binding.editTextSignUpPassword.text.toString()
             val confirmPassword: String = binding.editTextSignUpConfirmPassword.text.toString()
 
-            if (email.isBlank()) {
+            if (!binding.checkBoxAgreeCondition.isChecked())
+                showErrorMessage(binding.signUpErrorMessage4, "You have to agree with the term and condition before sign up")
+            else if (email.isBlank()) {
                 showErrorMessage(binding.signUpErrorMessage1, "Email cannot be blank")
             } else if (password.isBlank()) {
                 showErrorMessage(binding.signUpErrorMessage2, "Password cannot be blank")
@@ -49,6 +51,11 @@ class SignUp : AppCompatActivity() {
                                     "Account created.",
                                     Toast.LENGTH_SHORT,
                                 ).show()
+
+                                val intent = Intent(applicationContext, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
+
                             } else {
                                 Toast.makeText(
                                     this,

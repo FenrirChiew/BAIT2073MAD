@@ -34,20 +34,20 @@
         android:id="@+id/signUpErrorMessage1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/red"
-        android:text="" />
+        android:text=""
+        android:textColor="@color/red" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp">
 
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextSignUpPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password" />
+            android:hint="@string/password"
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,8 +55,8 @@
         android:id="@+id/signUpErrorMessage2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/red"
-        android:text="" />
+        android:text=""
+        android:textColor="@color/red" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -67,7 +67,8 @@
             android:id="@+id/editTextSignUpConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/confirmPassword" />
+            android:hint="@string/confirmPassword"
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,8 +76,8 @@
         android:id="@+id/signUpErrorMessage3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/red"
-        android:text="" />
+        android:text=""
+        android:textColor="@color/red" />
 
     <CheckBox
         android:id="@+id/checkBoxAgreeCondition"
@@ -87,6 +88,13 @@
         android:text="@string/agreeCondition"
         tools:ignore="RtlHardcoded" />
 
+    <TextView
+        android:id="@+id/signUpErrorMessage4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/red" />
+
     <Button
         android:id="@+id/buttonSignUp"
         android:layout_width="wrap_content"
@@ -95,11 +103,12 @@
         android:text="@string/signUpButton" />
 
     <TextView
+        android:id="@+id/loginNow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/loginNow"
-        android:text="@string/login_now"
         android:layout_marginTop="20dp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:text="@string/login_now"
+        android:textStyle="bold" />
 
 </LinearLayout>
