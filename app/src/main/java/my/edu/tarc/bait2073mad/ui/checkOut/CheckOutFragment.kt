@@ -6,27 +6,34 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import my.edu.tarc.bait2073mad.R
+import my.edu.tarc.bait2073mad.databinding.FragmentCheckOutBinding
 
 class CheckOutFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = CheckOutFragment()
-    }
+    private val viewModel: CheckOutViewModel by activityViewModels()
 
-    private lateinit var viewModel: CheckOutViewModel
+    private var _binding: FragmentCheckOutBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_check_out, container, false)
+        _binding = FragmentCheckOutBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CheckOutViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.applyVoucherbutton.setOnClickListener {
+            findNavController().navigate(R.id.action_checkOutFragment_to_voucherFragment)
+        }
+
     }
+
 
 }
