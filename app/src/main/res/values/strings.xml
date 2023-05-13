@@ -60,6 +60,10 @@
     <string name="paymentMethodButton">Payment Method</string>
     <string name="labelVoucherApplied">"Voucher Apply: "</string>
     <string name="labelChosenPaymentMethod">"Card Number: "</string>
+    <string name="labelSubtotal">Subtotal Price(RM): </string>
+    <string name="labelShippingFee">Shipping Fee:RM):  </string>
+    <string name="labelVoucherDiscount">Voucher Discount(RM): </string>
+    <string name="labelTotalPayment">Total Payment(RM): </string>
 
     <!-- voucher -->
     <string name="titleVoucher">Select Voucher</string>

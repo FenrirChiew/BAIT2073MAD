@@ -11,10 +11,10 @@
         android:id="@+id/textViewLabelTotalCartItem"
         android:layout_width="89dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="16dp"
         android:text="@string/totalCartItemInCheckOut"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
     <TextView
         android:id="@+id/textViewTotalCartItem"
@@ -37,17 +37,9 @@
         android:id="@+id/textViewDeliveryAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewLabelDeliveryAddress" />
-
-    <TextView
-        android:id="@+id/textViewLabelRemark"
-        android:layout_width="89dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/checkOutRemark"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDeliveryAddress" />
 
     <TextView
         android:id="@+id/titleCheckOutTextView"
@@ -72,13 +64,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewRemark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLabelRemark" />
-
     <Button
         android:id="@+id/applyVoucherbutton"
         android:layout_width="0dp"
@@ -86,8 +71,9 @@
         android:layout_marginTop="16dp"
         android:text="@string/applyVoucherButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRemark" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDeliveryAddress" />
 
     <Button
         android:id="@+id/paymentMethodButton"
@@ -132,5 +118,86 @@
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toEndOf="@+id/textViewlabelChosenPaymentMethod"
         app:layout_constraintTop_toTopOf="@+id/textViewlabelChosenPaymentMethod" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="409dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleCheckOutTextView" />
+
+    <TextView
+        android:id="@+id/textViewLabelSubtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/labelSubtotal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewlabelChosenPaymentMethod" />
+
+    <TextView
+        android:id="@+id/textViewSubTotalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="190dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewLabelSubtotal"
+        app:layout_constraintStart_toEndOf="@+id/textViewLabelSubtotal"
+        app:layout_constraintTop_toTopOf="@+id/textViewLabelSubtotal" />
+
+    <TextView
+        android:id="@+id/textViewLabelShippingFee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/labelShippingFee"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLabelSubtotal" />
+
+    <TextView
+        android:id="@+id/textViewShippingFee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="197dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewLabelShippingFee"
+        app:layout_constraintStart_toEndOf="@+id/textViewLabelShippingFee"
+        app:layout_constraintTop_toTopOf="@+id/textViewLabelShippingFee" />
+
+    <TextView
+        android:id="@+id/textViewlabelVoucherDiscount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/labelVoucherDiscount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLabelShippingFee" />
+
+    <TextView
+        android:id="@+id/textViewVoucherDiscount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="167dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewlabelVoucherDiscount"
+        app:layout_constraintStart_toEndOf="@+id/textViewlabelVoucherDiscount"
+        app:layout_constraintTop_toTopOf="@+id/textViewlabelVoucherDiscount" />
+
+    <TextView
+        android:id="@+id/textViewlabelTotalPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/labelTotalPayment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewlabelVoucherDiscount" />
+
+    <TextView
+        android:id="@+id/textViewTotalPayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="188dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewlabelTotalPayment"
+        app:layout_constraintStart_toEndOf="@+id/textViewlabelTotalPayment"
+        app:layout_constraintTop_toTopOf="@+id/textViewlabelTotalPayment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
