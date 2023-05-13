@@ -1,5 +1,6 @@
 package my.edu.tarc.bait2073mad
 
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
@@ -7,6 +8,8 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -21,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+
     //Cart
     private lateinit var cartItemViewModel: CartViewModel
 
@@ -46,30 +50,24 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        navController.addOnDestinationChangedListener{
-                _,destination,_->
-            if(destination.id==R.id.navigation_home)
-            {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.navigation_home) {
                 //edit the title of fragment
                 title = "Home"
-            }
-            else if(destination.id == R.id.navigation_order){
+            } else if (destination.id == R.id.navigation_order) {
                 title = "Order"
-            }
-            else{
+            } else {
                 title = getString(R.string.app_name)
             }
         }
 
         //back press
-        val backPressedCallback = object: OnBackPressedCallback(true)
-        {
-            override fun handleOnBackPressed()
-            {
+        val backPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
                 val builder = AlertDialog.Builder(this@MainActivity)
                 builder.setMessage("Are you sure you want to exit?")
-                    .setPositiveButton("Exit",{_,_ -> finish() })
-                    .setNegativeButton("Cancel",{_,_ ->  })
+                    .setPositiveButton("Exit", { _, _ -> finish() })
+                    .setNegativeButton("Cancel", { _, _ -> })
                 builder.create().show()
             }
         }
@@ -77,7 +75,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(androidx.navigation.fragment.R.id.nav_host_fragment_container)
+        val navController =
+            findNavController(androidx.navigation.fragment.R.id.nav_host_fragment_container)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }

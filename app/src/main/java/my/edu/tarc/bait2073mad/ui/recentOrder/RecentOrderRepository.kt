@@ -23,4 +23,9 @@ class RecentOrderRepository (private val recentOrderDao: RecentOrderDao){
     suspend fun update(recentOrder: RecentOrder){
         recentOrderDao.update(recentOrder)
     }
+
+    @WorkerThread
+    suspend fun deleteAll(){
+        recentOrderDao.deleteAll()
+    }
 }

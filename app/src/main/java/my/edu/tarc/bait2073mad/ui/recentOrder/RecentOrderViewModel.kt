@@ -16,7 +16,19 @@ class RecentOrderViewModel (application: Application): AndroidViewModel(applicat
         recentOrderList = repository.allRecentOrder
     }
 
-    fun addRecentOrder(recentOrder: RecentOrder) = viewModelScope.launch {
+    fun addOrder(recentOrder: RecentOrder) = viewModelScope.launch {
         repository.add(recentOrder)
+    }
+
+    fun updateOrder(recentOrder: RecentOrder) = viewModelScope.launch {
+        repository.update(recentOrder)
+    }
+
+    fun deleteOrder(recentOrder: RecentOrder) = viewModelScope.launch {
+        repository.delete(recentOrder)
+    }
+
+    fun deleteAll() = viewModelScope.launch {
+        repository.deleteAll()
     }
 }
