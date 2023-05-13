@@ -6,21 +6,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import my.edu.tarc.bait2073mad.R
+import com.google.firebase.auth.FirebaseAuth
+import my.edu.tarc.bait2073mad.databinding.FragmentOrderBinding
 
 class ProfileFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = ProfileFragment()
-    }
-
+    private var _binding: FragmentOrderBinding? = null
+    private val binding get() = _binding!!
     private lateinit var viewModel: ProfileViewModel
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+    ): View {
+        _binding = FragmentOrderBinding.inflate(inflater, container, false)
+
+        auth = FirebaseAuth.getInstance()
+
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -29,4 +32,16 @@ class ProfileFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
+    /*
+    Firebase.auth.signOut()
+
+    val intent = Intent(applicationContext, Login::class.java)
+    startActivity(intent)
+    finish()
+    */
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

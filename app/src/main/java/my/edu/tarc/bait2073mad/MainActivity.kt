@@ -1,6 +1,5 @@
 package my.edu.tarc.bait2073mad
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
@@ -13,6 +12,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import my.edu.tarc.bait2073mad.databinding.ActivityMainBinding
 import my.edu.tarc.bait2073mad.ui.cart.CartViewModel
 import my.edu.tarc.bait2073mad.ui.product.Product
@@ -21,6 +24,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var auth: FirebaseAuth
+    private lateinit var user: FirebaseUser
     //Cart
     private lateinit var cartItemViewModel: CartViewModel
 
@@ -29,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = Firebase.auth
+        user = auth.currentUser!!
 
         val navView: BottomNavigationView = binding.navView
 

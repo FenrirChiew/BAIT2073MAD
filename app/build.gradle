@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-//    id 'com.google.gms.google-services'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -68,12 +68,11 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.8'
 
     //addon firebase, should be added automatically when click add dependency in firebase
-    implementation 'com.google.firebase:firebase-storage-ktx:20.1.0'
+    implementation platform('com.google.firebase:firebase-bom:32.0.0')
+    implementation 'com.google.firebase:firebase-storage-ktx:20.2.0'
     implementation 'com.google.firebase:firebase-common-ktx:20.3.2'
-    implementation 'com.google.firebase:firebase-database-ktx:20.2.0'
-
-    //addon material dependency
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'com.google.firebase:firebase-database-ktx:20.2.1'
+    implementation 'com.google.firebase:firebase-auth-ktx'
 
     //Room Dependency
     def room_version = "2.5.1"

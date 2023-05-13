@@ -22,6 +22,13 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/loginErrorMessage1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:text="" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,6 +42,13 @@
             android:maxWidth="80dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/loginErrorMessage2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:text="" />
 
     <Button
         android:id="@+id/buttonLogin"
@@ -51,7 +65,6 @@
         android:text="@string/forgotPassword" />
 
     <LinearLayout
-        android:id="@+id/linearLayoutLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
