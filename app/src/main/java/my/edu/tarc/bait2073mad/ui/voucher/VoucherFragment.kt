@@ -36,12 +36,12 @@ class VoucherFragment : Fragment(), RecordClickListener {
 
         voucherViewModel.addVoucher(
             VoucherItem("Free Shipping",
-            "Minimum Spend RM15.00", "12/06/2023")
+            "Minimum Spend RM15.00", "12/06/2023", R.drawable.voucher)
         )
         voucherViewModel.addVoucher(VoucherItem("Cashback 10%",
-            "Minimum Spend RM45.00", "19/06/2023"))
+            "Minimum Spend RM45.00", "19/06/2023", R.drawable.voucher))
         voucherViewModel.addVoucher(VoucherItem("RM10.00 Off",
-            "Minimum Spend RM75.00", "12/08/2023"))
+            "Minimum Spend RM75.00", "12/08/2023", R.drawable.voucher))
 
 
         voucherViewModel.voucherItemList.observe(
