@@ -39,5 +39,7 @@ class PaymentMethodFragment : Fragment() {
             findNavController().navigate(R.id.action_paymentMethodFragment_to_addCardFragment)
         }
 
+
+
     }
 }

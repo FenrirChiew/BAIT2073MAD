@@ -24,12 +24,12 @@ class VoucherViewModel (application: Application): AndroidViewModel(application)
         repository.add(voucherItem)
     }
 
-    fun updateContact(voucherItem: VoucherItem) = viewModelScope.launch {
+    fun updateVoucher(voucherItem: VoucherItem) = viewModelScope.launch {
         repository.update(voucherItem)
     }
 
     //used to delete the contact
-    fun deleteContact(voucherItem: VoucherItem) = viewModelScope.launch {
+    fun deleteVoucher(voucherItem: VoucherItem) = viewModelScope.launch {
         repository.delete(voucherItem)
     }
 

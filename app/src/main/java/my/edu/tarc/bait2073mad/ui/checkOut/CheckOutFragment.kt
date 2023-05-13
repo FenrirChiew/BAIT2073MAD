@@ -37,6 +37,11 @@ class CheckOutFragment : Fragment() {
             findNavController().navigate(R.id.action_checkOutFragment_to_paymentMethodFragment)
         }
 
+        //To retrieve the card number that input by user
+        val cardNumber = arguments?.getLong("cardNumber", 0)
+        val maskedCardNumber = "**** **** **** " + cardNumber.toString().takeLast(4)
+        binding.textViewChosenPaymentMethod.text = maskedCardNumber
+
     }
 
 
