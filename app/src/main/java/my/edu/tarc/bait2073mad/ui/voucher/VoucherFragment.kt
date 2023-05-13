@@ -72,6 +72,8 @@ class VoucherFragment : Fragment(), RecordClickListener {
         binding.voucherRecyclerView.adapter = adapter
 
 
+
+
     }
 
 
@@ -80,7 +82,21 @@ class VoucherFragment : Fragment(), RecordClickListener {
         voucherViewModel.selectedIndex = index
 //        Toast.makeText(context, index, Toast.LENGTH_SHORT)
 //            .show()
-        findNavController().navigate(R.id.action_voucherFragment_to_checkOutFragment)
+
+        val voucherItem: VoucherItem =
+            voucherViewModel.voucherItemList.value!!.get(voucherViewModel.selectedIndex)
+        binding.apply {
+            val voucherName = voucherItem.voucherName
+
+            val action = VoucherFragmentDirections.actionVoucherFragmentToCheckOutFragment(voucherName, 0)
+
+// Navigate to the CheckOutFragment with both arguments
+            findNavController().navigate(action)
+        }
+
+        //findNavController().navigate(R.id.action_voucherFragment_to_checkOutFragment)
+
+
 
 //        // Get the VoucherItem object corresponding to the selected voucher
 //        val voucherItem = voucherViewModel.voucherItemList.value?.get(index)

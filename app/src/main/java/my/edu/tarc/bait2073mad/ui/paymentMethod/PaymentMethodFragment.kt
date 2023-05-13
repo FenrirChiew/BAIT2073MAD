@@ -10,8 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentPaymentMethodBinding
-import my.edu.tarc.bait2073mad.databinding.FragmentVoucherBinding
-import my.edu.tarc.bait2073mad.ui.voucher.VoucherViewModel
+import my.edu.tarc.bait2073mad.ui.paymentMethod.AddCardFragmentDirections.Companion.actionAddCardFragmentToCheckOutFragment
 
 class PaymentMethodFragment : Fragment() {
 
@@ -36,7 +35,9 @@ class PaymentMethodFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.cardButton.setOnClickListener {
-            findNavController().navigate(R.id.action_paymentMethodFragment_to_addCardFragment)
+            val voucherName = arguments?.getString("voucherName", "")
+            val action = PaymentMethodFragmentDirections.actionAddCardFragmentToCheckOutFragment(voucherName)
+            findNavController().navigate(action)
         }
 
 

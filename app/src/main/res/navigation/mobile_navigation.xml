@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_home">
+    app:startDestination="@id/checkOutFragment">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -41,6 +41,9 @@
             android:id="@+id/action_checkOutFragment_to_paymentMethodFragment"
             app:destination="@id/paymentMethodFragment" />
         <argument
+            android:name="voucherName"
+            app:argType="string" />
+        <argument
             android:name="cardNumber"
             app:argType="long" />
     </fragment>
@@ -61,12 +64,15 @@
         <action
             android:id="@+id/action_paymentMethodFragment_to_addCardFragment"
             app:destination="@id/addCardFragment" />
+        <argument
+            android:name="voucherName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/product_details_fragment"
         android:name="my.edu.tarc.bait2073mad.ui.product.ProductDetailsFragment"
         android:label="fragment_product_details"
-        tools:layout="@layout/fragment_product_details" >
+        tools:layout="@layout/fragment_product_details">
         <action
             android:id="@+id/action_product_details_fragment_to_navigation_home"
             app:destination="@id/navigation_home" />
@@ -96,7 +102,7 @@
         android:id="@+id/addProductFragment"
         android:name="my.edu.tarc.bait2073mad.ui.product.AddProductFragment"
         android:label="fragment_add_product"
-        tools:layout="@layout/fragment_add_product" >
+        tools:layout="@layout/fragment_add_product">
         <action
             android:id="@+id/action_addProductFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
@@ -104,10 +110,13 @@
     <fragment
         android:id="@+id/addCardFragment"
         android:name="my.edu.tarc.bait2073mad.ui.paymentMethod.AddCardFragment"
-        android:label="AddCardFragment" >
+        android:label="AddCardFragment">
         <action
             android:id="@+id/action_addCardFragment_to_checkOutFragment"
             app:destination="@id/checkOutFragment" />
+        <argument
+            android:name="voucherName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/recentOrderFragment"
