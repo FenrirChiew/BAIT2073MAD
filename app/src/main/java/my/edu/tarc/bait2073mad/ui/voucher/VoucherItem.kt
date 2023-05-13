@@ -5,5 +5,8 @@ import androidx.room.PrimaryKey
 import java.util.Date
 
 @Entity(tableName = "voucherItem")
-data class VoucherItem(@PrimaryKey var voucherName: String, var voucherTerms: String, var voucherDate: Int)
-
+data class VoucherItem(@PrimaryKey var voucherName: String, var voucherTerms: String, var voucherDate: String){
+    override fun toString(): String {
+        return "$voucherName: $voucherTerms: $voucherDate"
+    }
+}

@@ -33,6 +33,10 @@ class CheckOutFragment : Fragment() {
             findNavController().navigate(R.id.action_checkOutFragment_to_voucherFragment)
         }
 
+        binding.paymentMethodButton.setOnClickListener {
+            findNavController().navigate(R.id.action_checkOutFragment_to_paymentMethodFragment)
+        }
+
     }
 
 

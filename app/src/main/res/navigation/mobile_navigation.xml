@@ -42,7 +42,11 @@
         android:id="@+id/voucherFragment"
         android:name="my.edu.tarc.bait2073mad.ui.voucher.VoucherFragment"
         android:label="fragment_voucher"
-        tools:layout="@layout/fragment_voucher"/>
+        tools:layout="@layout/fragment_voucher">
+        <action
+            android:id="@+id/action_voucherFragment_to_checkOutFragment"
+            app:destination="@id/checkOutFragment" />
+    </fragment>
     <fragment
         android:id="@+id/paymentMethodFragment"
         android:name="my.edu.tarc.bait2073mad.ui.paymentMethod.PaymentMethodFragment"
