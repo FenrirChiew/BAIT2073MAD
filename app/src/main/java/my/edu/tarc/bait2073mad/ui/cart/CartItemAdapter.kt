@@ -9,24 +9,26 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import my.edu.tarc.bait2073mad.R
 
-class CartItemAdapter(private val recordClickListener: RecordClickListener) : RecyclerView.Adapter<CartItemAdapter.ViewHolder>(){
+class CartItemAdapter(private val recordClickListener: RecordClickListener) :
+    RecyclerView.Adapter<CartItemAdapter.ViewHolder>() {
     private var cartItemList = emptyList<CartItem>()
 
-    class ViewHolder (view: View): RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageViewProductImage: ImageView = view.findViewById(R.id.imageViewCartItemProductImg)
         val textViewProductName: TextView = view.findViewById(R.id.textViewCartItemProductName)
         val textViewProductPrice: TextView = view.findViewById(R.id.textViewCartItemProductPrice)
-        val textViewProductQuantity: TextView = view.findViewById(R.id.textViewCartItemProductQuantity)
+        val textViewProductQuantity: TextView =
+            view.findViewById(R.id.textViewCartItemProductQuantity)
     }
 
-    internal fun setCartItem(cartItem: List<CartItem>){
+    internal fun setCartItem(cartItem: List<CartItem>) {
         this.cartItemList = cartItem
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //Create a new view, which define the UI of the list item
-        val view =  LayoutInflater.from(parent.context).inflate(R.layout.cart_record, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.cart_record, parent, false)
         return ViewHolder(view)
     }
 
@@ -41,11 +43,11 @@ class CartItemAdapter(private val recordClickListener: RecordClickListener) : Re
         holder.itemView.setOnClickListener {
             //Item click event handler
             recordClickListener.onRecordClickListener(position)
-            Toast.makeText(
-                it.context,
-                "Product name:" + cartItemList[position].productName,
-                Toast.LENGTH_SHORT
-            ).show()
+//            Toast.makeText(
+//                it.context,
+//                "Product name:" + cartItemList[position].productName,
+//                Toast.LENGTH_SHORT
+//            ).show()
         }
     }
 
@@ -55,6 +57,6 @@ class CartItemAdapter(private val recordClickListener: RecordClickListener) : Re
 
 }// End of Adapter Class
 
-interface RecordClickListener{
+interface RecordClickListener {
     fun onRecordClickListener(index: Int)
 }

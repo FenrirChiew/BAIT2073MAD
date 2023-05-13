@@ -17,7 +17,6 @@ class CartItemDetailFragment : Fragment() {
     private var _binding: FragmentCartItemDetailBinding? = null
     private val binding get() = _binding!!
     private val cartViewModel: CartViewModel by activityViewModels()
-    private var currentIndex: Int = cartViewModel.selectedIndex
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -39,7 +38,7 @@ class CartItemDetailFragment : Fragment() {
         with(binding) {
             //value!! is for the current contactList information
             val cartItem: CartItem =
-                cartViewModel.cartItemList.value!!.get(currentIndex)
+                cartViewModel.cartItemList.value!!.get(cartViewModel.selectedIndex)
             //to pass the current value to the edit text
             imageViewCartItemDetailProductImage.setImageResource(R.drawable.ic_product_black_24dp)
             textViewCartItemDetailName.setText(cartItem.productName)

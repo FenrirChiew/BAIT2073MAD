@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import my.edu.tarc.bait2073mad.R
@@ -36,6 +38,8 @@ class CartFragment : Fragment(), RecordClickListener {
         super.onViewCreated(view, savedInstanceState)
         val adapter = CartItemAdapter(this)
 
+//        cartViewModel.addCartItem(CartItem("P002", "Product2", 1.5, 1))
+//        cartViewModel.addCartItem(CartItem("P003", "Product3", 1.5, 1))
         //Add an observer
         cartViewModel.cartItemList.observe(
             viewLifecycleOwner,
@@ -53,7 +57,7 @@ class CartFragment : Fragment(), RecordClickListener {
 
         //button click
         binding.buttonCheckOut.setOnClickListener {
-            findNavController().navigate(R.id.action_cartFragment_to_tryFragment)
+            findNavController().navigate(R.id.action_cartFragment_to_checkOutFragment)
             //TODO: Pass data to checkout
         }
     }
@@ -97,6 +101,8 @@ class CartFragment : Fragment(), RecordClickListener {
     override fun onRecordClickListener(index: Int) {
         //selectedIndex from viewModel
         cartViewModel.selectedIndex = index
+//        Toast.makeText(context, index, Toast.LENGTH_SHORT)
+//            .show()
         findNavController().navigate(R.id.action_cartFragment_to_cartItemDetailFragment)
     }
 
