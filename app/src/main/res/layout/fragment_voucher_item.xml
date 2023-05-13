@@ -43,13 +43,13 @@
         <TextView
             android:id="@+id/textViewVoucherExpired"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
             android:text="@string/voucherExpired"
             android:textColor="#BEA9A9"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/textViewVoucherName" />
+            app:layout_constraintBottom_toBottomOf="@+id/textViewLabelVoucherExpiredDate"
+            app:layout_constraintStart_toEndOf="@+id/textViewLabelVoucherExpiredDate"
+            app:layout_constraintTop_toTopOf="@+id/textViewLabelVoucherExpiredDate" />
 
         <TextView
             android:id="@+id/textViewVoucherTerm"
@@ -61,6 +61,16 @@
             android:text="@string/voucherTermsCondition"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toBottomOf="@+id/textViewVoucherExpired" />
+
+        <TextView
+            android:id="@+id/textViewLabelVoucherExpiredDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/labelVoucherExpiredDate"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/textViewVoucherName" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

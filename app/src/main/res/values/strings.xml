@@ -62,6 +62,7 @@
     <string name="okButton">OK</string>
     <string name="voucherName">Voucher Name</string>
     <string name="voucherExpired">Voucher Expired Date</string>
+    <string name="labelVoucherExpiredDate">Expired Date: </string>
     <string name="voucherTermsCondition">Terms and Conditions</string>
     <string name="labelShippingVoucher">Voucher(s) can be selected: </string>
     <string name="voucherCodeHint">Enter Voucher Code</string>

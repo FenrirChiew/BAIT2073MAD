@@ -8,23 +8,16 @@
     tools:context=".ui.voucher.VoucherFragment" >
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/voucherRecyclerView"
         android:layout_width="409dp"
         android:layout_height="590dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonOk"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelShippingVoucherTextView"
         tools:listitem="@layout/fragment_voucher_item" />
-
-    <Button
-        android:id="@+id/buttonOk"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/okButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <SearchView
         android:id="@+id/searchVoucherView"

@@ -12,6 +12,8 @@ class VoucherViewModel (application: Application): AndroidViewModel(application)
     var voucherItemList : LiveData<List<VoucherItem>>
     private val repository: VoucherItemRepository
 
+    var selectedIndex: Int = -1
+
     init {
         val voucherItemDao = VoucherItemDatabase.getDatabase(application).voucherItemDao()
         repository = VoucherItemRepository(voucherItemDao)
