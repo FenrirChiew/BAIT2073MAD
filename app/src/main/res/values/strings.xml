@@ -58,6 +58,8 @@
     <string name="checkOutRemark">Remark: </string>
     <string name="applyVoucherButton">Apply Voucher</string>
     <string name="paymentMethodButton">Payment Method</string>
+    <string name="labelVoucherApplied">"Voucher Apply: "</string>
+    <string name="labelChosenPaymentMethod">"Card Number: "</string>
 
     <!-- voucher -->
     <string name="titleVoucher">Select Voucher</string>
