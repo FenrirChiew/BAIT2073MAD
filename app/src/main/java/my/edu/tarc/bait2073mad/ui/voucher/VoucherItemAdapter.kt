@@ -36,13 +36,14 @@ class VoucherItemAdapter(private val recordClickListener: RecordClickListener):
         holder.voucherTerms.text = currentItem.voucherTerms.toString()
         holder.voucherDate.text = currentItem.voucherDate.toString()
 
-        val imageResource = R.drawable.voucher
-        Picasso.get().load(imageResource).into(holder.voucherImage)
-
         Picasso.get()
-            .load(currentItem.voucherImage)
-            .placeholder(R.drawable.voucher)
+            .load("file:////Users//User//Desktop//fpx-logo.jpg/${currentItem.voucherImage}")
             .into(holder.voucherImage)
+//
+//        Picasso.get()
+//            .load(currentItem.voucherImage)
+//            .placeholder(R.drawable.voucher)
+//            .into(holder.voucherImage)
 
         //Not sure the check box how do in this case
         //set event when click the contact

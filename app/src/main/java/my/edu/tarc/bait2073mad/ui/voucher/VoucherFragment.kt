@@ -1,14 +1,19 @@
 package my.edu.tarc.bait2073mad.ui.voucher
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.squareup.picasso.Picasso
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentVoucherBinding
 
@@ -35,14 +40,23 @@ class VoucherFragment : Fragment(), RecordClickListener {
         val adapter = VoucherItemAdapter(this)
 
         voucherViewModel.addVoucher(
-            VoucherItem("Free Shipping",
-            "Minimum Spend RM15.00", "12/06/2023", R.drawable.voucher)
+            VoucherItem(
+                "Free Shipping",
+                "Minimum Spend RM15.00", "12/06/2023", "C:/Users/User/Desktop/fpx-logo.jpg"
+            )
         )
-        voucherViewModel.addVoucher(VoucherItem("Cashback 10%",
-            "Minimum Spend RM45.00", "19/06/2023", R.drawable.voucher))
-        voucherViewModel.addVoucher(VoucherItem("RM10.00 Off",
-            "Minimum Spend RM75.00", "12/08/2023", R.drawable.voucher))
-
+        voucherViewModel.addVoucher(
+            VoucherItem(
+                "Cashback 10%",
+                "Minimum Spend RM45.00", "19/06/2023", "C:/Users/User/Desktop/fpx-logo.jpg"
+            )
+        )
+        voucherViewModel.addVoucher(
+            VoucherItem(
+                "RM10.00 Off",
+                "Minimum Spend RM75.00", "12/08/2023", "C:/Users/User/Desktop/fpx-logo.jpg"
+            )
+        )
 
         voucherViewModel.voucherItemList.observe(
             viewLifecycleOwner,
@@ -59,6 +73,7 @@ class VoucherFragment : Fragment(), RecordClickListener {
 
 
     }
+
 
     override fun onRecordClickListener(index: Int) {
         //selectedIndex from viewModel
