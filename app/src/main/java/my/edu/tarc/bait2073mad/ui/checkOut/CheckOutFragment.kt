@@ -45,6 +45,7 @@ class CheckOutFragment : Fragment() {
         val maskedCardNumber = "**** **** **** " + cardNumber.toString().takeLast(4)
         binding.textViewChosenPaymentMethod.text = maskedCardNumber
 
+
     }
 
 

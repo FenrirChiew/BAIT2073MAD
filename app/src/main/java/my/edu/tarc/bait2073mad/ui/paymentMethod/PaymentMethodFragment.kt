@@ -35,8 +35,9 @@ class PaymentMethodFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.cardButton.setOnClickListener {
-            val voucherName = arguments?.getString("voucherName", "")
-            val action = PaymentMethodFragmentDirections.actionAddCardFragmentToCheckOutFragment(voucherName)
+            val voucher = arguments?.getString("voucherName", "")
+            val voucherName = voucher.toString()
+            val action = PaymentMethodFragmentDirections.actionPaymentMethodFragmentToAddCardFragment(voucherName)
             findNavController().navigate(action)
         }
 
