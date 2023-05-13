@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/cartFragment">
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_addProductFragment"
             app:destination="@id/addProductFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_product_details_fragment"
+            app:destination="@id/product_details_fragment" />
     </fragment>
 
     <fragment
@@ -57,19 +60,14 @@
             app:destination="@id/addCardFragment" />
     </fragment>
     <fragment
-        android:id="@+id/products_fragment"
-        android:name="my.edu.tarc.bait2073mad.ui.product.ProductsFragment"
-        android:label="fragment_product"
-        tools:layout="@layout/fragment_product">
-        <action
-            android:id="@+id/action_products_fragment_to_product_details_fragment"
-            app:destination="@id/product_details_fragment" />
-    </fragment>
-    <fragment
         android:id="@+id/product_details_fragment"
         android:name="my.edu.tarc.bait2073mad.ui.product.ProductDetailsFragment"
         android:label="fragment_product_details"
-        tools:layout="@layout/fragment_product_details" />
+        tools:layout="@layout/fragment_product_details" >
+        <action
+            android:id="@+id/action_product_details_fragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
     <fragment
         android:id="@+id/cartItemDetailFragment"
         android:name="my.edu.tarc.bait2073mad.ui.cart.CartItemDetailFragment"

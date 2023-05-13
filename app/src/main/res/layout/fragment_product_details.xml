@@ -39,7 +39,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:text="@string/product_name_label"
-            android:textSize="25sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,42 +50,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
             android:text="@string/product_price_label"
             android:textColor="@color/purple_700"
-            android:textSize="30sp"
+            android:textSize="32sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewProductName" />
-
-        <Button
-            android:id="@+id/buttonAddToCart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Add to Cart"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/textViewProductStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
             android:text="@string/product_status_label"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewProductPrice"
             app:layout_constraintStart_toEndOf="@+id/textViewProductPrice"
-            app:layout_constraintTop_toBottomOf="@+id/textViewProductName" />
+            app:layout_constraintTop_toTopOf="@+id/textViewProductPrice" />
+
+        <TextView
+            android:id="@+id/textViewProductSeller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/product_seller_label"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewProductStatus"
+            app:layout_constraintStart_toEndOf="@+id/textViewProductStatus"
+            app:layout_constraintTop_toTopOf="@+id/textViewProductStatus" />
 
         <ImageView
             android:id="@+id/imageViewFavorite"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewProductSeller"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewProductName"
+            app:layout_constraintTop_toTopOf="@+id/textViewProductSeller"
             app:srcCompat="@drawable/ic_favorite_border_red_24dp" />
 
         <TextView
@@ -93,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:text="@string/product_descriptions_label"
             android:textSize="17sp"
             android:textStyle="bold"
@@ -105,24 +105,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:text="@string/product_descriptions_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewProductDescriptionLabel" />
 
-        <TextView
-            android:id="@+id/textViewProductSeller"
+        <Button
+            android:id="@+id/buttonAddToCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/product_seller_label"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewFavorite"
-            app:layout_constraintHorizontal_bias="0.395"
-            app:layout_constraintStart_toEndOf="@+id/textViewProductStatus"
-            app:layout_constraintTop_toBottomOf="@+id/textViewProductName" />
+            android:layout_marginBottom="8dp"
+            android:text="Add to Cart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
