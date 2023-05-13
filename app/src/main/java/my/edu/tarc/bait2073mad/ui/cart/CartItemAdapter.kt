@@ -1,13 +1,19 @@
 package my.edu.tarc.bait2073mad.ui.cart
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import my.edu.tarc.bait2073mad.R
+import java.io.File
+import java.io.FileInputStream
+
 
 class CartItemAdapter(private val recordClickListener: RecordClickListener) :
     RecyclerView.Adapter<CartItemAdapter.ViewHolder>() {
@@ -24,6 +30,7 @@ class CartItemAdapter(private val recordClickListener: RecordClickListener) :
     internal fun setCartItem(cartItem: List<CartItem>) {
         this.cartItemList = cartItem
         notifyDataSetChanged()
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,7 +41,9 @@ class CartItemAdapter(private val recordClickListener: RecordClickListener) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //Get element from the dataset at this position and replace the contents of the view with that element
-        holder.imageViewProductImage.setImageResource(R.drawable.ic_product_black_24dp)
+//        holder.imageViewProductImage.setImageResource(R.drawable.ic_product_black_24dp)
+//        Picasso.get().load(File(, "P001")).into(holder.imageViewProductImage)
+//        holder.imageViewProductImage.setImageBitmap(readProductPicture("P001"))
         holder.textViewProductName.text = cartItemList[position].productName
         holder.textViewProductQuantity.text = cartItemList[position].quantity.toString()
         holder.textViewProductPrice.text = cartItemList[position].productPrice.toString()
@@ -53,6 +62,16 @@ class CartItemAdapter(private val recordClickListener: RecordClickListener) :
 
     override fun getItemCount(): Int {
         return cartItemList.size
+    }
+
+    private fun readProductPicture(filename: String): Bitmap?{
+        val sdCard = Environment.getExternalStorageDirectory()
+        val directory = File(sdCard.absolutePath + "/Pictures")
+        val file = File(directory, filename) //or any other format supported
+        val streamIn = FileInputStream(file)
+        val bitmap = BitmapFactory.decodeStream(streamIn) //This gets the image
+        streamIn.close()
+        return bitmap
     }
 
 }// End of Adapter Class

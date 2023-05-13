@@ -11,6 +11,7 @@ class CartViewModel (application: Application): AndroidViewModel(application) {
     var cartItemList : LiveData<List<CartItem>>
     private val repository: CartItemRepository //instance of repository
 
+
     //variable used to pass data to first and second fragment on which data is clicked
     var selectedIndex: Int = -1
 

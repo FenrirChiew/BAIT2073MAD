@@ -10,7 +10,9 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.navigateUp
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentCartBinding
@@ -38,19 +40,22 @@ class CartFragment : Fragment(), RecordClickListener {
         super.onViewCreated(view, savedInstanceState)
         val adapter = CartItemAdapter(this)
 
-//        cartViewModel.addCartItem(CartItem("P002", "Product2", 1.5, 1))
-//        cartViewModel.addCartItem(CartItem("P003", "Product3", 1.5, 1))
+
         //Add an observer
         cartViewModel.cartItemList.observe(
             viewLifecycleOwner,
             Observer {
                 if (it.isEmpty()) {
+                    cartViewModel.addCartItem(CartItem("P001", "Product1", 2.5, 1))
+                    cartViewModel.addCartItem(CartItem("P002", "Product2", 1.5, 1))
+                    cartViewModel.addCartItem(CartItem("P003", "Product3", 1.5, 1))
                     binding.textViewCartItemCount.isVisible = true
-                    binding.buttonCheckOut.isActivated = false
+                    binding.buttonCheckOut.isEnabled = false
                 } else {
                     binding.textViewCartItemCount.isVisible = false
-                    adapter.setCartItem(it)
+                    binding.buttonCheckOut.isEnabled = true
                 }
+                adapter.setCartItem(it)
             }
         )
         binding.recyclerViewCartItem.adapter = adapter

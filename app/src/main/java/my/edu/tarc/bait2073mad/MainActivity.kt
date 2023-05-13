@@ -3,6 +3,8 @@ package my.edu.tarc.bait2073mad
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -58,10 +60,24 @@ class MainActivity : AppCompatActivity() {
                 title = getString(R.string.app_name)
             }
         }
+
+        //back press
+        val backPressedCallback = object: OnBackPressedCallback(true)
+        {
+            override fun handleOnBackPressed()
+            {
+                val builder = AlertDialog.Builder(this@MainActivity)
+                builder.setMessage("Are you sure you want to exit?")
+                    .setPositiveButton("Exit",{_,_ -> finish() })
+                    .setNegativeButton("Cancel",{_,_ ->  })
+                builder.create().show()
+            }
+        }
+        onBackPressedDispatcher.addCallback(backPressedCallback)
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        val navController = findNavController(androidx.navigation.fragment.R.id.nav_host_fragment_container)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
