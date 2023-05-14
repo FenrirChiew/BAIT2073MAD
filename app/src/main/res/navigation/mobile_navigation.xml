@@ -99,12 +99,13 @@
             app:destination="@id/navigation_home" />
         <action
             android:id="@+id/action_product_details_fragment_to_cartFragment"
-            app:destination="@id/navigationCartFragment" />
+            app:destination="@id/navigationCartFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/navigationCartItemDetail"
         android:name="my.edu.tarc.bait2073mad.ui.cart.CartItemDetailFragment"
-        android:label="Cart ItemDetail"
+        android:label="Cart Item Detail"
         tools:layout="@layout/fragment_cart_item_detail">
         <action
             android:id="@+id/action_cartItemDetailFragment_to_cartFragment"
