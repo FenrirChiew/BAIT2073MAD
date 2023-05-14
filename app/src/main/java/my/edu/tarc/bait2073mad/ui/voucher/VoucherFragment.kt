@@ -42,19 +42,19 @@ class VoucherFragment : Fragment(), RecordClickListener {
         voucherViewModel.addVoucher(
             VoucherItem(
                 "Free Shipping",
-                "Minimum Spend RM15.00", "12/06/2023", R.id.imageViewVoucher
+                "Minimum Spend RM15.00", "12/06/2023"
             )
         )
         voucherViewModel.addVoucher(
             VoucherItem(
                 "Cashback RM3.00",
-                "Minimum Spend RM45.00", "19/06/2023", R.id.imageViewVoucher
+                "Minimum Spend RM45.00", "19/06/2023"
             )
         )
         voucherViewModel.addVoucher(
             VoucherItem(
                 "RM10.00 Off",
-                "Minimum Spend RM75.00", "12/08/2023", R.id.imageViewVoucher
+                "Minimum Spend RM75.00", "12/08/2023"
             )
         )
 
@@ -72,8 +72,6 @@ class VoucherFragment : Fragment(), RecordClickListener {
         binding.voucherRecyclerView.adapter = adapter
 
 
-
-
     }
 
 
@@ -88,14 +86,14 @@ class VoucherFragment : Fragment(), RecordClickListener {
         binding.apply {
             val voucherName = voucherItem.voucherName
 
-            val action = VoucherFragmentDirections.actionVoucherFragmentToCheckOutFragment(voucherName, 0)
+            val action =
+                VoucherFragmentDirections.actionVoucherFragmentToCheckOutFragment(voucherName, 0)
 
 // Navigate to the CheckOutFragment with both arguments
             findNavController().navigate(action)
         }
 
         //findNavController().navigate(R.id.action_voucherFragment_to_checkOutFragment)
-
 
 
 //        // Get the VoucherItem object corresponding to the selected voucher
