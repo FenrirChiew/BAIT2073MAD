@@ -98,5 +98,7 @@
     <string name="cancel">Cancel</string>
     <string name="delete_record">Delete this Cart Item?</string>
     <string name="sucessMessage">Payment Successful!!</string>
+    <string name="labelThirdParty">Successful Payment via Third Party!</string>
+    <string name="backToMerchantButton">Back To Merchant</string>
 
 </resources>

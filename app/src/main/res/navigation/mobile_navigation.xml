@@ -67,6 +67,9 @@
         <argument
             android:name="voucherName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_paymentMethodFragment_to_thirdPartyFragment"
+            app:destination="@id/thirdPartyFragment" />
     </fragment>
     <fragment
         android:id="@+id/product_details_fragment"
@@ -137,4 +140,13 @@
         android:name="my.edu.tarc.bait2073mad.ui.orderHistory.OrderHistoryFragment"
         android:label="fragment_order_history"
         tools:layout="@layout/fragment_order_history" />
+    <fragment
+        android:id="@+id/thirdPartyFragment"
+        android:name="my.edu.tarc.bait2073mad.ui.paymentMethod.ThirdPartyFragment"
+        android:label="fragment_third_party"
+        tools:layout="@layout/fragment_third_party" >
+        <action
+            android:id="@+id/action_thirdPartyFragment_to_checkOutFragment"
+            app:destination="@id/checkOutFragment" />
+    </fragment>
 </navigation>

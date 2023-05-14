@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentCheckOutBinding
 
@@ -30,11 +31,14 @@ class CheckOutFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        var paymentMethodButtonClicked = false
+
         binding.applyVoucherbutton.setOnClickListener {
             findNavController().navigate(R.id.action_checkOutFragment_to_voucherFragment)
         }
 
         binding.paymentMethodButton.setOnClickListener {
+            paymentMethodButtonClicked = true
             findNavController().navigate(R.id.action_checkOutFragment_to_paymentMethodFragment)
         }
 
@@ -47,8 +51,15 @@ class CheckOutFragment : Fragment() {
         binding.textViewChosenPaymentMethod.text = maskedCardNumber
 
         binding.buttonPlaceOrder.setOnClickListener {
-            val showDialog = SuccessDialogFragment()
-            showDialog.show((activity as AppCompatActivity).supportFragmentManager, "showDialog")
+            if(!paymentMethodButtonClicked){
+                Snackbar.make(requireView(), "Please select a payment method", Snackbar.LENGTH_SHORT).show()
+            }else {
+                val showDialog = SuccessDialogFragment()
+                showDialog.show(
+                    (activity as AppCompatActivity).supportFragmentManager,
+                    "showDialog"
+                )
+            }
         }
     }
 
