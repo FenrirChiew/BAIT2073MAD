@@ -13,6 +13,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentHomeBinding
 import my.edu.tarc.bait2073mad.ui.product.Product
@@ -24,6 +26,8 @@ class HomeFragment : Fragment(), MenuProvider, RecordClickListener {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val homeViewModel: HomeViewModel by activityViewModels()
+    val db = FirebaseFirestore.getInstance()
+    private lateinit var docRef: DocumentReference
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +35,7 @@ class HomeFragment : Fragment(), MenuProvider, RecordClickListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        docRef = db.collection("products").document("public")
         return binding.root
     }
 
@@ -50,6 +55,7 @@ class HomeFragment : Fragment(), MenuProvider, RecordClickListener {
         })
 
         binding.fabAddProduct.setOnClickListener {
+            downloadProductList()
             findNavController().navigate(R.id.action_navigation_home_to_addProductFragment)
         }
 
@@ -101,5 +107,22 @@ class HomeFragment : Fragment(), MenuProvider, RecordClickListener {
     override fun onRecordClickListener(index: Int) {
         homeViewModel.selectedIndex = index
         findNavController().navigate(R.id.action_navigation_home_to_product_details_fragment)
+    }
+
+    private fun downloadProductList() {
+        docRef.get()
+            .addOnSuccessListener { it ->
+                (it.get("products") as List<Map<String, Any>>?)?.forEach { productData ->
+                    val product = Product(
+                        productData["ProductID"] as String,
+                        productData["ProductName"] as String,
+                        productData["ProductPrice"] as Double,
+                        productData["ProductStatus"] as String,
+                        productData["ProductSeller"] as String,
+                        productData["ProductDescriptions"] as String
+                    )
+                    homeViewModel.addProduct(product)
+                }
+            }
     }
 }

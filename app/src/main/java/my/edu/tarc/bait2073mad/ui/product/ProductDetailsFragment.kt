@@ -60,11 +60,6 @@ class ProductDetailsFragment : Fragment(), MenuProvider {
         _binding?.textViewProductStatus?.text = productSelected.productStatus
         _binding?.textViewProductSeller?.text = productSelected.seller
         _binding?.textViewProductDescription?.text = productSelected.productDescriptions
-        if (productSelected.favorite) {
-            _binding?.imageViewFavorite?.setImageResource(R.drawable.ic_favorite_red_24dp)
-        } else {
-            _binding?.imageViewFavorite?.setImageResource(R.drawable.ic_favorite_border_red_24dp)
-        }
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {

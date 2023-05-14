@@ -10,6 +10,5 @@ data class Product(
     var productPrice: Double,
     var productStatus: String,
     var seller: String,
-    var productDescriptions: String,
-    var favorite: Boolean
+    var productDescriptions: String
 )

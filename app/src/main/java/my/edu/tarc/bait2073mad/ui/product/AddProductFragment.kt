@@ -15,7 +15,8 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import my.edu.tarc.bait2073mad.databinding.FragmentAddProductBinding
@@ -38,6 +39,8 @@ class AddProductFragment : Fragment(), MenuProvider {
             binding.imageViewProductImage.setImageURI(uri)
         }
     }
+    val db = FirebaseFirestore.getInstance()
+    private lateinit var docRef: DocumentReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +53,8 @@ class AddProductFragment : Fragment(), MenuProvider {
             this, viewLifecycleOwner,
             Lifecycle.State.RESUMED
         )
+
+        docRef = db.collection("products").document("public")
 
         return binding.root
     }
@@ -199,7 +204,6 @@ class AddProductFragment : Fragment(), MenuProvider {
             val productName = editTextProductName.text.toString()
             val productPrice = editTextProductPrice.text.toString().toDouble()
             val productStatus = editTextProductStatus.text.toString()
-            val productFavorite = false
             val productDescriptions = editTextProductDescriptions.text.toString()
             val productSeller = editTextProductSeller.text.toString()
             val newProduct = Product(
@@ -208,8 +212,7 @@ class AddProductFragment : Fragment(), MenuProvider {
                 productPrice,
                 productStatus,
                 productSeller,
-                productDescriptions,
-                productFavorite
+                productDescriptions
             )
             homeViewModel.addProduct(newProduct)
             if (isEditing) {
@@ -221,12 +224,22 @@ class AddProductFragment : Fragment(), MenuProvider {
     }
 
     private fun uploadProductDetails() {
-        if (homeViewModel.productList.isInitialized) {
-            val database =
-                Firebase.database("https://mad-assignment-1967d-default-rtdb.asia-southeast1.firebasedatabase.app/").reference
-            homeViewModel.productList.value!!.forEach {
-                database.child("Product List").child(it.productID).setValue(it)
-            }
+        homeViewModel.productList.value!!.forEach {
+            val products = mutableListOf<Map<String, Any>>()
+            products.add(
+                mapOf(
+                    getString(R.string.product_id_label).replace(" ", "") to it.productID,
+                    getString(R.string.product_name_label).replace(" ", "") to it.productName,
+                    getString(R.string.product_price_label).replace(" ", "") to it.productPrice,
+                    getString(R.string.product_status_label).replace(" ", "") to it.productStatus,
+                    getString(R.string.product_seller_label).replace(" ", "") to it.seller,
+                    getString(R.string.product_descriptions_label).replace(
+                        " ",
+                        ""
+                    ) to it.productDescriptions,
+                )
+            )
+            docRef.set(mapOf("products" to products))
         }
     }
 }
