@@ -103,13 +103,13 @@ class HomeFragment : Fragment(), MenuProvider, RecordClickListener {
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-        menuInflater.inflate(R.menu.go_to_cart_menu, menu)
+//        menuInflater.inflate(R.menu.go_to_cart_menu, menu)
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        if (menuItem.itemId == R.id.action_to_cart) {
-            findNavController().navigate(R.id.action_navigation_home_to_cartFragment)
-        }
+//        if (menuItem.itemId == R.id.action_to_cart) {
+//            findNavController().navigate(R.id.action_navigation_home_to_cartFragment)
+//        }
         return true
     }
 
