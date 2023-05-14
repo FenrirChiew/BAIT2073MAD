@@ -37,6 +37,9 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
     val db = FirebaseFirestore.getInstance()
     private lateinit var docRef: DocumentReference
 
+    //total calculation
+    var total = 0.0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -83,7 +86,6 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
                 }
                 adapter.setCartItem(it)
 
-                var total = 0.0
                 for (element in it){
                     total += (element.productPrice*element.quantity)
                 }
