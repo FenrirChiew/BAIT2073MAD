@@ -119,6 +119,10 @@ class HomeFragment : Fragment(), MenuProvider, RecordClickListener {
             android.R.id.home -> {
                 findNavController().navigateUp()
             }
+
+            R.id.action_cart -> {
+                findNavController().navigate(R.id.action_navigation_home_to_cartFragment)
+            }
         }
         return true
     }
