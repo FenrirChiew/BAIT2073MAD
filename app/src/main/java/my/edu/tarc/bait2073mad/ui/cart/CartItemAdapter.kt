@@ -59,7 +59,7 @@ class CartItemAdapter(
 
         holder.textViewProductName.text = cartItemList[position].productName
         holder.textViewProductQuantity.text = cartItemList[position].quantity.toString()
-        holder.textViewProductPrice.text = cartItemList[position].productPrice.toString()
+        holder.textViewProductPrice.text = String.format("RM %.2f", cartItemList[position].productPrice)
 
 
         holder.itemView.setOnClickListener {
