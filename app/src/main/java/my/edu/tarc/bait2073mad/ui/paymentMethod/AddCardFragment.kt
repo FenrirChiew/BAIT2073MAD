@@ -41,8 +41,7 @@ class AddCardFragment : Fragment(), MenuProvider {
         //firestone
         auth = FirebaseAuth.getInstance()
         val userID = auth.currentUser?.uid
-        docRef = db.collection("CheckOut").document(userID!!)
-        Log.d("userIdTag", userID)
+        docRef = db.collection("checkOut").document(userID!!)
 
         val menuHost: MenuHost = this.requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
@@ -99,50 +98,49 @@ class AddCardFragment : Fragment(), MenuProvider {
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menu.clear()
         menuInflater.inflate(R.menu.top_upload_download_menu, menu)
-        menu.findItem(R.id.action_cart_download).isVisible = true
-        menu.findItem(R.id.action_cart_upload).isVisible = true
+        menu.findItem(R.id.action_download).isVisible = true
+        menu.findItem(R.id.action_upload).isVisible = true
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        if (menuItem.itemId == R.id.action_cart_upload) {
-            paymentMethodViewModel.cardList.observe(
-                viewLifecycleOwner, Observer {
-                    val items = mutableListOf<Map<String, Any>>()
-                    for (element in it) {
-                        items.add(
-                            mapOf(
-                                "CardNumber" to element.cardNumber,
-                                "CardHolderName" to element.cardHolderName,
-                                "CardExpiredDay" to element.cardExpiredDay,
-                                "CardCvc" to element.cardCvc
-                            )
-                        )
-                    }
-                    docRef.set(mapOf("items" to items)).addOnSuccessListener {
-                        Toast.makeText(context, "Success Upload", Toast.LENGTH_SHORT)
-                    }.addOnFailureListener {
-                        Toast.makeText(context, "Fail to Upload", Toast.LENGTH_SHORT)
-                    }
-                }
+        if (menuItem.itemId == R.id.action_upload) {
+            val cardData = hashMapOf (
+                "cardNumber" to binding.editTextCardNumber.text.toString().toLong(),
+                "cardHolderName" to binding.editTextCardHolderName.text.toString(),
+                "cardExpiredDate" to binding.editTextDate.text.toString(),
+                "cardCvc" to binding.editTextCvc.text.toString().toInt()
             )
-        } else if (menuItem.itemId == R.id.action_cart_download) {
-            docRef.get().addOnSuccessListener { documentSnapshot ->
-                val cardItemData = documentSnapshot.get("items") as List<Map<String, Any>>?
-                if (cardItemData != null) {
-                    for (storedData in cardItemData) {
-                        val card = Card(
-                            cardNumber = storedData["CardNumber"] as Long? ?: 0,
-                            cardHolderName = storedData["CardHolderName"] as String? ?: "",
-                            cardExpiredDay = storedData["CardExpiredDay"] as String? ?: "",
-                            cardCvc = storedData["CardCvcNumber"] as Int? ?: 0
-                        )
-                        paymentMethodViewModel.addCard(card)
+
+            docRef.set(cardData)
+                .addOnSuccessListener {
+                    Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(context,"Failed",Toast.LENGTH_SHORT).show()
+                }
+
+        } else if (menuItem.itemId == R.id.action_download) {
+            docRef.get()
+                .addOnSuccessListener {  documentSnapshot ->
+                    val cardData = documentSnapshot.data
+                    if (cardData != null) {
+                        val card = cardData as Map<String, Any>
+                        val cardNumber = card["cardNumber"] as Long? ?: 0
+                        val cardHolderName = card["cardHolderName"] as String? ?: ""
+                        val cardExpiredDate = card["cardExpiredDate"] as String? ?: ""
+                        val cardCvc = (card["cardCvc"] as Long? ?: 0).toInt()
+
+                        with(binding) {
+                            editTextCardNumber.setText(cardNumber.toString())
+                            editTextCardHolderName.setText(cardHolderName)
+                            editTextDate.setText(cardExpiredDate)
+                            editTextCvc.setText(cardCvc.toString())
+                        }
                     }
                 }
-            }.addOnFailureListener { e ->
-                Log.e(TAG, "Error in getting the card items")
-            }
-
+                .addOnFailureListener { e ->
+                    Log.e(TAG, "Error getting card data", e)
+                }
         }
         return true
     }
