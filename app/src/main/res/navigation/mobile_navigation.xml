@@ -70,6 +70,9 @@
         <action
             android:id="@+id/action_paymentMethodFragment_to_thirdPartyFragment"
             app:destination="@id/thirdPartyFragment" />
+        <action
+            android:id="@+id/action_paymentMethodFragment_to_checkOutFragment"
+            app:destination="@id/checkOutFragment" />
     </fragment>
     <fragment
         android:id="@+id/product_details_fragment"

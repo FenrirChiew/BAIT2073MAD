@@ -35,6 +35,7 @@ class PaymentMethodFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val handler = Handler(Looper.getMainLooper())
 
         binding.cardButton.setOnClickListener {
             val voucher = arguments?.getString("voucherName", "")
@@ -44,14 +45,20 @@ class PaymentMethodFragment : Fragment() {
         }
 
         binding.onlinePaymentButton.setOnClickListener {
-            val handler = Handler(Looper.getMainLooper())
-
             binding.paymentProgressBar.isVisible = true
             handler.postDelayed({
                 findNavController().navigate(R.id.action_paymentMethodFragment_to_thirdPartyFragment)
                 binding.paymentProgressBar.isVisible = false
             }, 4000)
 
+        }
+
+        binding.cashButton.setOnClickListener {
+            binding.paymentProgressBar.isVisible = true
+            handler.postDelayed({
+                findNavController().navigate(R.id.action_paymentMethodFragment_to_checkOutFragment)
+                binding.paymentProgressBar.isVisible = false
+            }, 4000)
         }
 
 

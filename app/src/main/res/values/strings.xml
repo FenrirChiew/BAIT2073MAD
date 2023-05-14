@@ -85,7 +85,7 @@
     <string name="titlePaymentMethod">Payment Method</string>
     <string name="textOnlinePaymentMethod">Online Payment</string>
     <string name="labelCardPaymentMethod">Credit/Debit Card</string>
-    <string name="textWallet">Meow Meow Wallet</string>
+    <string name="textCashPayment">Cash Payment</string>
     <string name="labelConfirmPaymentMethodButton">Confirm</string>
     <string name="cardNumber">Card Number: </string>
     <string name="cardHolderName">"Card Holder's Name: "</string>
@@ -98,12 +98,12 @@
     <string name="addCard">Add Card</string>
     <string name="complete">Complete</string>
     <string name="delete">Delete</string>
+    <string name="successMessage">Payment Successful!!</string>
+    <string name="labelThirdParty">Successful Payment via Third Party!</string>
+    <string name="backToMerchantButton">Back To Merchant</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="cancel">Cancel</string>
     <string name="delete_record">Delete this Cart Item?</string>
-    <string name="sucessMessage">Payment Successful!!</string>
-    <string name="labelThirdParty">Successful Payment via Third Party!</string>
-    <string name="backToMerchantButton">Back To Merchant</string>
 
 </resources>

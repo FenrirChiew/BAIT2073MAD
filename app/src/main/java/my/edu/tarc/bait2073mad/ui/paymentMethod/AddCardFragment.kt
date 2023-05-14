@@ -43,15 +43,20 @@ class AddCardFragment : Fragment() {
                     "You had input invalid card number",
                     Snackbar.LENGTH_SHORT
                 ).show()
+            } else if (!binding.editTextDate.text.toString().matches(Regex("^\\d{2}/\\d{2}\$"))) {
+                // The entered date does not match the format "MM/YY"
+                Snackbar.make(
+                    requireView(),
+                    "Invalid date format. Please enter date in the format MM/YY",
+                    Snackbar.LENGTH_SHORT
+                ).show()
             } else {
                 val cardNumber = binding.editTextCardNumber.text.toString().toLong()
                 val cardHolderName = binding.editTextCardHolderName.toString()
                 val cardExpiredDate = binding.editTextDate.text.toString()
                 val cardCvc = binding.editTextCvc.text.toString().toInt()
 
-                //findNavController().navigate(R.id.action_addCardFragment_to_checkOutFragment)
-//         val action = AddCardFragmentDirections.actionAddCardFragmentToCheckOutFragment("",cardNumber)
-//         findNavController().navigate(action)
+
                 val voucher = arguments?.getString("voucherName", "")
                 val voucherName = voucher.toString()
                 val action = AddCardFragmentDirections.actionAddCardFragmentToCheckOutFragment(

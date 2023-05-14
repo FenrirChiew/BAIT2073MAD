@@ -8,19 +8,19 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 import my.edu.tarc.bait2073mad.R
+import my.edu.tarc.bait2073mad.ui.cart.CartItem
 
 class CheckOutItemAdapter: RecyclerView.Adapter<CheckOutItemAdapter.ViewHolder>() {
-    private var checkOutItemList = emptyList<CheckOutItem>()
+    private var checkOutItemList = emptyList<CartItem>()
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         val productName: TextView = view.findViewById(R.id.textViewProductName)
-        //val productImage: ShapeableImageView = view.findViewById(R.id.imageViewProduct)
         val productPrice: TextView = view.findViewById(R.id.textViewProductPrice)
         val productQuantity: TextView = view.findViewById(R.id.textViewCartItemProductQuantity)
     }
 
-    internal fun setCheckOutItem(checkOutItem: List<CheckOutItem>){
-        this.checkOutItemList = checkOutItem
+    internal fun setCheckOutItem(cartItem: List<CartItem>){
+        this.checkOutItemList = cartItem
     }
 
 
@@ -32,9 +32,9 @@ class CheckOutItemAdapter: RecyclerView.Adapter<CheckOutItemAdapter.ViewHolder>(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = checkOutItemList[position]
 //        holder.productImage.setImageResource(currentItem.productImage)
-        holder.productName.text = currentItem.productName.toString()
-        holder.productPrice.text = currentItem.productPrice.toString()
-        holder.productQuantity.text = currentItem.productQuantity.toString()
+//        holder.productName.text = currentItem.productName.toString()
+//        holder.productPrice.text = currentItem.productPrice.toString()
+//        holder.productQuantity.text = currentItem.productQuantity.toString()
         holder.itemView.setOnClickListener {
             Toast.makeText(it.context,"Clicked",Toast.LENGTH_SHORT).show()
         }

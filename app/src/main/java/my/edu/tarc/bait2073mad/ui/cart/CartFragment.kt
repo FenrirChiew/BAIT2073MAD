@@ -1,28 +1,53 @@
 package my.edu.tarc.bait2073mad.ui.cart
 
+import android.app.AlertDialog
+import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.navigateUp
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentCartBinding
+import my.edu.tarc.bait2073mad.ui.checkOut.CheckOutViewModel
+import org.checkerframework.checker.units.qual.K
 
-class CartFragment : Fragment(), RecordClickListener {
+class CartFragment : Fragment(),MenuProvider, RecordClickListener {
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
 
     //Refer to the ViewModel created by the Main Activity
     private val cartViewModel: CartViewModel by activityViewModels()
+    private val checkOutViewHolder: CheckOutViewModel by activityViewModels()
+
+    //Firebase
+    private lateinit var auth: FirebaseAuth
+    val db = FirebaseFirestore.getInstance()
+    private lateinit var docRef: DocumentReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +58,17 @@ class CartFragment : Fragment(), RecordClickListener {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentCartBinding.inflate(inflater, container, false)
+        //firestore
+        auth = FirebaseAuth.getInstance()
+        val userID = auth.currentUser?.uid
+        docRef = db.collection("Cart").document(userID!!)
+        Log.d("userIdTag", userID)
+
+        val menuHost: MenuHost = this.requireActivity()
+        menuHost.addMenuProvider(
+            this, viewLifecycleOwner,
+            Lifecycle.State.RESUMED
+        )
         return binding.root
     }
 
@@ -40,15 +76,11 @@ class CartFragment : Fragment(), RecordClickListener {
         super.onViewCreated(view, savedInstanceState)
         val adapter = CartItemAdapter(this)
 
-
         //Add an observer
         cartViewModel.cartItemList.observe(
             viewLifecycleOwner,
             Observer {
                 if (it.isEmpty()) {
-                    cartViewModel.addCartItem(CartItem("P001", "Product1", 2.5, 1))
-                    cartViewModel.addCartItem(CartItem("P002", "Product2", 1.5, 1))
-                    cartViewModel.addCartItem(CartItem("P003", "Product3", 1.5, 1))
                     binding.textViewCartItemCount.isVisible = true
                     binding.buttonCheckOut.isEnabled = false
                 } else {
@@ -64,45 +96,64 @@ class CartFragment : Fragment(), RecordClickListener {
         binding.buttonCheckOut.setOnClickListener {
             findNavController().navigate(R.id.action_cartFragment_to_checkOutFragment)
             //TODO: Pass data to checkout
+//            checkOutViewHolder.
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+
+        //save data to firestore when destroyed
+
         _binding = null
     }
 
-//    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-//        //menuInflater.inflate(R.menu.menu_main, menu)
-//    }
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        menu.clear()
+        menuInflater.inflate(R.menu.cart_menu, menu)
+        menu.findItem(R.id.action_cart_download).isVisible = true
+        menu.findItem(R.id.action_cart_upload).isVisible = true
 
-//    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-//        if (menuItem.itemId == R.id.action_upload) {
-//            //open shared preference
-//            val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
-//            val userRef = sharedPref.getString(getString(R.string.phone),"")
-//            if(userRef.isNullOrEmpty()){
-//                Toast.makeText(context, getString(R.string.error_profile), Toast.LENGTH_SHORT).show()
-//            }else{
-//                if (myContactViewModel.contactList.isInitialized) {
-//                    val database =
-//                        Firebase.database("https://contact-ef549-default-rtdb.asia-southeast1.firebasedatabase.app").reference
-//                    myContactViewModel.contactList.value!!.forEach{
-//                        database.child(userRef).child(it.phone).setValue(it)
-//                    }
-//                    Toast.makeText(context, "Uploaded", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-//
-//        // for download data from server
-//        if(menuItem.itemId == R.id.action_download){
-//            downloadContact(requireContext(), getString(R.string.url_server)+ getString(R.string.url_get_all))
-//            return true
-//        }
-//        return false
-//    }
+    }
 
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        if (menuItem.itemId == R.id.action_cart_upload) {
+                cartViewModel.cartItemList.observe(
+                    viewLifecycleOwner,
+                    Observer {
+                        val items = mutableListOf<Map<String,Any>>()
+                        for (element in it) {
+                            items.add(mapOf("ProductID" to element.productID, "ProductName" to element.productName, "ProductPrice" to element.productPrice,"Quantity" to element.quantity))
+                        }
+                        docRef.set(mapOf("items" to items)).addOnSuccessListener {
+                            Toast.makeText(context,"Success",Toast.LENGTH_SHORT)
+                        }.addOnFailureListener {
+                            Toast.makeText(context,"Failed",Toast.LENGTH_SHORT)
+                        }
+                    }
+                )
+
+        } else if (menuItem.itemId == R.id.action_cart_download) {
+            docRef.get()
+                .addOnSuccessListener { documentSnapshot ->
+                    val cartItemData = documentSnapshot.get("items") as List<Map<String, Any>>?
+                    if (cartItemData != null) {
+                        for (itemData in cartItemData) {
+                            val cartItem = CartItem(
+                                productID = itemData["ProductID"] as String? ?: "",
+                                productName = itemData["ProductName"] as String? ?: "",
+                                productPrice = (itemData["ProductPrice"] as Double?) ?: 0.0,
+                                quantity = (itemData["Quantity"] as Long? ?: 0).toInt()
+                            )
+                            cartViewModel.addCartItem(cartItem)
+                        }
+                    }
+                }
+                .addOnFailureListener { e -> Log.e(TAG, "Error getting cart items", e) }
+        }
+
+        return true
+    }
     override fun onRecordClickListener(index: Int) {
         //selectedIndex from viewModel
         cartViewModel.selectedIndex = index
