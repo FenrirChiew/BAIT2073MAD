@@ -6,21 +6,15 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import my.edu.tarc.bait2073mad.databinding.ActivityMainBinding
 import my.edu.tarc.bait2073mad.ui.cart.CartViewModel
-import my.edu.tarc.bait2073mad.ui.product.Product
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,9 +47,9 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
+        appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_order, R.id.navigation_account
+                R.id.navigation_home, R.id.navigation_recent_order, R.id.navigation_account
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -63,10 +57,9 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.navigation_home) {
-                //edit the title of fragment
                 title = "Home"
-            } else if (destination.id == R.id.navigation_order) {
-                title = "Order"
+            } else if (destination.id == R.id.navigation_recent_order) {
+                title = "Recent Order"
             } else if (destination.id == R.id.navigation_account) {
                 title = "Account"
             } else {
