@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         lateinit var auth: FirebaseAuth
     }
 
+    private var isBottomNavigationBarVisible = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -65,8 +67,18 @@ class MainActivity : AppCompatActivity() {
                 title = "Home"
             } else if (destination.id == R.id.navigation_order) {
                 title = "Order"
+            } else if (destination.id == R.id.navigation_account) {
+                title = "Account"
             } else {
                 title = getString(R.string.app_name)
+            }
+
+            // hide nav bar for some fragment
+            isBottomNavigationBarVisible = destination.id != R.id.editProfileFragment
+            navView.visibility = if (isBottomNavigationBarVisible) {
+                View.VISIBLE
+            } else {
+                View.GONE
             }
         }
 
@@ -84,9 +96,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController =
-            findNavController(androidx.navigation.fragment.R.id.nav_host_fragment_container)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

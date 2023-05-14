@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentAccountBinding
 import my.edu.tarc.bait2073mad.ui.Login
 
@@ -50,22 +52,26 @@ class AccountFragment : Fragment() {
                 Toast.makeText(requireContext(), "Data Read Failed", Toast.LENGTH_SHORT).show()
             }
 
-
-        binding.buttonTestUpload.setOnClickListener {
-            val profileData = hashMapOf(
-                "username" to username,
-                "email" to userEmail
-            )
-
-            docRef.set(profileData)
-                .addOnSuccessListener {
-                    Toast.makeText(requireContext(), "Update Successfully", Toast.LENGTH_SHORT)
-                        .show()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(requireContext(), "Update Failed", Toast.LENGTH_SHORT).show()
-                }
+        binding.editProfileIcon.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_account_to_editProfileFragment)
         }
+
+//        binding.buttonTestUpload.setOnClickListener {
+//            val profileData = hashMapOf(
+//                "username" to username,
+//                "email" to userEmail,
+//                "address" to ""
+//            )
+//
+//            docRef.set(profileData)
+//                .addOnSuccessListener {
+//                    Toast.makeText(requireContext(), "Update Successfully", Toast.LENGTH_SHORT)
+//                        .show()
+//                }
+//                .addOnFailureListener {
+//                    Toast.makeText(requireContext(), "Update Failed", Toast.LENGTH_SHORT).show()
+//                }
+//        }
 
         binding.buttonLogout.setOnClickListener {
             auth.signOut()
