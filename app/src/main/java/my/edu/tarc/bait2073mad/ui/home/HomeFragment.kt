@@ -8,10 +8,12 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -36,6 +38,13 @@ class HomeFragment : Fragment(), MenuProvider, RecordClickListener {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         docRef = db.collection("products").document("public")
+
+        //handle menu click event
+        val menuHost: MenuHost = this.requireActivity()
+        menuHost.addMenuProvider(
+            this, viewLifecycleOwner,
+            Lifecycle.State.RESUMED
+        )
         return binding.root
     }
 
@@ -94,12 +103,12 @@ class HomeFragment : Fragment(), MenuProvider, RecordClickListener {
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-        //menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.go_to_cart_menu, menu)
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        if (menuItem.itemId == android.R.id.home) {
-            findNavController().navigateUp()
+        if (menuItem.itemId == R.id.action_to_cart) {
+            findNavController().navigate(R.id.action_navigation_home_to_cartFragment)
         }
         return true
     }

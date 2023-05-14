@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import my.edu.tarc.bait2073mad.R
@@ -42,10 +43,6 @@ class ProductDetailsFragment : Fragment(), MenuProvider {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<View>(R.id.imageButtonCart).setOnClickListener {
-            Navigation.findNavController(view)
-                .navigate(R.id.action_product_details_fragment_to_navigation_home)
-        }
 
         val productID = homeViewModel.productList.value!![homeViewModel.selectedIndex].productID
         val productIndex = productID.substring(productID.length - 4).toInt()
@@ -68,18 +65,19 @@ class ProductDetailsFragment : Fragment(), MenuProvider {
             val productId = productSelected.productID
             val productName = productSelected.productName
             val productPrice = productSelected.productPrice
-            val cartItem = CartItem(productId,productName,productPrice,1)
-            val cartItemList = cartViewModel.cartItemList.value
+            val cartItem = CartItem(productId, productName, productPrice, 1)
 
-            if(cartItemList!!.contains(cartItem)){
-                Toast.makeText(context, "Item already exist in cart!", Toast.LENGTH_LONG).show()
-            }
-            else{
-                cartViewModel.addCartItem(cartItem)
-            }
-
-
-            findNavController().navigate(R.id.action_product_details_fragment_to_cartFragment)
+            cartViewModel.cartItemList.observe(
+                viewLifecycleOwner,
+                Observer {
+                    if (it.any { item -> item.productID == productId }) {
+                        Toast.makeText(context, "Item already exist in cart!", Toast.LENGTH_LONG)
+                            .show()
+                    } else {
+                        cartViewModel.addCartItem(cartItem)
+                        findNavController().navigate(R.id.action_product_details_fragment_to_cartFragment)
+                    }
+                })
         }
     }
 
