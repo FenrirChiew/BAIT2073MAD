@@ -14,7 +14,6 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -104,9 +103,6 @@ class AddProductFragment : Fragment(), MenuProvider {
                 } else if (binding.editTextProductPrice.text.isEmpty()) {
                     Toast.makeText(context, "Missing Product Price", Toast.LENGTH_SHORT)
                         .show()
-                } else if (binding.editTextProductStatus.text.isEmpty()) {
-                    Toast.makeText(context, "Missing Product Status", Toast.LENGTH_SHORT)
-                        .show()
                 } else if (binding.editTextProductDescriptions.text.isEmpty()) {
                     Toast.makeText(context, "Missing Product Descriptions", Toast.LENGTH_SHORT)
                         .show()
@@ -135,7 +131,7 @@ class AddProductFragment : Fragment(), MenuProvider {
                         editTextProductID.setText("P".plus("%04d".format(homeViewModel.productList.value!!.size)))
                         editTextProductName.setText("")
                         editTextProductPrice.setText("")
-                        editTextProductStatus.setText("")
+                        spinnerProductStatus.setSelection(0)
                         editTextProductDescriptions.setText("")
                         editTextProductSeller.setText("")
                     }
@@ -190,7 +186,8 @@ class AddProductFragment : Fragment(), MenuProvider {
                     .show()
             } else {
                 val profilePictureRef =
-                    storageRef.child("productImages").child(_binding?.editTextProductID?.text.toString())
+                    storageRef.child("productImages")
+                        .child(_binding?.editTextProductID?.text.toString())
                 profilePictureRef.putFile(file)
             }
         } catch (e: FileNotFoundException) {
@@ -204,7 +201,7 @@ class AddProductFragment : Fragment(), MenuProvider {
             val productID = editTextProductID.text.toString()
             val productName = editTextProductName.text.toString()
             val productPrice = editTextProductPrice.text.toString().toDouble()
-            val productStatus = editTextProductStatus.text.toString()
+            val productStatus = spinnerProductStatus.selectedItem.toString()
             val productSeller = editTextProductSeller.text.toString()
             val productDescriptions = editTextProductDescriptions.text.toString()
             newProduct = Product(
