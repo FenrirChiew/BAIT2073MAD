@@ -10,4 +10,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dark_orange">#D2C03328</color>
     <color name="red">#FFFF0000</color>
+    <color name="placeholder_color">#FFDCDCDC</color>
 </resources>

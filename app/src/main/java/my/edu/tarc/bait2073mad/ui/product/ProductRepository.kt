@@ -7,7 +7,6 @@ class ProductRepository(private val productDao: ProductDao) {
     //Room execute all queries on a separate thread
     val allProducts: LiveData<List<Product>> = productDao.getAllProducts()
 
-    @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun add(product: Product) {
         productDao.insert(product)

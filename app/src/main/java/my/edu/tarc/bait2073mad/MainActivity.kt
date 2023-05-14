@@ -26,18 +26,21 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    private lateinit var auth: FirebaseAuth
     private lateinit var user: FirebaseUser
 
     //Cart
     private lateinit var cartItemViewModel: CartViewModel
+
+    companion object {
+        lateinit var auth: FirebaseAuth
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
         user = auth.currentUser!!
 
         val navView: BottomNavigationView = binding.navView

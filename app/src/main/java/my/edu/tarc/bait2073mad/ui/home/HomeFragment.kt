@@ -49,6 +49,10 @@ class HomeFragment : Fragment(), MenuProvider, RecordClickListener {
             }
         })
 
+        binding.fabAddProduct.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_addProductFragment)
+        }
+
         val adapter = ProductAdapter(requireContext(), this)
 
         // Add observers for productList and searchQuery
