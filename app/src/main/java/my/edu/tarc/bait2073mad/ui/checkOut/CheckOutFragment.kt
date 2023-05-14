@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentCheckOutBinding
+import my.edu.tarc.bait2073mad.ui.paymentMethod.AddCardFragmentDirections
 
 class CheckOutFragment : Fragment() {
 
@@ -39,7 +40,12 @@ class CheckOutFragment : Fragment() {
 
         binding.paymentMethodButton.setOnClickListener {
             paymentMethodButtonClicked = true
-            findNavController().navigate(R.id.action_checkOutFragment_to_paymentMethodFragment)
+
+            val voucher = arguments?.getString("voucherName", "")
+            val voucherName = voucher.toString()
+            val action = CheckOutFragmentDirections.actionCheckOutFragmentToPaymentMethodFragment(
+                voucherName)
+            findNavController().navigate(action)
         }
 
         val voucherName = arguments?.getString("voucherName", "")
