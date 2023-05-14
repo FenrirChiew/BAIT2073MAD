@@ -64,12 +64,12 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
         super.onViewCreated(view, savedInstanceState)
         val adapter = CartItemAdapter(requireContext(), this)
 
-        cartViewModel.addCartItem(CartItem("P0005", "Product5", 12.0,1))
-        cartViewModel.addCartItem(CartItem("P0006", "Product5", 12.0,1))
-        cartViewModel.addCartItem(CartItem("P0007", "Product5", 12.0,1))
-        cartViewModel.addCartItem(CartItem("P0008", "Product5", 12.0,1))
-        cartViewModel.addCartItem(CartItem("P0009", "Product5", 12.0,1))
-        cartViewModel.addCartItem(CartItem("P0010", "Product5", 12.0,1))
+//        cartViewModel.addCartItem(CartItem("P0005", "Product5", 12.0,1))
+//        cartViewModel.addCartItem(CartItem("P0006", "Product5", 12.0,1))
+//        cartViewModel.addCartItem(CartItem("P0007", "Product5", 12.0,1))
+//        cartViewModel.addCartItem(CartItem("P0008", "Product5", 12.0,1))
+//        cartViewModel.addCartItem(CartItem("P0009", "Product5", 12.0,1))
+//        cartViewModel.addCartItem(CartItem("P0010", "Product5", 12.0,1))
         //Add an observer
         cartViewModel.cartItemList.observe(
             viewLifecycleOwner,
@@ -82,6 +82,12 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
                     binding.buttonCheckOut.isEnabled = true
                 }
                 adapter.setCartItem(it)
+
+                var total = 0.0
+                for (element in it){
+                    total += (element.productPrice*element.quantity)
+                }
+                binding.textViewTotal.text = "RM$total"
             }
         )
         binding.recyclerViewCartItem.adapter = adapter
@@ -150,7 +156,6 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
                 }
                 .addOnFailureListener { e -> Log.e(TAG, "Error getting cart items", e) }
         }
-
         return true
     }
 

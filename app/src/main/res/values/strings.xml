@@ -39,6 +39,8 @@
     <string name="paymentMethodTitle">Payment Method:</string>
     <string name="totalPaymentTitle">Total Payment:</string>
     <string name="noRecord">No Record!</string>
+    <string name="delete_record">Delete this Cart Item?</string>
+    <string name="total">Total: </string>
 
     <!-- product -->
     <string name="product_id_label">Product ID</string>
@@ -109,10 +111,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="cancel">Cancel</string>
-    <string name="delete_record">Delete this Cart Item?</string>
+
     <string name="labelCheckOutCount">No.</string>
     <string name="labelCheckOutName">Product Name</string>
     <string name="labelCheckOutQuantity">Quantity</string>
     <string name="labelCheckOutPrice">Price (RM)</string>
+
 
 </resources>
