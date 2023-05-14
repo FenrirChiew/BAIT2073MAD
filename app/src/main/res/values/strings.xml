@@ -20,6 +20,9 @@
     <string name="signUpButton">Sign Up</string>
     <string name="login_now">Login now</string>
 
+    <!-- account -->
+    <string name="logout">Logout</string>
+
     <!-- cart -->
     <string name="cart">Cart</string>
     <string name="selectAll">Select All</string>
