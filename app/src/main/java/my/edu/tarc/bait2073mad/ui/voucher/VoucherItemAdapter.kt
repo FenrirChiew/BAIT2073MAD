@@ -17,7 +17,6 @@ class VoucherItemAdapter(private val recordClickListener: RecordClickListener):
         val voucherName: TextView = view.findViewById(R.id.textViewVoucherName)
         val voucherTerms: TextView = view.findViewById(R.id.textViewVoucherTerm)
         val voucherDate: TextView = view.findViewById(R.id.textViewVoucherExpired)
-        val voucherImage: ImageView = view.findViewById(R.id.imageViewVoucher)
     }
 
     internal fun setVoucherItem(voucherItem: List<VoucherItem>){
@@ -35,10 +34,10 @@ class VoucherItemAdapter(private val recordClickListener: RecordClickListener):
         holder.voucherName.text = currentItem.voucherName.toString()
         holder.voucherTerms.text = currentItem.voucherTerms.toString()
         holder.voucherDate.text = currentItem.voucherDate.toString()
-
-        Picasso.get()
-            .load("file:////Users//User//Desktop//fpx-logo.jpg/${currentItem.voucherImage}")
-            .into(holder.voucherImage)
+//
+//        Picasso.get()
+//            .load("file:////Users//User//Desktop//fpx-logo.jpg/${currentItem.voucherImage}")
+//            .into(holder.voucherImage)
 //
 //        Picasso.get()
 //            .load(currentItem.voucherImage)
