@@ -3,9 +3,12 @@ package my.edu.tarc.bait2073mad.ui.voucher
 import android.Manifest
 import android.content.ContentValues
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.core.app.ActivityCompat
@@ -24,6 +27,8 @@ import com.squareup.picasso.Picasso
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentVoucherBinding
 import my.edu.tarc.bait2073mad.ui.paymentMethod.Card
+import java.io.File
+import java.io.FileNotFoundException
 
 class VoucherFragment : Fragment(), RecordClickListener, MenuProvider {
 
@@ -63,7 +68,13 @@ class VoucherFragment : Fragment(), RecordClickListener, MenuProvider {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = VoucherItemAdapter(this)
+        val adapter = VoucherItemAdapter(this, requireContext())
+//        val voucherImage = readVoucherImage(R.drawable.voucher.toString().substring(0,6).plus("jpg"))
+//        if (voucherImage != null) {
+//            voucherImageView?.setImageBitmap(voucherImage)
+//        } else {
+//            voucherImageView?.setImageResource(R.drawable.ic_product_black_24dp)
+//        }
 
         voucherViewModel.addVoucher(
             VoucherItem(
@@ -194,6 +205,17 @@ class VoucherFragment : Fragment(), RecordClickListener, MenuProvider {
 
     }
 
+    private fun readVoucherImage(filename: String): Bitmap?{
+        val file = File(this.context?.filesDir, filename)
+        if(file.isFile){
+            try{
+                return BitmapFactory.decodeFile(file.absolutePath)
+            }catch (e: FileNotFoundException){
+                e.printStackTrace()
+            }
+        }
+        return null
+    }
 
     override fun onDestroy() {
         super.onDestroy()

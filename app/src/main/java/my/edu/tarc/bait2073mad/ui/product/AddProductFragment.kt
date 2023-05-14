@@ -94,6 +94,7 @@ class AddProductFragment : Fragment(), MenuProvider {
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
             R.id.action_save -> {
+                var isAdded = false
                 if (binding.editTextProductID.text.isEmpty()) {
                     Toast.makeText(context, "Missing Product ID", Toast.LENGTH_SHORT)
                         .show()
@@ -123,9 +124,21 @@ class AddProductFragment : Fragment(), MenuProvider {
                     // Save product details to the cloud storage
                     uploadProductDetails()
 
+                    isAdded = true
                     Toast.makeText(context, getString(R.string.product_saved), Toast.LENGTH_SHORT)
                         .show()
-                    findNavController().navigateUp()
+                }
+
+                if (isAdded) {
+                    binding.apply {
+                        imageViewProductImage.setImageResource(R.drawable.ic_product_black_24dp)
+                        editTextProductID.setText("")
+                        editTextProductName.setText("")
+                        editTextProductPrice.setText("")
+                        editTextProductStatus.setText("")
+                        editTextProductDescriptions.setText("")
+                        editTextProductSeller.setText("")
+                    }
                 }
             }
 
@@ -186,6 +199,7 @@ class AddProductFragment : Fragment(), MenuProvider {
     }
 
     private fun saveProductDetails() {
+        var newProduct: Product
         binding.apply {
             val productID = editTextProductID.text.toString()
             val productName = editTextProductName.text.toString()
@@ -193,7 +207,7 @@ class AddProductFragment : Fragment(), MenuProvider {
             val productStatus = editTextProductStatus.text.toString()
             val productDescriptions = editTextProductDescriptions.text.toString()
             val productSeller = editTextProductSeller.text.toString()
-            val newProduct = Product(
+            newProduct = Product(
                 productID,
                 productName,
                 productPrice,
@@ -201,8 +215,8 @@ class AddProductFragment : Fragment(), MenuProvider {
                 productSeller,
                 productDescriptions
             )
-            homeViewModel.addProduct(newProduct)
         }
+        homeViewModel.addProduct(newProduct)
     }
 
     private fun uploadProductDetails() {

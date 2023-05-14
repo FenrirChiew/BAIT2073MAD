@@ -41,7 +41,7 @@ class AddCardFragment : Fragment(), MenuProvider {
         //firestone
         auth = FirebaseAuth.getInstance()
         val userID = auth.currentUser?.uid
-        docRef = db.collection("checkOut").document(userID!!)
+        docRef = db.collection("Card").document(userID!!)
 
         val menuHost: MenuHost = this.requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)

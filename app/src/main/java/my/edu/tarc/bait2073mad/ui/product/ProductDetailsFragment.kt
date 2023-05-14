@@ -15,8 +15,6 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentProductDetailsBinding
@@ -76,17 +74,15 @@ class ProductDetailsFragment : Fragment(), MenuProvider {
             val productPrice = productSelected.productPrice
             val cartItem = CartItem(productId, productName, productPrice, 1)
 
-            cartViewModel.cartItemList.observe(
-                viewLifecycleOwner,
-                Observer {
-                    if (it.any { item -> item.productID == productId }) {
-                        Toast.makeText(context, "Item already exist in cart!", Toast.LENGTH_LONG)
-                            .show()
-                    } else {
-                        cartViewModel.addCartItem(cartItem)
-                        findNavController().navigate(R.id.action_product_details_fragment_to_cartFragment)
-                    }
-                })
+            cartViewModel.cartItemList.observe(viewLifecycleOwner) {
+                if (it.any { item -> item.productID == productId }) {
+                    Toast.makeText(context, "Item already exist in cart!", Toast.LENGTH_LONG)
+                        .show()
+                } else {
+                    cartViewModel.addCartItem(cartItem)
+                    findNavController().navigate(R.id.action_product_details_fragment_to_cartFragment)
+                }
+            }
         }
     }
 
