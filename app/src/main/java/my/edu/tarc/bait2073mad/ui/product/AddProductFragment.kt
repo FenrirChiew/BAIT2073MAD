@@ -75,8 +75,8 @@ class AddProductFragment : Fragment(), MenuProvider {
         }
 
         with(binding) {
-            val productLength: Int = homeViewModel.productList.value!!.size
-            editTextProductID.setText("P".plus("%04d".format(productLength)))
+            val productsLength: Int = homeViewModel.productList.value!!.size
+            editTextProductID.setText("P".plus("%04d".format(productsLength)))
         }
     }
 
@@ -132,7 +132,7 @@ class AddProductFragment : Fragment(), MenuProvider {
                 if (isAdded) {
                     binding.apply {
                         imageViewProductImage.setImageResource(R.drawable.ic_product_black_24dp)
-                        editTextProductID.setText("")
+                        editTextProductID.setText("P".plus("%04d".format(homeViewModel.productList.value!!.size)))
                         editTextProductName.setText("")
                         editTextProductPrice.setText("")
                         editTextProductStatus.setText("")
@@ -190,7 +190,7 @@ class AddProductFragment : Fragment(), MenuProvider {
                     .show()
             } else {
                 val profilePictureRef =
-                    storageRef.child("file").child(_binding?.editTextProductID?.text.toString())
+                    storageRef.child("productImages").child(_binding?.editTextProductID?.text.toString())
                 profilePictureRef.putFile(file)
             }
         } catch (e: FileNotFoundException) {
@@ -205,8 +205,8 @@ class AddProductFragment : Fragment(), MenuProvider {
             val productName = editTextProductName.text.toString()
             val productPrice = editTextProductPrice.text.toString().toDouble()
             val productStatus = editTextProductStatus.text.toString()
-            val productDescriptions = editTextProductDescriptions.text.toString()
             val productSeller = editTextProductSeller.text.toString()
+            val productDescriptions = editTextProductDescriptions.text.toString()
             newProduct = Product(
                 productID,
                 productName,

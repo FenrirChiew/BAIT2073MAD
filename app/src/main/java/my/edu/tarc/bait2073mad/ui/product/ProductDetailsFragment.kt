@@ -51,36 +51,38 @@ class ProductDetailsFragment : Fragment(), MenuProvider {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val productID = homeViewModel.productList.value!![homeViewModel.selectedIndex].productID
-        val productIndex = productID.substring(productID.length - 4).toInt()
-        val productSelected = homeViewModel.productList.value!![productIndex]
-        val productImage = readProductImage(productID.lowercase().plus(".jpg"))
-        if (productImage != null) {
-            _binding?.imageViewProductImage?.setImageBitmap(productImage)
-        } else {
-            _binding?.imageViewProductImage?.setImageResource(R.drawable.ic_product_black_24dp)
-        }
-        _binding?.textViewProductName?.text = productSelected.productName
-        _binding?.textViewProductPrice?.text = getString(R.string.currency_myr).plus(" ")
-            .plus("%.2f".format(productSelected.productPrice))
-        _binding?.textViewProductStatus?.text = productSelected.productStatus
-        _binding?.textViewProductSeller?.text = productSelected.seller
-        _binding?.textViewProductDescription?.text = productSelected.productDescriptions
+        binding.apply {
+            val productID = homeViewModel.productList.value!![homeViewModel.selectedIndex].productID
+            val productIndex = productID.substring(productID.length - 4).toInt()
+            val productSelected = homeViewModel.productList.value!![productIndex]
+            val productImage = readProductImage(productID.lowercase().plus(".jpg"))
+            if (productImage != null) {
+                imageViewProductImage.setImageBitmap(productImage)
+            } else {
+                imageViewProductImage.setImageResource(R.drawable.ic_product_black_24dp)
+            }
+            textViewProductName.text = productSelected.productName
+            textViewProductPrice.text = getString(R.string.currency_myr).plus(" ")
+                .plus("%.2f".format(productSelected.productPrice))
+            textViewProductStatus.text = productSelected.productStatus
+            textViewProductSeller.text = productSelected.seller
+            textViewProductDescription.text = productSelected.productDescriptions
 
-        //add to cart
-        binding.buttonAddToCart.setOnClickListener {
-            val productId = productSelected.productID
-            val productName = productSelected.productName
-            val productPrice = productSelected.productPrice
-            val cartItem = CartItem(productId, productName, productPrice, 1)
+            //add to cart
+            buttonAddToCart.setOnClickListener {
+                val productId = productSelected.productID
+                val productName = productSelected.productName
+                val productPrice = productSelected.productPrice
+                val cartItem = CartItem(productId, productName, productPrice, 1)
 
-            cartViewModel.cartItemList.observe(viewLifecycleOwner) {
-                if (it.any { item -> item.productID == productId }) {
-                    Toast.makeText(context, "Item already exist in cart!", Toast.LENGTH_LONG)
-                        .show()
-                } else {
-                    cartViewModel.addCartItem(cartItem)
-                    findNavController().navigate(R.id.action_product_details_fragment_to_cartFragment)
+                cartViewModel.cartItemList.observe(viewLifecycleOwner) {
+                    if (it.any { item -> item.productID == productId }) {
+                        Toast.makeText(context, "Item already exist in cart!", Toast.LENGTH_LONG)
+                            .show()
+                    } else {
+                        cartViewModel.addCartItem(cartItem)
+                        findNavController().navigate(R.id.action_product_details_fragment_to_cartFragment)
+                    }
                 }
             }
         }
