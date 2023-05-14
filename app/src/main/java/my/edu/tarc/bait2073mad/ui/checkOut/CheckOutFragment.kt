@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
@@ -21,13 +22,15 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentCheckOutBinding
+import my.edu.tarc.bait2073mad.ui.cart.CartItemAdapter
 import my.edu.tarc.bait2073mad.ui.cart.CartViewModel
+import my.edu.tarc.bait2073mad.ui.cart.RecordClickListener
 
-class CheckOutFragment : Fragment() {
+class CheckOutFragment : Fragment(), RecordClickListener {
 
     //viewModel
     private val cartViewModel: CartViewModel by activityViewModels()
-    private val checkOutViewHolder: CheckOutViewModel by activityViewModels()
+    //private val checkOutViewHolder: CheckOutViewModel by activityViewModels()
 
     //binding
     private var _binding: FragmentCheckOutBinding? = null
@@ -45,17 +48,23 @@ class CheckOutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = CheckOutItemAdapter()
+        var subtotal:Double = 0.0
 
-        cartViewModel.cartItemList.observe(
+            cartViewModel.cartItemList.observe(
             viewLifecycleOwner,
             Observer {
-                adapter.setCheckOutItem(it)
+                for (element in it){
+                    subtotal += (element.productPrice*element.quantity)
+                }
+                binding.textViewSubTotalPrice.text = String.format("RM %.2f",subtotal)
+                binding.textViewTotalCartItem.text = it.size.toString()
             }
         )
-        binding.checkOutRecyclerView.adapter = adapter
 
+//        var deliveryAddress =
         var paymentMethodButtonClicked = false
+
+//        binding.textViewDeliveryAddress.text =
 
         binding.applyVoucherbutton.setOnClickListener {
             findNavController().navigate(R.id.action_checkOutFragment_to_voucherFragment)
@@ -98,6 +107,10 @@ class CheckOutFragment : Fragment() {
                 )
             }
         }
+        binding.textViewVoucherDiscount.text = voucherAmount.toString()
+        binding.textViewShippingFee.text = shippingFee.toString()
+        var totalPayment = calculation(subtotal, shippingFee, voucherAmount)
+        binding.textViewTotalPayment.text = totalPayment.toString()
     }
     override fun onDestroyView() {
         super.onDestroyView()
@@ -106,6 +119,10 @@ class CheckOutFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+    }
+    override fun onRecordClickListener(index: Int) {
+        //selectedIndex from viewModel
+        cartViewModel.selectedIndex = index
     }
 
     private fun calculation(subtotal: Double, shippingFee: Double, voucher: Double): Double {

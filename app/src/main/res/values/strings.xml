@@ -117,6 +117,7 @@
     <string name="labelCheckOutQuantity">Quantity</string>
     <string name="labelCheckOutPrice">Price (RM)</string>
     <string name="refresh">Refresh</string>
+    <string name="title_recent_order">Recent Order</string>
 
 
 </resources>
