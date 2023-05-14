@@ -30,6 +30,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         repository.delete(product)
     }
 
+    fun deleteAllProduct() = viewModelScope.launch {
+        repository.deleteAll()
+    }
+
     fun updateProduct(product: Product) = viewModelScope.launch {
         repository.update(product)
     }
