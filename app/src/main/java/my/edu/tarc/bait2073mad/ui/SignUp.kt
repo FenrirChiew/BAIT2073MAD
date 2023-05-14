@@ -7,6 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import my.edu.tarc.bait2073mad.MainActivity
 import my.edu.tarc.bait2073mad.databinding.ActivitySignUpBinding
@@ -52,6 +53,9 @@ class SignUp : AppCompatActivity() {
                                     Toast.LENGTH_SHORT,
                                 ).show()
 
+                                // Create account database for each user
+                                createAccount()
+
                                 val intent = Intent(applicationContext, MainActivity::class.java)
                                 startActivity(intent)
                                 finish()
@@ -84,6 +88,28 @@ class SignUp : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun createAccount() {
+        val userID = auth.currentUser?.uid
+        val userEmail = auth.currentUser?.email
+
+        val db = FirebaseFirestore.getInstance()
+        val docRef = db.collection("users").document(userID!!)
+        val username = "user$userID"
+
+        val profileData = hashMapOf(
+            "username" to username,
+            "email" to userEmail,
+            "address" to ""
+        )
+        docRef.set(profileData)
+            .addOnSuccessListener {
+
+            }
+            .addOnFailureListener {
+
+            }
     }
 
     private fun showErrorMessage(textView: TextView, message: String) {
