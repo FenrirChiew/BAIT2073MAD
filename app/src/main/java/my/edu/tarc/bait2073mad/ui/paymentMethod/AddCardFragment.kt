@@ -1,21 +1,33 @@
 package my.edu.tarc.bait2073mad.ui.paymentMethod
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
 import android.widget.Toast
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentAddCardBinding
 
-class AddCardFragment : Fragment() {
+class AddCardFragment : Fragment(), MenuProvider {
     private var _binding: FragmentAddCardBinding? = null
     private val binding get() = _binding!!
     private val paymentMethodViewModel: PaymentMethodViewModel by activityViewModels()
+
+    //Firebase
+    private lateinit var auth: FirebaseAuth
+    val db = FirebaseFirestore.getInstance()
+    private lateinit var docRef: DocumentReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +38,14 @@ class AddCardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAddCardBinding.inflate(inflater, container, false)
+        //firestone
+        auth = FirebaseAuth.getInstance()
+        val userID = auth.currentUser?.uid
+        docRef = db.collection("CheckOut").document(userID!!)
+        Log.d("userIdTag", userID)
+
+        val menuHost: MenuHost = this.requireActivity()
+        menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
         return binding.root
     }
 
@@ -71,6 +91,61 @@ class AddCardFragment : Fragment() {
 
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+        menu.clear()
+        menuInflater.inflate(R.menu.top_upload_download_menu, menu)
+        menu.findItem(R.id.action_cart_download).isVisible = true
+        menu.findItem(R.id.action_cart_upload).isVisible = true
+    }
+
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+        if (menuItem.itemId == R.id.action_cart_upload) {
+            paymentMethodViewModel.cardList.observe(
+                viewLifecycleOwner, Observer {
+                    val items = mutableListOf<Map<String, Any>>()
+                    for (element in it) {
+                        items.add(
+                            mapOf(
+                                "CardNumber" to element.cardNumber,
+                                "CardHolderName" to element.cardHolderName,
+                                "CardExpiredDay" to element.cardExpiredDay,
+                                "CardCvc" to element.cardCvc
+                            )
+                        )
+                    }
+                    docRef.set(mapOf("items" to items)).addOnSuccessListener {
+                        Toast.makeText(context, "Success Upload", Toast.LENGTH_SHORT)
+                    }.addOnFailureListener {
+                        Toast.makeText(context, "Fail to Upload", Toast.LENGTH_SHORT)
+                    }
+                }
+            )
+        } else if (menuItem.itemId == R.id.action_cart_download) {
+            docRef.get().addOnSuccessListener { documentSnapshot ->
+                val cardItemData = documentSnapshot.get("items") as List<Map<String, Any>>?
+                if (cardItemData != null) {
+                    for (storedData in cardItemData) {
+                        val card = Card(
+                            cardNumber = storedData["CardNumber"] as Long? ?: 0,
+                            cardHolderName = storedData["CardHolderName"] as String? ?: "",
+                            cardExpiredDay = storedData["CardExpiredDay"] as String? ?: "",
+                            cardCvc = storedData["CardCvcNumber"] as Int? ?: 0
+                        )
+                        paymentMethodViewModel.addCard(card)
+                    }
+                }
+            }.addOnFailureListener { e ->
+                Log.e(TAG, "Error in getting the card items")
+            }
+
+        }
+        return true
+    }
 
 }
 

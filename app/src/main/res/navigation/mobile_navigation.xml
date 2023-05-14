@@ -31,7 +31,7 @@
         android:id="@+id/navigation_account"
         android:name="my.edu.tarc.bait2073mad.ui.account.AccountFragment"
         android:label="@string/title_account"
-        tools:layout="@layout/fragment_account" >
+        tools:layout="@layout/fragment_account">
         <action
             android:id="@+id/action_navigation_account_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
@@ -41,8 +41,7 @@
         android:id="@+id/editProfileFragment"
         android:name="my.edu.tarc.bait2073mad.ui.account.EditProfileFragment"
         android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" >
-    </fragment>
+        tools:layout="@layout/fragment_edit_profile"></fragment>
 
     <fragment
         android:id="@+id/checkOutFragment"

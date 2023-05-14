@@ -21,16 +21,16 @@ class PaymentMethodViewModel (application: Application): AndroidViewModel(applic
         cardList = repository.allCard
     }
 
-    fun addVoucher(card: Card) = viewModelScope.launch{
+    fun addCard(card: Card) = viewModelScope.launch{
         repository.add(card)
     }
 
-    fun updateContact(card: Card) = viewModelScope.launch {
+    fun updateCard(card: Card) = viewModelScope.launch {
         repository.update(card)
     }
 
     //used to delete the contact
-    fun deleteContact(card: Card) = viewModelScope.launch {
+    fun deleteCard(card: Card) = viewModelScope.launch {
         repository.delete(card)
     }
 
