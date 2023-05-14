@@ -64,11 +64,6 @@ class CartItemAdapter(
         holder.itemView.setOnClickListener {
             //Item click event handler
             recordClickListener.onRecordClickListener(position)
-//            Toast.makeText(
-//                it.context,
-//                "Product name:" + cartItemList[position].productName,
-//                Toast.LENGTH_SHORT
-//            ).show()
         }
     }
 

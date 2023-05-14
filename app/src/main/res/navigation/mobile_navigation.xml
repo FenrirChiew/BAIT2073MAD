@@ -82,11 +82,14 @@
         <action
             android:id="@+id/action_product_details_fragment_to_navigation_home"
             app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_product_details_fragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartItemDetailFragment"
         android:name="my.edu.tarc.bait2073mad.ui.cart.CartItemDetailFragment"
-        android:label="fragment_cart_item_detail"
+        android:label="Cart ItemDetail"
         tools:layout="@layout/fragment_cart_item_detail">
         <action
             android:id="@+id/action_cartItemDetailFragment_to_cartFragment"
@@ -95,7 +98,7 @@
     <fragment
         android:id="@+id/cartFragment"
         android:name="my.edu.tarc.bait2073mad.ui.cart.CartFragment"
-        android:label="fragment_cart"
+        android:label="Cart"
         tools:layout="@layout/fragment_cart">
         <action
             android:id="@+id/action_cartFragment_to_cartItemDetailFragment"
@@ -133,7 +136,7 @@
         android:id="@+id/successDialogFragment"
         android:name="my.edu.tarc.bait2073mad.ui.checkOut.SuccessDialogFragment"
         android:label="fragment_success_dialog"
-        tools:layout="@layout/fragment_success_dialog" >
+        tools:layout="@layout/fragment_success_dialog">
         <action
             android:id="@+id/action_successDialogFragment_to_orderHistoryFragment"
             app:destination="@id/orderHistoryFragment" />
@@ -147,7 +150,7 @@
         android:id="@+id/thirdPartyFragment"
         android:name="my.edu.tarc.bait2073mad.ui.paymentMethod.ThirdPartyFragment"
         android:label="fragment_third_party"
-        tools:layout="@layout/fragment_third_party" >
+        tools:layout="@layout/fragment_third_party">
         <action
             android:id="@+id/action_thirdPartyFragment_to_checkOutFragment"
             app:destination="@id/checkOutFragment" />

@@ -1,8 +1,6 @@
 package my.edu.tarc.bait2073mad.ui.cart
 
-import android.app.AlertDialog
 import android.content.ContentValues.TAG
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -19,22 +17,13 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.navigateUp
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentCartBinding
 import my.edu.tarc.bait2073mad.ui.checkOut.CheckOutViewModel
-import org.checkerframework.checker.units.qual.K
 
 class CartFragment : Fragment(), MenuProvider, RecordClickListener {
     private var _binding: FragmentCartBinding? = null
@@ -64,6 +53,7 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
         docRef = db.collection("Cart").document(userID!!)
         Log.d("userIdTag", userID)
 
+        //host menu
         val menuHost: MenuHost = this.requireActivity()
         menuHost.addMenuProvider(
             this, viewLifecycleOwner,
@@ -110,7 +100,7 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menu.clear()
-        menuInflater.inflate(R.menu.cart_menu, menu)
+        menuInflater.inflate(R.menu.top_upload_download_menu, menu)
         menu.findItem(R.id.action_cart_download).isVisible = true
         menu.findItem(R.id.action_cart_upload).isVisible = true
 
