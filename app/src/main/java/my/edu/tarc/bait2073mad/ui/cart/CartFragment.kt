@@ -87,7 +87,7 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
                 for (element in it){
                     total += (element.productPrice*element.quantity)
                 }
-                binding.textViewTotal.text = "RM$total"
+                binding.textViewTotal.text = String.format("RM %.2f",total)
             }
         )
         binding.recyclerViewCartItem.adapter = adapter
