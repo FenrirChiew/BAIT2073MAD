@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import my.edu.tarc.bait2073mad.R
 import java.io.File
@@ -33,7 +35,6 @@ class CartItemAdapter(private val recordClickListener: RecordClickListener) :
     internal fun setCartItem(cartItem: List<CartItem>) {
         this.cartItemList = cartItem
         notifyDataSetChanged()
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,15 +47,14 @@ class CartItemAdapter(private val recordClickListener: RecordClickListener) :
         //Get element from the dataset at this position and replace the contents of the view with that element
 //        holder.imageViewProductImage.setImageResource(R.drawable.ic_product_black_24dp)
 
-//        val sdcardPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).absolutePath
-//        val imagePath = "$sdcardPath/P001.jpg"
-//
-//
-//        val file = File(imagePath)
-//        Picasso.get()
-//            .load(file)
-//            .into(holder.imageViewProductImage)
+        val sdcardPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath
+        val imagePath = "$sdcardPath/mad/P001.jpg"
 
+
+        val file = File("/sdcard/Pictures/mad/P001.jpg")
+        Picasso.get().load(file).placeholder(R.drawable.ic_product_black_24dp).into(holder.imageViewProductImage)
+
+//        Picasso.get().load("https://i.ibb.co/wcrrV93/main-logo.png").into(holder.imageViewProductImage)
         holder.textViewProductName.text = cartItemList[position].productName
         holder.textViewProductQuantity.text = cartItemList[position].quantity.toString()
         holder.textViewProductPrice.text = cartItemList[position].productPrice.toString()
@@ -77,7 +77,7 @@ class CartItemAdapter(private val recordClickListener: RecordClickListener) :
 
     private fun readProductPicture(filename: String): Bitmap? {
         val sdCard = Environment.getExternalStorageDirectory()
-        val directory = File(sdCard.absolutePath + "/Pictures")
+        val directory = File(sdCard.absolutePath + "/Pictures/mad/")
         val file = File(directory, filename) //or any other format supported
         val streamIn = FileInputStream(file)
         val bitmap = BitmapFactory.decodeStream(streamIn) //This gets the image

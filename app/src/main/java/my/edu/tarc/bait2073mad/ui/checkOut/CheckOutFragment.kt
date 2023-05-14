@@ -8,14 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentCheckOutBinding
+import my.edu.tarc.bait2073mad.ui.cart.CartViewModel
 
-class CheckOutFragment : Fragment() {
+class CheckOutFragment : Fragment()  {
 
-    private val viewModel: CheckOutViewModel by activityViewModels()
+    private val cartViewModel: CartViewModel by activityViewModels()
 
     private var _binding: FragmentCheckOutBinding? = null
     private val binding get() = _binding!!
@@ -30,6 +32,17 @@ class CheckOutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val adapter = CheckOutItemAdapter()
+
+        //Add an observer
+        cartViewModel.cartItemList.observe(
+            viewLifecycleOwner,
+            Observer {
+                adapter.setCheckOutItem(it)
+            }
+        )
+        binding.recyclerView.adapter = adapter
 
         var paymentMethodButtonClicked = false
 
@@ -74,6 +87,14 @@ class CheckOutFragment : Fragment() {
                 )
             }
         }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     private fun calculation(subtotal: Double, shippingFee: Double, voucher: Double): Double {
