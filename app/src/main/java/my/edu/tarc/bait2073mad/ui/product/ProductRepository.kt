@@ -2,6 +2,7 @@ package my.edu.tarc.bait2073mad.ui.product
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
+import androidx.room.Query
 
 class ProductRepository(private val productDao: ProductDao) {
     //Room execute all queries on a separate thread
@@ -15,6 +16,11 @@ class ProductRepository(private val productDao: ProductDao) {
     @WorkerThread
     suspend fun delete(product: Product) {
         productDao.delete(product)
+    }
+
+    @WorkerThread
+    suspend fun deleteAll() {
+        productDao.deleteAll()
     }
 
     @WorkerThread

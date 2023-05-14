@@ -8,10 +8,14 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
+import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -35,6 +39,13 @@ class HomeFragment : Fragment(), MenuProvider, RecordClickListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        val menuHost: MenuHost = this.requireActivity()
+        menuHost.addMenuProvider(
+            this, viewLifecycleOwner,
+            Lifecycle.State.RESUMED
+        )
+
         docRef = db.collection("products").document("public")
         return binding.root
     }
@@ -54,20 +65,17 @@ class HomeFragment : Fragment(), MenuProvider, RecordClickListener {
             }
         })
 
-        binding.fabAddProduct.setOnClickListener {
-            downloadProductList()
-            findNavController().navigate(R.id.action_navigation_home_to_addProductFragment)
-        }
-
         val adapter = ProductAdapter(requireContext(), this)
 
         // Add observers for productList and searchQuery
         homeViewModel.productList.observe(viewLifecycleOwner) { productList ->
             homeViewModel.searchQuery.observe(viewLifecycleOwner) { searchQuery ->
                 if (productList.isEmpty()) {
-                    binding.textViewCount.isVisible = true
                     binding.textViewCount.text = getString(R.string.no_product)
+                    binding.textViewCount.isVisible = true
                 } else {
+                    binding.textViewCount.text = ""
+                    binding.textViewCount.isVisible = false
                     if (searchQuery.isEmpty()) {
                         homeViewModel.resetProducts()
                         adapter.setProduct(productList)
@@ -80,7 +88,6 @@ class HomeFragment : Fragment(), MenuProvider, RecordClickListener {
                         }
                         adapter.setProduct(newProductList)
                     }
-                    binding.textViewCount.isVisible = false
                 }
             }
             binding.recycleViewProductList.adapter = adapter
@@ -94,12 +101,24 @@ class HomeFragment : Fragment(), MenuProvider, RecordClickListener {
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-        //menuInflater.inflate(R.menu.menu_main, menu)
+        menu.clear()
+        menuInflater.inflate(R.menu.home_menu, menu)
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        if (menuItem.itemId == android.R.id.home) {
-            findNavController().navigateUp()
+        when (menuItem.itemId) {
+            R.id.action_refresh -> {
+                refreshProductList()
+            }
+
+            R.id.action_add_product -> {
+                refreshProductList()
+                findNavController().navigate(R.id.action_navigation_home_to_addProductFragment)
+            }
+
+            android.R.id.home -> {
+                findNavController().navigateUp()
+            }
         }
         return true
     }
@@ -109,23 +128,49 @@ class HomeFragment : Fragment(), MenuProvider, RecordClickListener {
         findNavController().navigate(R.id.action_navigation_home_to_product_details_fragment)
     }
 
-    private fun downloadProductList() {
+    private fun refreshProductList() {
+        binding.progressBar.isVisible = true
+        homeViewModel.searchQuery = MutableLiveData<String>("")
+
+        if (homeViewModel.productList.value?.isNotEmpty()!!) {
+            homeViewModel.deleteAllProduct()
+        }
+
         docRef.get()
             .addOnSuccessListener { document ->
-                val productData = document.get("productItems") as List<Map<String, Any>>?
-                if (productData != null) {
-                    for (itemData in productData) {
-                        val productItem = Product(
-                            productID = itemData["ProductID"] as String? ?: "",
-                            productName = itemData["ProductName"] as String? ?: "",
-                            productPrice = (itemData["ProductPrice"] as Double?) ?: 0.0,
-                            productStatus = itemData["ProductStatus"] as String? ?: "",
-                            seller = itemData["ProductSeller"] as String? ?: "",
-                            productDescriptions = itemData["ProductDescription"] as String? ?: "",
-                            )
-                        homeViewModel.addProduct(productItem)
+                val products = document.get("products") as List<Map<String, Any>>?
+                if (products != null) {
+                    for (i in products.indices step 1) {
+                        val product = Product(
+                            productID = products[i]["ProductID"] as String? ?: "",
+                            productName = products[i]["ProductName"] as String? ?: "",
+                            productPrice = (products[i]["ProductPrice"] as Double?) ?: 0.0,
+                            productStatus = products[i]["ProductStatus"] as String? ?: "",
+                            seller = products[i]["ProductSeller"] as String? ?: "",
+                            productDescriptions = products[i]["ProductDescription"] as String?
+                                ?: "",
+                        )
+                        homeViewModel.addProduct(product)
                     }
                 }
             }
+
+        Toast.makeText(context, "Synchronizing...", Toast.LENGTH_SHORT).show()
+        binding.progressBar.isVisible = false
+
+        val adapter = ProductAdapter(requireContext(), this)
+
+        // Add observers for productList and searchQuery
+        homeViewModel.productList.observe(viewLifecycleOwner) {
+            if (it.isEmpty()) {
+                binding.textViewCount.text = getString(R.string.no_product)
+                binding.textViewCount.isVisible = true
+            } else {
+                binding.textViewCount.text = ""
+                binding.textViewCount.isVisible = false
+            }
+            adapter.setProduct(it)
+        }
+        binding.recycleViewProductList.adapter = adapter
     }
 }

@@ -42,7 +42,7 @@ class CheckOutFragment : Fragment()  {
                 adapter.setCheckOutItem(it)
             }
         )
-        binding.recyclerView.adapter = adapter
+        //binding.recyclerView.adapter = adapter
 
         var paymentMethodButtonClicked = false
 

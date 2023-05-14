@@ -157,6 +157,8 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
                     }
                 }
                 .addOnFailureListener { e -> Log.e(TAG, "Error getting cart items", e) }
+        } else if (menuItem.itemId == android.R.id.home) {
+            findNavController().navigateUp()
         }
 
         return true

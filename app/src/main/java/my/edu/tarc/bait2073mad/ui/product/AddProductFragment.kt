@@ -34,7 +34,6 @@ class AddProductFragment : Fragment(), MenuProvider {
     private val binding get() = _binding!!
 
     private val homeViewModel: HomeViewModel by activityViewModels()
-    private var isEditing: Boolean = false
     private val getPhoto = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         if (uri != null) {
             binding.imageViewProductImage.setImageURI(uri)
@@ -75,26 +74,9 @@ class AddProductFragment : Fragment(), MenuProvider {
             getPhoto.launch("image/*")
         }
 
-        // Determine the view mode; edit or new
-        isEditing = homeViewModel.selectedIndex != -1
-        if (isEditing) {
-            with(binding) {
-                val product: Product =
-                    homeViewModel.productList.value!![homeViewModel.selectedIndex]
-                editTextProductID.setText(product.productID)
-                editTextProductName.setText(product.productName)
-                editTextProductPrice.setText(product.productPrice.toString())
-                editTextProductStatus.setText(product.productStatus)
-                editTextProductDescriptions.setText(product.productDescriptions)
-                editTextProductSeller.setText(product.seller)
-                editTextProductName.requestFocus()
-                editTextProductID.isEnabled = false
-            }
-        } else {
-            with(binding) {
-                val productLength: Int = homeViewModel.productList.value!!.size
-                editTextProductID.setText("P".plus("%04d".format(productLength)))
-            }
+        with(binding) {
+            val productLength: Int = homeViewModel.productList.value!!.size
+            editTextProductID.setText("P".plus("%04d".format(productLength)))
         }
     }
 
@@ -110,42 +92,46 @@ class AddProductFragment : Fragment(), MenuProvider {
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        if (menuItem.itemId == R.id.action_save) {
-            if (binding.editTextProductID.text.isEmpty()) {
-                Toast.makeText(context, "Missing Product ID", Toast.LENGTH_SHORT)
-                    .show()
-            } else if (binding.editTextProductName.text.isEmpty()) {
-                Toast.makeText(context, "Missing Product Name", Toast.LENGTH_SHORT)
-                    .show()
-            } else if (binding.editTextProductPrice.text.isEmpty()) {
-                Toast.makeText(context, "Missing Product Price", Toast.LENGTH_SHORT)
-                    .show()
-            } else if (binding.editTextProductStatus.text.isEmpty()) {
-                Toast.makeText(context, "Missing Product Status", Toast.LENGTH_SHORT)
-                    .show()
-            } else if (binding.editTextProductDescriptions.text.isEmpty()) {
-                Toast.makeText(context, "Missing Product Descriptions", Toast.LENGTH_SHORT)
-                    .show()
-            } else if (binding.editTextProductSeller.text.isEmpty()) {
-                Toast.makeText(context, "Missing Product Seller", Toast.LENGTH_SHORT)
-                    .show()
-            } else {
-                // Save product image to the local storage
-                saveProductImage(binding.imageViewProductImage)
-                // Save product image to the cloud storage
-                uploadProductImage()
+        when (menuItem.itemId) {
+            R.id.action_save -> {
+                if (binding.editTextProductID.text.isEmpty()) {
+                    Toast.makeText(context, "Missing Product ID", Toast.LENGTH_SHORT)
+                        .show()
+                } else if (binding.editTextProductName.text.isEmpty()) {
+                    Toast.makeText(context, "Missing Product Name", Toast.LENGTH_SHORT)
+                        .show()
+                } else if (binding.editTextProductPrice.text.isEmpty()) {
+                    Toast.makeText(context, "Missing Product Price", Toast.LENGTH_SHORT)
+                        .show()
+                } else if (binding.editTextProductStatus.text.isEmpty()) {
+                    Toast.makeText(context, "Missing Product Status", Toast.LENGTH_SHORT)
+                        .show()
+                } else if (binding.editTextProductDescriptions.text.isEmpty()) {
+                    Toast.makeText(context, "Missing Product Descriptions", Toast.LENGTH_SHORT)
+                        .show()
+                } else if (binding.editTextProductSeller.text.isEmpty()) {
+                    Toast.makeText(context, "Missing Product Seller", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    // Save product image to the local storage
+                    saveProductImage(binding.imageViewProductImage)
+                    // Save product image to the cloud storage
+                    uploadProductImage()
 
-                // Save product details to the view model
-                saveProductDetails()
-                // Save product details to the cloud storage
-                uploadProductDetails()
+                    // Save product details to the view model
+                    saveProductDetails()
+                    // Save product details to the cloud storage
+                    uploadProductDetails()
 
-                Toast.makeText(context, getString(R.string.product_saved), Toast.LENGTH_SHORT)
-                    .show()
+                    Toast.makeText(context, getString(R.string.product_saved), Toast.LENGTH_SHORT)
+                        .show()
+                    findNavController().navigateUp()
+                }
+            }
+
+            android.R.id.home -> {
                 findNavController().navigateUp()
             }
-        } else if (menuItem.itemId == android.R.id.home) {
-            findNavController().navigateUp()
         }
         return true
     }
@@ -216,32 +202,25 @@ class AddProductFragment : Fragment(), MenuProvider {
                 productDescriptions
             )
             homeViewModel.addProduct(newProduct)
-            if (isEditing) {
-                homeViewModel.updateProduct(newProduct)
-            } else {
-                homeViewModel.addProduct(newProduct)
-            }
         }
     }
 
     private fun uploadProductDetails() {
-        homeViewModel.productList.observe(
-            viewLifecycleOwner, Observer {
-                val productItems = mutableListOf<Map<String, Any>>()
-                for (element in it) {
-                    productItems.add(
-                        mapOf(
-                            "ProductID" to element.productID,
-                            "ProductName" to element.productName,
-                            "ProductPrice" to element.productPrice,
-                            "ProductStatus" to element.productStatus,
-                            "ProductSeller" to element.seller,
-                            "ProductDescriptions" to element.productDescriptions
-                        )
+        homeViewModel.productList.observe(viewLifecycleOwner) {
+            val products = mutableListOf<Map<String, Any>>()
+            for (product in it) {
+                products.add(
+                    mapOf(
+                        "ProductID" to product.productID,
+                        "ProductName" to product.productName,
+                        "ProductPrice" to product.productPrice,
+                        "ProductStatus" to product.productStatus,
+                        "ProductSeller" to product.seller,
+                        "ProductDescriptions" to product.productDescriptions
                     )
-                }
-                docRef.set(mapOf("productItems" to productItems))
+                )
             }
-        )
+            docRef.set(mapOf("products" to products))
+        }
     }
 }

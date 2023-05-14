@@ -82,6 +82,9 @@
         <action
             android:id="@+id/action_product_details_fragment_to_navigation_home"
             app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_product_details_fragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartItemDetailFragment"
@@ -103,6 +106,9 @@
         <action
             android:id="@+id/action_cartFragment_to_checkOutFragment"
             app:destination="@id/checkOutFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_product_details_fragment"
+            app:destination="@id/product_details_fragment" />
     </fragment>
     <fragment
         android:id="@+id/addProductFragment"

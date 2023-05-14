@@ -10,9 +10,10 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.Navigation
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentProductDetailsBinding
@@ -35,15 +36,18 @@ class ProductDetailsFragment : Fragment(), MenuProvider {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
+
+        val menuHost: MenuHost = this.requireActivity()
+        menuHost.addMenuProvider(
+            this, viewLifecycleOwner,
+            Lifecycle.State.RESUMED
+        )
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<View>(R.id.imageButtonCart).setOnClickListener {
-            Navigation.findNavController(view)
-                .navigate(R.id.action_product_details_fragment_to_navigation_home)
-        }
 
         val productID = homeViewModel.productList.value!![homeViewModel.selectedIndex].productID
         val productIndex = productID.substring(productID.length - 4).toInt()
@@ -64,11 +68,18 @@ class ProductDetailsFragment : Fragment(), MenuProvider {
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menu.clear()
+        menuInflater.inflate(R.menu.product_details_menu, menu)
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        if (menuItem.itemId == android.R.id.home) {
-            findNavController().navigateUp()
+        when (menuItem.itemId) {
+            R.id.action_cart -> {
+                findNavController().navigate(R.id.action_product_details_fragment_to_cartFragment)
+            }
+
+            android.R.id.home -> {
+                findNavController().navigateUp()
+            }
         }
         return true
     }
