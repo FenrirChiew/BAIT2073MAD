@@ -14,7 +14,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/totalCartItemInCheckOut"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/checkOutRecyclerView" />
 
     <TextView
         android:id="@+id/textViewTotalCartItem"
@@ -120,19 +120,20 @@
         app:layout_constraintTop_toTopOf="@+id/textViewlabelChosenPaymentMethod" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/checkOutRecyclerView"
         android:layout_width="409dp"
         android:layout_height="150dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleCheckOutTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/titleCheckOutTextView"
+        tools:listitem="@layout/fragment_check_out_item" />
 
     <TextView
         android:id="@+id/textViewLabelSubtotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/labelSubtotal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewlabelChosenPaymentMethod" />
@@ -150,7 +151,7 @@
         android:id="@+id/textViewLabelShippingFee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/labelShippingFee"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewLabelSubtotal" />
@@ -159,7 +160,7 @@
         android:id="@+id/textViewShippingFee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="197dp"
+        android:layout_marginStart="195dp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewLabelShippingFee"
         app:layout_constraintStart_toEndOf="@+id/textViewLabelShippingFee"
         app:layout_constraintTop_toTopOf="@+id/textViewLabelShippingFee" />
@@ -168,7 +169,7 @@
         android:id="@+id/textViewlabelVoucherDiscount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/labelVoucherDiscount"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewLabelShippingFee" />
@@ -186,7 +187,7 @@
         android:id="@+id/textViewlabelTotalPayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/labelTotalPayment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewlabelVoucherDiscount" />
@@ -195,9 +196,51 @@
         android:id="@+id/textViewTotalPayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="188dp"
+        android:layout_marginStart="187dp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewlabelTotalPayment"
         app:layout_constraintStart_toEndOf="@+id/textViewlabelTotalPayment"
         app:layout_constraintTop_toTopOf="@+id/textViewlabelTotalPayment" />
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleCheckOutTextView">
+
+        <TextView
+            android:id="@+id/textViewLabelCheckOutIemCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/labelCheckOutCount"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewLabelCheckOutIemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/labelCheckOutName"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewLabelCheckOutIemQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/labelCheckOutQuantity"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewLabelCheckOutIemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/labelCheckOutPrice"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
