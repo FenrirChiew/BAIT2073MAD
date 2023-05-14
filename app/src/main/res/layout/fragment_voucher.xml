@@ -11,7 +11,6 @@
         android:id="@+id/voucherRecyclerView"
         android:layout_width="409dp"
         android:layout_height="590dp"
-        android:layout_marginTop="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,31 +18,15 @@
         app:layout_constraintTop_toBottomOf="@+id/labelShippingVoucherTextView"
         tools:listitem="@layout/fragment_voucher_item" />
 
-    <SearchView
-        android:id="@+id/searchVoucherView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:iconifiedByDefault="false"
-        android:queryBackground="@android:color/transparent"
-        android:queryHint="@string/voucherCodeHint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </SearchView>
-
     <TextView
         android:id="@+id/labelShippingVoucherTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:text="@string/labelShippingVoucher"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchVoucherView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewNoVoucherMsg"
