@@ -11,8 +11,10 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -38,6 +40,13 @@ class ProductDetailsFragment : Fragment(), MenuProvider {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
+
+        val menuHost: MenuHost = this.requireActivity()
+        menuHost.addMenuProvider(
+            this, viewLifecycleOwner,
+            Lifecycle.State.RESUMED
+        )
+
         return binding.root
     }
 
@@ -83,11 +92,18 @@ class ProductDetailsFragment : Fragment(), MenuProvider {
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menu.clear()
+        menuInflater.inflate(R.menu.product_details_menu, menu)
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        if (menuItem.itemId == android.R.id.home) {
-            findNavController().navigateUp()
+        when (menuItem.itemId) {
+            R.id.action_cart -> {
+                findNavController().navigate(R.id.action_product_details_fragment_to_cartFragment)
+            }
+
+            android.R.id.home -> {
+                findNavController().navigateUp()
+            }
         }
         return true
     }
