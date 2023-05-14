@@ -36,13 +36,15 @@
     <string name="product_id_label">Product ID</string>
     <string name="product_name_label">Product Name</string>
     <string name="product_price_label">Product Price</string>
-    <string name="product_descriptions_label">Product Descriptions</string>
     <string name="product_status_label">Product Status</string>
     <string name="product_seller_label">Product Seller</string>
+    <string name="product_descriptions_label">Product Descriptions</string>
     <string name="no_product">No Product</string>
+    <string name="no_product_image">No Product Image</string>
     <string name="save_product">Save Product</string>
     <string name="add_product">Add Product</string>
     <string name="product_saved">Product Saved</string>
+    <string name="product_not_saved">Product Not Saved</string>
     <string name="currency_myr">RM</string>
 
     <!-- search -->

@@ -9,7 +9,7 @@
 
     <SearchView
         android:id="@+id/searchView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="@drawable/search_view_background"
@@ -17,9 +17,28 @@
         android:queryBackground="@android:color/transparent"
         android:queryHint="@string/search_query_hint"
         app:layout_constraintBottom_toTopOf="@+id/recycleViewProductList"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fabAddProduct"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </SearchView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:contentDescription="@string/add_product"
+        android:fadingEdge="vertical"
+        android:focusable="true"
+        android:src="@drawable/ic_plus_24dp"
+        app:backgroundTint="@color/dark_orange"
+        app:backgroundTintMode="src_in"
+        app:layout_constraintBottom_toBottomOf="@+id/searchView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/searchView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewProductList"
