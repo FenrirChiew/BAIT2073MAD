@@ -47,7 +47,7 @@ class VoucherFragment : Fragment(), RecordClickListener {
         )
         voucherViewModel.addVoucher(
             VoucherItem(
-                "Cashback 10%",
+                "Cashback RM3.00",
                 "Minimum Spend RM45.00", "19/06/2023", R.id.imageViewVoucher
             )
         )

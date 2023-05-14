@@ -45,6 +45,19 @@ class CheckOutFragment : Fragment() {
         val voucherName = arguments?.getString("voucherName", "")
         binding.textViewVoucherApply.text = voucherName
 
+        //shipping fee fix is RM5.00
+        var voucherAmount = 0.0
+        var shippingFee = 5.00
+        voucherAmount = if(voucherName == "Free Shipping"){
+            shippingFee
+        } else if(voucherName == "Cashback RM3.00"){
+            3.00
+        } else if(voucherName == "RM10.00 Off"){
+            10.00
+        } else{
+            0.0
+        }
+
         //To retrieve the card number that input by user
         val cardNumber = arguments?.getLong("cardNumber", 0)
         val maskedCardNumber = "**** **** **** " + cardNumber.toString().takeLast(4)
@@ -61,6 +74,17 @@ class CheckOutFragment : Fragment() {
                 )
             }
         }
+    }
+
+    private fun calculation(subtotal: Double, shippingFee: Double, voucher: Double): Double {
+        var subtotal = subtotal
+        var shippingFee = shippingFee
+        var voucher = voucher
+        var totalPayment = 0.0
+
+        totalPayment = (subtotal + shippingFee) - voucher
+
+        return totalPayment
     }
 
 
