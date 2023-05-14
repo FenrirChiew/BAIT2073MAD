@@ -126,6 +126,9 @@
         <action
             android:id="@+id/action_cartFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_cartFragment_to_product_details_fragment3"
+            app:destination="@id/product_details_fragment" />
     </fragment>
     <fragment
         android:id="@+id/addProductFragment"
