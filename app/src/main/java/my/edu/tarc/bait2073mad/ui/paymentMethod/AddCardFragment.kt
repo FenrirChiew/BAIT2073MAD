@@ -99,12 +99,12 @@ class AddCardFragment : Fragment(), MenuProvider {
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menu.clear()
         menuInflater.inflate(R.menu.top_upload_download_menu, menu)
-        menu.findItem(R.id.action_cart_download).isVisible = true
-        menu.findItem(R.id.action_cart_upload).isVisible = true
+        menu.findItem(R.id.action_download).isVisible = true
+        menu.findItem(R.id.action_upload).isVisible = true
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        if (menuItem.itemId == R.id.action_cart_upload) {
+        if (menuItem.itemId == R.id.action_upload) {
             paymentMethodViewModel.cardList.observe(
                 viewLifecycleOwner, Observer {
                     val items = mutableListOf<Map<String, Any>>()
@@ -125,7 +125,7 @@ class AddCardFragment : Fragment(), MenuProvider {
                     }
                 }
             )
-        } else if (menuItem.itemId == R.id.action_cart_download) {
+        } else if (menuItem.itemId == R.id.action_download) {
             docRef.get().addOnSuccessListener { documentSnapshot ->
                 val cardItemData = documentSnapshot.get("items") as List<Map<String, Any>>?
                 if (cardItemData != null) {
