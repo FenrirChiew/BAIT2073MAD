@@ -33,16 +33,16 @@ class AccountFragment : Fragment() {
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
         auth = FirebaseAuth.getInstance()
         val userID = auth.currentUser?.uid
-        val username: String
+        var username = ""
         val userEmail = auth.currentUser?.email
         docRef = db.collection("users").document(userID!!)
 
         docRef.get()
             .addOnSuccessListener { doc ->
                 if (doc != null && doc.exists()) {
-                    profileData = doc.data
+                    val profileData = doc.data
                     username =
-                        profileData.get("username") as String
+                        profileData?.get("username") as String
                     binding.usernameTextView.text = username
                 }
             }
@@ -52,7 +52,7 @@ class AccountFragment : Fragment() {
 
 
         binding.buttonTestUpload.setOnClickListener {
-            profileData = hashMapOf(
+            val profileData = hashMapOf(
                 "username" to username,
                 "email" to userEmail
             )

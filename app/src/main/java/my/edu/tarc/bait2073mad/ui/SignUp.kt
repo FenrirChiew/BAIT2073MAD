@@ -104,6 +104,12 @@ class SignUp : AppCompatActivity() {
             "address" to ""
         )
         docRef.set(profileData)
+            .addOnSuccessListener {
+
+            }
+            .addOnFailureListener {
+
+            }
     }
 
     private fun showErrorMessage(textView: TextView, message: String) {
