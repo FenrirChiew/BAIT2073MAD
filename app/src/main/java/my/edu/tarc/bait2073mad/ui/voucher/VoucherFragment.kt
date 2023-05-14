@@ -127,9 +127,9 @@ class VoucherFragment : Fragment(), RecordClickListener, MenuProvider {
                         )
                     }
                     docRef.set(mapOf("items" to items)).addOnSuccessListener {
-                        Toast.makeText(context, "Success Upload", Toast.LENGTH_SHORT)
+                        Toast.makeText(context, "Success Upload", Toast.LENGTH_SHORT).show()
                     }.addOnFailureListener {
-                        Toast.makeText(context, "Fail to Upload", Toast.LENGTH_SHORT)
+                        Toast.makeText(context, "Fail to Upload", Toast.LENGTH_SHORT).show()
                     }
                 }
             )
