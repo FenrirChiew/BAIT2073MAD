@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/checkOutFragment">
+    app:startDestination="@id/cartFragment">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -46,7 +46,7 @@
     <fragment
         android:id="@+id/checkOutFragment"
         android:name="my.edu.tarc.bait2073mad.ui.checkOut.CheckOutFragment"
-        android:label="fragment_check_out"
+        android:label="Check Out"
         tools:layout="@layout/fragment_check_out">
         <action
             android:id="@+id/action_checkOutFragment_to_voucherFragment"
@@ -60,6 +60,9 @@
         <argument
             android:name="cardNumber"
             app:argType="long" />
+        <action
+            android:id="@+id/action_checkOutFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/voucherFragment"
@@ -73,7 +76,7 @@
     <fragment
         android:id="@+id/paymentMethodFragment"
         android:name="my.edu.tarc.bait2073mad.ui.paymentMethod.PaymentMethodFragment"
-        android:label="fragment_payment_method"
+        android:label="Payment Method"
         tools:layout="@layout/fragment_payment_method">
         <action
             android:id="@+id/action_paymentMethodFragment_to_addCardFragment"
@@ -91,7 +94,7 @@
     <fragment
         android:id="@+id/product_details_fragment"
         android:name="my.edu.tarc.bait2073mad.ui.product.ProductDetailsFragment"
-        android:label="fragment_product_details"
+        android:label="Product Details"
         tools:layout="@layout/fragment_product_details">
         <action
             android:id="@+id/action_product_details_fragment_to_navigation_home"
@@ -121,8 +124,8 @@
             android:id="@+id/action_cartFragment_to_checkOutFragment"
             app:destination="@id/checkOutFragment" />
         <action
-            android:id="@+id/action_cartFragment_to_product_details_fragment"
-            app:destination="@id/product_details_fragment" />
+            android:id="@+id/action_cartFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
     <fragment
         android:id="@+id/addProductFragment"
@@ -136,7 +139,7 @@
     <fragment
         android:id="@+id/addCardFragment"
         android:name="my.edu.tarc.bait2073mad.ui.paymentMethod.AddCardFragment"
-        android:label="AddCardFragment">
+        android:label="Add Card">
         <action
             android:id="@+id/action_addCardFragment_to_checkOutFragment"
             app:destination="@id/checkOutFragment" />
@@ -155,14 +158,9 @@
         android:label="fragment_success_dialog"
         tools:layout="@layout/fragment_success_dialog">
         <action
-            android:id="@+id/action_successDialogFragment_to_orderHistoryFragment"
-            app:destination="@id/orderHistoryFragment" />
+            android:id="@+id/action_successDialogFragment_to_recentOrderFragment"
+            app:destination="@id/recentOrderFragment" />
     </dialog>
-    <fragment
-        android:id="@+id/orderHistoryFragment"
-        android:name="my.edu.tarc.bait2073mad.ui.orderHistory.OrderHistoryFragment"
-        android:label="fragment_order_history"
-        tools:layout="@layout/fragment_order_history" />
     <fragment
         android:id="@+id/thirdPartyFragment"
         android:name="my.edu.tarc.bait2073mad.ui.paymentMethod.ThirdPartyFragment"

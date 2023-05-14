@@ -47,6 +47,13 @@ class CheckOutFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val adapter = CheckOutItemAdapter()
 
+        cartViewModel.cartItemList.observe(
+            viewLifecycleOwner,
+            Observer {
+                adapter.setCheckOutItem(it)
+            }
+        )
+        binding.checkOutRecyclerView.adapter = adapter
 
         var paymentMethodButtonClicked = false
 

@@ -31,7 +31,6 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
 
     //Refer to the ViewModel created by the Main Activity
     private val cartViewModel: CartViewModel by activityViewModels()
-    private val checkOutViewHolder: CheckOutViewModel by activityViewModels()
 
     //Firebase
     private lateinit var auth: FirebaseAuth
@@ -65,6 +64,12 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
         super.onViewCreated(view, savedInstanceState)
         val adapter = CartItemAdapter(requireContext(), this)
 
+        cartViewModel.addCartItem(CartItem("P0005", "Product5", 12.0,1))
+        cartViewModel.addCartItem(CartItem("P0006", "Product5", 12.0,1))
+        cartViewModel.addCartItem(CartItem("P0007", "Product5", 12.0,1))
+        cartViewModel.addCartItem(CartItem("P0008", "Product5", 12.0,1))
+        cartViewModel.addCartItem(CartItem("P0009", "Product5", 12.0,1))
+        cartViewModel.addCartItem(CartItem("P0010", "Product5", 12.0,1))
         //Add an observer
         cartViewModel.cartItemList.observe(
             viewLifecycleOwner,
@@ -84,8 +89,6 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
         //button click
         binding.buttonCheckOut.setOnClickListener {
             findNavController().navigate(R.id.action_cartFragment_to_checkOutFragment)
-            //TODO: Pass data to checkout
-//            checkOutViewHolder.
         }
     }
 

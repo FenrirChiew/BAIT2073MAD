@@ -56,6 +56,7 @@ class CartItemAdapter(
         } else {
             holder.imageViewProductImage.setImageResource(R.drawable.ic_product_black_24dp)
         }
+
         holder.textViewProductName.text = cartItemList[position].productName
         holder.textViewProductQuantity.text = cartItemList[position].quantity.toString()
         holder.textViewProductPrice.text = cartItemList[position].productPrice.toString()
