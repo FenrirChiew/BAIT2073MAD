@@ -67,12 +67,6 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
         super.onViewCreated(view, savedInstanceState)
         val adapter = CartItemAdapter(requireContext(), this)
 
-//        cartViewModel.addCartItem(CartItem("P0005", "Product5", 12.0,1))
-//        cartViewModel.addCartItem(CartItem("P0006", "Product5", 12.0,1))
-//        cartViewModel.addCartItem(CartItem("P0007", "Product5", 12.0,1))
-//        cartViewModel.addCartItem(CartItem("P0008", "Product5", 12.0,1))
-//        cartViewModel.addCartItem(CartItem("P0009", "Product5", 12.0,1))
-//        cartViewModel.addCartItem(CartItem("P0010", "Product5", 12.0,1))
         //Add an observer
         cartViewModel.cartItemList.observe(
             viewLifecycleOwner,
@@ -102,8 +96,6 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
-
-        //save data to firestore when destroyed
 
         _binding = null
     }

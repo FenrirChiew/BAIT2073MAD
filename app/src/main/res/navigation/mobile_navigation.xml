@@ -57,6 +57,9 @@
         <action
             android:id="@+id/action_checkOutFragment_to_cartFragment"
             app:destination="@id/navigationCartFragment" />
+        <action
+            android:id="@+id/action_checkOutFragment_to_navigation_recent_order"
+            app:destination="@id/navigation_recent_order" />
     </fragment>
     <fragment
         android:id="@+id/voucherFragment"
@@ -149,15 +152,6 @@
         android:name="my.edu.tarc.bait2073mad.ui.recentOrder.RecentOrderFragment"
         android:label="Recent Order"
         tools:layout="@layout/fragment_recent_order" />
-    <dialog
-        android:id="@+id/successDialogFragment"
-        android:name="my.edu.tarc.bait2073mad.ui.checkOut.SuccessDialogFragment"
-        android:label="Success"
-        tools:layout="@layout/fragment_success_dialog">
-        <action
-            android:id="@+id/action_successDialogFragment_to_recentOrderFragment"
-            app:destination="@id/navigation_recent_order" />
-    </dialog>
     <fragment
         android:id="@+id/thirdPartyFragment"
         android:name="my.edu.tarc.bait2073mad.ui.paymentMethod.ThirdPartyFragment"

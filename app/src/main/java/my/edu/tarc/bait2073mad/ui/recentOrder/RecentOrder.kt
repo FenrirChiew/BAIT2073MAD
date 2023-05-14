@@ -6,4 +6,5 @@ import java.util.Date
 
 @Entity(tableName = "recentOrder")
 data class RecentOrder(@PrimaryKey var orderID: String, var orderDate: String, var total: Double){
+
 }

@@ -9,5 +9,6 @@ import kotlinx.coroutines.launch
 import my.edu.tarc.bait2073mad.ui.cart.CartItem
 
 class CheckOutViewModel (application: Application): AndroidViewModel(application) {
-
+    var paymentMethodButtonClicked: Boolean = false
+    var voucherButtonClicked: Boolean = false
 }

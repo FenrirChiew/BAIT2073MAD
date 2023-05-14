@@ -24,7 +24,8 @@ class SuccessDialogFragment : DialogFragment() {
 
         val okButton = view.findViewById<Button>(R.id.okbutton)
         okButton.setOnClickListener {
-            findNavController().navigate(R.id.action_successDialogFragment_to_recentOrderFragment)
+
+            findNavController().navigate(R.id.action_checkOutFragment_to_navigation_recent_order)
         }
     }
 }

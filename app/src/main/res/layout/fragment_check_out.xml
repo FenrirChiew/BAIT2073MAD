@@ -24,23 +24,6 @@
         app:layout_constraintStart_toEndOf="@+id/textViewLabelTotalCartItem"
         app:layout_constraintTop_toTopOf="@+id/textViewLabelTotalCartItem" />
 
-    <TextView
-        android:id="@+id/textViewLabelDeliveryAddress"
-        android:layout_width="160dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/DeliveryAddress"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLabelTotalCartItem" />
-
-    <TextView
-        android:id="@+id/textViewDeliveryAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLabelDeliveryAddress" />
-
     <Button
         android:id="@+id/buttonPlaceOrder"
         android:layout_width="wrap_content"
@@ -55,12 +38,12 @@
         android:id="@+id/applyVoucherbutton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="@string/applyVoucherButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDeliveryAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewLabelTotalCartItem" />
 
     <Button
         android:id="@+id/paymentMethodButton"
@@ -109,7 +92,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/checkOutRecyclerView"
         android:layout_width="0dp"
-        android:layout_height="160dp"
+        android:layout_height="200dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
