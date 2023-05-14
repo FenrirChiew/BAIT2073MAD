@@ -51,7 +51,6 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
         auth = FirebaseAuth.getInstance()
         val userID = auth.currentUser?.uid
         docRef = db.collection("Cart").document(userID!!)
-        Log.d("userIdTag", userID)
 
         //host menu
         val menuHost: MenuHost = this.requireActivity()
@@ -123,9 +122,9 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
                         )
                     }
                     docRef.set(mapOf("items" to items)).addOnSuccessListener {
-                        Toast.makeText(context, "Success", Toast.LENGTH_SHORT)
+                        Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
                     }.addOnFailureListener {
-                        Toast.makeText(context, "Failed", Toast.LENGTH_SHORT)
+                        Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
                     }
                 }
             )
@@ -155,8 +154,6 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
     override fun onRecordClickListener(index: Int) {
         //selectedIndex from viewModel
         cartViewModel.selectedIndex = index
-//        Toast.makeText(context, index, Toast.LENGTH_SHORT)
-//            .show()
         findNavController().navigate(R.id.action_cartFragment_to_cartItemDetailFragment)
     }
 
