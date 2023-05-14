@@ -2,15 +2,17 @@ package my.edu.tarc.bait2073mad.ui.paymentMethod
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentPaymentMethodBinding
-import my.edu.tarc.bait2073mad.ui.paymentMethod.AddCardFragmentDirections.Companion.actionAddCardFragmentToCheckOutFragment
 
 class PaymentMethodFragment : Fragment() {
 
@@ -39,6 +41,17 @@ class PaymentMethodFragment : Fragment() {
             val voucherName = voucher.toString()
             val action = PaymentMethodFragmentDirections.actionPaymentMethodFragmentToAddCardFragment(voucherName)
             findNavController().navigate(action)
+        }
+
+        binding.onlinePaymentButton.setOnClickListener {
+            val handler = Handler(Looper.getMainLooper())
+
+            binding.paymentProgressBar.isVisible = true
+            handler.postDelayed({
+                findNavController().navigate(R.id.action_paymentMethodFragment_to_thirdPartyFragment)
+                binding.paymentProgressBar.isVisible = false
+            }, 4000)
+
         }
 
 
