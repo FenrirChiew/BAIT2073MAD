@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_cart_download"
+        android:id="@+id/action_download"
         android:icon="@drawable/baseline_cloud_download_24"
         android:title="Download"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_cart_upload"
+        android:id="@+id/action_upload"
         android:icon="@drawable/baseline_cloud_upload_24"
         android:title="Upload"
         app:showAsAction="ifRoom" />

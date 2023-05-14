@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_home">
+    app:startDestination="@id/checkOutFragment">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navigation_home_to_product_details_fragment"
             app:destination="@id/product_details_fragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
 
     <fragment
@@ -28,7 +31,18 @@
         android:id="@+id/navigation_account"
         android:name="my.edu.tarc.bait2073mad.ui.account.AccountFragment"
         android:label="@string/title_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account">
+        <action
+            android:id="@+id/action_navigation_account_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="my.edu.tarc.bait2073mad.ui.account.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile"></fragment>
+
     <fragment
         android:id="@+id/checkOutFragment"
         android:name="my.edu.tarc.bait2073mad.ui.checkOut.CheckOutFragment"
@@ -89,7 +103,7 @@
     <fragment
         android:id="@+id/cartItemDetailFragment"
         android:name="my.edu.tarc.bait2073mad.ui.cart.CartItemDetailFragment"
-        android:label="fragment_cart_item_detail"
+        android:label="Cart ItemDetail"
         tools:layout="@layout/fragment_cart_item_detail">
         <action
             android:id="@+id/action_cartItemDetailFragment_to_cartFragment"
@@ -98,7 +112,7 @@
     <fragment
         android:id="@+id/cartFragment"
         android:name="my.edu.tarc.bait2073mad.ui.cart.CartFragment"
-        android:label="fragment_cart"
+        android:label="Cart"
         tools:layout="@layout/fragment_cart">
         <action
             android:id="@+id/action_cartFragment_to_cartItemDetailFragment"
@@ -139,7 +153,7 @@
         android:id="@+id/successDialogFragment"
         android:name="my.edu.tarc.bait2073mad.ui.checkOut.SuccessDialogFragment"
         android:label="fragment_success_dialog"
-        tools:layout="@layout/fragment_success_dialog" >
+        tools:layout="@layout/fragment_success_dialog">
         <action
             android:id="@+id/action_successDialogFragment_to_orderHistoryFragment"
             app:destination="@id/orderHistoryFragment" />
@@ -153,7 +167,7 @@
         android:id="@+id/thirdPartyFragment"
         android:name="my.edu.tarc.bait2073mad.ui.paymentMethod.ThirdPartyFragment"
         android:label="fragment_third_party"
-        tools:layout="@layout/fragment_third_party" >
+        tools:layout="@layout/fragment_third_party">
         <action
             android:id="@+id/action_thirdPartyFragment_to_checkOutFragment"
             app:destination="@id/checkOutFragment" />

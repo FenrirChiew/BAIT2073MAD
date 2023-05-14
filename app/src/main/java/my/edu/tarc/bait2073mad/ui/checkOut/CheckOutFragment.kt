@@ -2,26 +2,39 @@ package my.edu.tarc.bait2073mad.ui.checkOut
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentCheckOutBinding
 import my.edu.tarc.bait2073mad.ui.cart.CartViewModel
 
-class CheckOutFragment : Fragment()  {
+class CheckOutFragment : Fragment() {
 
+    //viewModel
     private val cartViewModel: CartViewModel by activityViewModels()
+    private val checkOutViewHolder: CheckOutViewModel by activityViewModels()
 
+    //binding
     private var _binding: FragmentCheckOutBinding? = null
     private val binding get() = _binding!!
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,17 +45,8 @@ class CheckOutFragment : Fragment()  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val adapter = CheckOutItemAdapter()
 
-        //Add an observer
-        cartViewModel.cartItemList.observe(
-            viewLifecycleOwner,
-            Observer {
-                adapter.setCheckOutItem(it)
-            }
-        )
-        //binding.recyclerView.adapter = adapter
 
         var paymentMethodButtonClicked = false
 
