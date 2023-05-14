@@ -111,17 +111,20 @@ class HomeFragment : Fragment(), MenuProvider, RecordClickListener {
 
     private fun downloadProductList() {
         docRef.get()
-            .addOnSuccessListener { it ->
-                (it.get("products") as List<Map<String, Any>>?)?.forEach { productData ->
-                    val product = Product(
-                        productData["ProductID"] as String,
-                        productData["ProductName"] as String,
-                        productData["ProductPrice"] as Double,
-                        productData["ProductStatus"] as String,
-                        productData["ProductSeller"] as String,
-                        productData["ProductDescriptions"] as String
-                    )
-                    homeViewModel.addProduct(product)
+            .addOnSuccessListener { document ->
+                val productData = document.get("productItems") as List<Map<String, Any>>?
+                if (productData != null) {
+                    for (itemData in productData) {
+                        val productItem = Product(
+                            productID = itemData["ProductID"] as String? ?: "",
+                            productName = itemData["ProductName"] as String? ?: "",
+                            productPrice = (itemData["ProductPrice"] as Double?) ?: 0.0,
+                            productStatus = itemData["ProductStatus"] as String? ?: "",
+                            seller = itemData["ProductSeller"] as String? ?: "",
+                            productDescriptions = itemData["ProductDescription"] as String? ?: "",
+                            )
+                        homeViewModel.addProduct(productItem)
+                    }
                 }
             }
     }

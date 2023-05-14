@@ -14,6 +14,7 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -224,22 +225,23 @@ class AddProductFragment : Fragment(), MenuProvider {
     }
 
     private fun uploadProductDetails() {
-        homeViewModel.productList.value!!.forEach {
-            val products = mutableListOf<Map<String, Any>>()
-            products.add(
-                mapOf(
-                    getString(R.string.product_id_label).replace(" ", "") to it.productID,
-                    getString(R.string.product_name_label).replace(" ", "") to it.productName,
-                    getString(R.string.product_price_label).replace(" ", "") to it.productPrice,
-                    getString(R.string.product_status_label).replace(" ", "") to it.productStatus,
-                    getString(R.string.product_seller_label).replace(" ", "") to it.seller,
-                    getString(R.string.product_descriptions_label).replace(
-                        " ",
-                        ""
-                    ) to it.productDescriptions,
-                )
-            )
-            docRef.set(mapOf("products" to products))
-        }
+        homeViewModel.productList.observe(
+            viewLifecycleOwner, Observer {
+                val productItems = mutableListOf<Map<String, Any>>()
+                for (element in it) {
+                    productItems.add(
+                        mapOf(
+                            "ProductID" to element.productID,
+                            "ProductName" to element.productName,
+                            "ProductPrice" to element.productPrice,
+                            "ProductStatus" to element.productStatus,
+                            "ProductSeller" to element.seller,
+                            "ProductDescriptions" to element.productDescriptions
+                        )
+                    )
+                }
+                docRef.set(mapOf("productItems" to productItems))
+            }
+        )
     }
 }
