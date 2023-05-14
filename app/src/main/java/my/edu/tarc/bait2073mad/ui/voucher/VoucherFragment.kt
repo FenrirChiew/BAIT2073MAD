@@ -71,6 +71,7 @@ class VoucherFragment : Fragment(), RecordClickListener, MenuProvider {
         val adapter = VoucherItemAdapter(this, requireContext())
 //        val voucherImage = readVoucherImage(R.drawable.voucher.toString().substring(0,6).plus("jpg"))
 //        if (voucherImage != null) {
+//
 //            voucherImageView?.setImageBitmap(voucherImage)
 //        } else {
 //            voucherImageView?.setImageResource(R.drawable.ic_product_black_24dp)

@@ -36,11 +36,9 @@ class VoucherItemAdapter(private val recordClickListener: RecordClickListener, p
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val voucherImage = readVoucherImage(R.drawable.voucher.toString().substring(0,6).plus("jpg"))
-        if(voucherImage != null){
-            holder.imageViewVoucher.setImageBitmap(voucherImage)
-        }
+        //val voucherImage = readVoucherImage(R.drawable.voucher.toString().substring(0,6).plus("jpg"))
         val currentItem = voucherItemList[position]
+        holder.imageViewVoucher.setImageResource(R.drawable.voucher)
         holder.voucherName.text = currentItem.voucherName.toString()
         holder.voucherTerms.text = currentItem.voucherTerms.toString()
         holder.voucherDate.text = currentItem.voucherDate.toString()
