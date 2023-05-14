@@ -49,7 +49,7 @@ class PaymentMethodFragment : Fragment() {
             handler.postDelayed({
                 findNavController().navigate(R.id.action_paymentMethodFragment_to_thirdPartyFragment)
                 binding.paymentProgressBar.isVisible = false
-            }, 4000)
+            }, 2000)
 
         }
 
@@ -58,7 +58,7 @@ class PaymentMethodFragment : Fragment() {
             handler.postDelayed({
                 findNavController().navigate(R.id.action_paymentMethodFragment_to_checkOutFragment)
                 binding.paymentProgressBar.isVisible = false
-            }, 4000)
+            }, 2000)
         }
 
 
