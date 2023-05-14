@@ -4,20 +4,14 @@ package my.edu.tarc.bait2073mad.ui.cart
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.os.Environment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.squareup.picasso.Picasso
 import my.edu.tarc.bait2073mad.R
 import java.io.File
-import java.io.FileInputStream
 import java.io.FileNotFoundException
 
 

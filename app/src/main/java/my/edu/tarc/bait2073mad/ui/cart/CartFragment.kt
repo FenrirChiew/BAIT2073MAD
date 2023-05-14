@@ -23,7 +23,6 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import my.edu.tarc.bait2073mad.R
 import my.edu.tarc.bait2073mad.databinding.FragmentCartBinding
-import my.edu.tarc.bait2073mad.ui.checkOut.CheckOutViewModel
 
 class CartFragment : Fragment(), MenuProvider, RecordClickListener {
     private var _binding: FragmentCartBinding? = null
@@ -79,11 +78,11 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
                     binding.buttonCheckOut.isEnabled = true
                 }
                 adapter.setCartItem(it)
-
-                for (element in it){
-                    total += (element.productPrice*element.quantity)
+                total = 0.0
+                for (element in it) {
+                    total += (element.productPrice * element.quantity)
                 }
-                binding.textViewTotal.text = String.format("RM %.2f",total)
+                binding.textViewTotal.text = String.format("RM %.2f", total)
             }
         )
         binding.recyclerViewCartItem.adapter = adapter
@@ -96,7 +95,6 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
-
         _binding = null
     }
 
@@ -105,7 +103,6 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
         menuInflater.inflate(R.menu.top_upload_download_menu, menu)
         menu.findItem(R.id.action_download).isVisible = true
         menu.findItem(R.id.action_upload).isVisible = true
-
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -147,8 +144,11 @@ class CartFragment : Fragment(), MenuProvider, RecordClickListener {
                             cartViewModel.addCartItem(cartItem)
                         }
                     }
+                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
                 }
-                .addOnFailureListener { e -> Log.e(TAG, "Error getting cart items", e) }
+                .addOnFailureListener {
+                    Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
+                }
         } else if (menuItem.itemId == android.R.id.home) {
             findNavController().navigateUp()
         }

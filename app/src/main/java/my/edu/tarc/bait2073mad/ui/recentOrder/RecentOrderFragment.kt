@@ -134,8 +134,11 @@ class RecentOrderFragment : Fragment(), MenuProvider {
                             recentOrderViewModel.addOrder(recentOrder)
                         }
                     }
+                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
                 }
-                .addOnFailureListener { e -> Log.e(ContentValues.TAG, "Error getting recent order items", e) }
+                .addOnFailureListener {
+                    Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
+                }
         }
         return true
     }
