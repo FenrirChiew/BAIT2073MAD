@@ -1,5 +1,8 @@
 package my.edu.tarc.bait2073mad.ui.voucher
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +11,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import my.edu.tarc.bait2073mad.R
+import java.io.File
+import java.io.FileNotFoundException
 
-class VoucherItemAdapter(private val recordClickListener: RecordClickListener):
+class VoucherItemAdapter(private val recordClickListener: RecordClickListener, private val context: Context):
     RecyclerView.Adapter<VoucherItemAdapter.ViewHolder>() {
     private var voucherItemList = emptyList<VoucherItem>()
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
+        val imageViewVoucher: ImageView = view.findViewById(R.id.imageViewVoucher)
         val voucherName: TextView = view.findViewById(R.id.textViewVoucherName)
         val voucherTerms: TextView = view.findViewById(R.id.textViewVoucherTerm)
         val voucherDate: TextView = view.findViewById(R.id.textViewVoucherExpired)
@@ -30,6 +36,10 @@ class VoucherItemAdapter(private val recordClickListener: RecordClickListener):
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val voucherImage = readVoucherImage(R.drawable.voucher.toString().substring(0,6).plus("jpg"))
+        if(voucherImage != null){
+            holder.imageViewVoucher.setImageBitmap(voucherImage)
+        }
         val currentItem = voucherItemList[position]
         holder.voucherName.text = currentItem.voucherName.toString()
         holder.voucherTerms.text = currentItem.voucherTerms.toString()
@@ -54,6 +64,18 @@ class VoucherItemAdapter(private val recordClickListener: RecordClickListener):
 
     override fun getItemCount(): Int {
         return voucherItemList.size
+    }
+
+    private fun readVoucherImage(filename: String): Bitmap?{
+        val file = File(this.context.filesDir, filename)
+        if(file.isFile){
+            try{
+                return BitmapFactory.decodeFile(file.absolutePath)
+            }catch (e: FileNotFoundException){
+                e.printStackTrace()
+            }
+        }
+        return null
     }
 
 }
