@@ -47,6 +47,13 @@
     <string name="product_name_label">Product Name</string>
     <string name="product_price_label">Product Price</string>
     <string name="product_status_label">Product Status</string>
+    <string-array name="product_status_list">
+        <item>Brand New</item>
+        <item>Like New</item>
+        <item>Lightly Used</item>
+        <item>Well Used</item>
+        <item>Heavy Used</item>
+    </string-array>
     <string name="product_seller_label">Product Seller</string>
     <string name="product_descriptions_label">Product Descriptions</string>
     <string name="no_product">No Product</string>

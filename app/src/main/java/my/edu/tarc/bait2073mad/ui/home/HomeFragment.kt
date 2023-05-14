@@ -146,13 +146,12 @@ class HomeFragment : Fragment(), MenuProvider, RecordClickListener {
                 if (products != null) {
                     for (i in products.indices step 1) {
                         val product = Product(
-                            productID = products[i]["ProductID"] as String? ?: "",
-                            productName = products[i]["ProductName"] as String? ?: "",
-                            productPrice = (products[i]["ProductPrice"] as Double?) ?: 0.0,
-                            productStatus = products[i]["ProductStatus"] as String? ?: "",
-                            seller = products[i]["ProductSeller"] as String? ?: "",
-                            productDescriptions = products[i]["ProductDescription"] as String?
-                                ?: "",
+                            productID = products[i]["ProductID"] as String,
+                            productName = products[i]["ProductName"] as String,
+                            productPrice = products[i]["ProductPrice"] as Double,
+                            productStatus = products[i]["ProductStatus"] as String,
+                            seller = products[i]["ProductSeller"] as String,
+                            productDescriptions = products[i]["ProductDescriptions"] as String
                         )
                         homeViewModel.addProduct(product)
                     }
