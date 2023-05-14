@@ -23,6 +23,11 @@
     <!-- account -->
     <string name="logout">Logout</string>
 
+    <!-- edit profile -->
+    <string name="editProfileUsername">Username</string>
+    <string name="editProfileAddress">Address</string>
+    <string name="save">Save</string>
+
     <!-- cart -->
     <string name="cart">Cart</string>
     <string name="selectAll">Select All</string>

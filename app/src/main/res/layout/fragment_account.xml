@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,6 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <ImageView
@@ -26,25 +28,23 @@
 
         <TextView
             android:id="@+id/usernameTextView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="8dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="8dp"
-            android:paddingBottom="4dp"
-            android:textColor="@color/black"
+            android:maxWidth="240sp"
             android:text=""
-            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/editProfileIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_baseline_edit_24"
+            app:tint="@color/placeholder_color" />
 
-    <Button
-        android:id="@+id/buttonTestUpload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="@string/logout" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/buttonLogout"
