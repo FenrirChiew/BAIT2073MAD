@@ -36,7 +36,7 @@ import my.edu.tarc.bait2073mad.databinding.FragmentCartBinding
 import my.edu.tarc.bait2073mad.ui.checkOut.CheckOutViewModel
 import org.checkerframework.checker.units.qual.K
 
-class CartFragment : Fragment(),MenuProvider, RecordClickListener {
+class CartFragment : Fragment(), MenuProvider, RecordClickListener {
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
 
@@ -74,7 +74,7 @@ class CartFragment : Fragment(),MenuProvider, RecordClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = CartItemAdapter(this)
+        val adapter = CartItemAdapter(requireContext(), this)
 
         //Add an observer
         cartViewModel.cartItemList.observe(
@@ -118,20 +118,27 @@ class CartFragment : Fragment(),MenuProvider, RecordClickListener {
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         if (menuItem.itemId == R.id.action_cart_upload) {
-                cartViewModel.cartItemList.observe(
-                    viewLifecycleOwner,
-                    Observer {
-                        val items = mutableListOf<Map<String,Any>>()
-                        for (element in it) {
-                            items.add(mapOf("ProductID" to element.productID, "ProductName" to element.productName, "ProductPrice" to element.productPrice,"Quantity" to element.quantity))
-                        }
-                        docRef.set(mapOf("items" to items)).addOnSuccessListener {
-                            Toast.makeText(context,"Success",Toast.LENGTH_SHORT)
-                        }.addOnFailureListener {
-                            Toast.makeText(context,"Failed",Toast.LENGTH_SHORT)
-                        }
+            cartViewModel.cartItemList.observe(
+                viewLifecycleOwner,
+                Observer {
+                    val items = mutableListOf<Map<String, Any>>()
+                    for (element in it) {
+                        items.add(
+                            mapOf(
+                                "ProductID" to element.productID,
+                                "ProductName" to element.productName,
+                                "ProductPrice" to element.productPrice,
+                                "Quantity" to element.quantity
+                            )
+                        )
                     }
-                )
+                    docRef.set(mapOf("items" to items)).addOnSuccessListener {
+                        Toast.makeText(context, "Success", Toast.LENGTH_SHORT)
+                    }.addOnFailureListener {
+                        Toast.makeText(context, "Failed", Toast.LENGTH_SHORT)
+                    }
+                }
+            )
 
         } else if (menuItem.itemId == R.id.action_cart_download) {
             docRef.get()
@@ -154,6 +161,7 @@ class CartFragment : Fragment(),MenuProvider, RecordClickListener {
 
         return true
     }
+
     override fun onRecordClickListener(index: Int) {
         //selectedIndex from viewModel
         cartViewModel.selectedIndex = index

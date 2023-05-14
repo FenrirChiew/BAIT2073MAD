@@ -1,6 +1,7 @@
 package my.edu.tarc.bait2073mad.ui.cart
 
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Environment
@@ -20,7 +21,10 @@ import java.io.FileInputStream
 import java.io.FileNotFoundException
 
 
-class CartItemAdapter(private val recordClickListener: RecordClickListener) :
+class CartItemAdapter(
+    private val context: Context,
+    private val recordClickListener: RecordClickListener
+) :
     RecyclerView.Adapter<CartItemAdapter.ViewHolder>() {
     private var cartItemList = emptyList<CartItem>()
 
@@ -45,16 +49,13 @@ class CartItemAdapter(private val recordClickListener: RecordClickListener) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //Get element from the dataset at this position and replace the contents of the view with that element
-//        holder.imageViewProductImage.setImageResource(R.drawable.ic_product_black_24dp)
-
-        val sdcardPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath
-        val imagePath = "$sdcardPath/mad/P001.jpg"
-
-
-        val file = File("/sdcard/Pictures/mad/P001.jpg")
-        Picasso.get().load(file).placeholder(R.drawable.ic_product_black_24dp).into(holder.imageViewProductImage)
-
-//        Picasso.get().load("https://i.ibb.co/wcrrV93/main-logo.png").into(holder.imageViewProductImage)
+        val productImage =
+            readProductImage(cartItemList[position].productID.lowercase().plus(".jpg"))
+        if (productImage != null) {
+            holder.imageViewProductImage.setImageBitmap(productImage)
+        } else {
+            holder.imageViewProductImage.setImageResource(R.drawable.ic_product_black_24dp)
+        }
         holder.textViewProductName.text = cartItemList[position].productName
         holder.textViewProductQuantity.text = cartItemList[position].quantity.toString()
         holder.textViewProductPrice.text = cartItemList[position].productPrice.toString()
@@ -75,14 +76,17 @@ class CartItemAdapter(private val recordClickListener: RecordClickListener) :
         return cartItemList.size
     }
 
-    private fun readProductPicture(filename: String): Bitmap? {
-        val sdCard = Environment.getExternalStorageDirectory()
-        val directory = File(sdCard.absolutePath + "/Pictures/mad/")
-        val file = File(directory, filename) //or any other format supported
-        val streamIn = FileInputStream(file)
-        val bitmap = BitmapFactory.decodeStream(streamIn) //This gets the image
-        streamIn.close()
-        return bitmap
+    private fun readProductImage(filename: String): Bitmap? {
+        val file = File(this.context.filesDir, filename)
+
+        if (file.isFile) {
+            try {
+                return BitmapFactory.decodeFile(file.absolutePath)
+            } catch (e: FileNotFoundException) {
+                e.printStackTrace()
+            }
+        }
+        return null
     }
 
 }// End of Adapter Class
