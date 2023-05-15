@@ -52,7 +52,13 @@ class ProductDetailsFragment : Fragment(), MenuProvider {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            val productID = homeViewModel.productList.value!![homeViewModel.selectedIndex].productID
+            var productID: String
+            if (homeViewModel.selectedIndex == -1) {
+                productID = homeViewModel.productList.value!![cartViewModel.previousSelectedProduct].productID
+            } else {
+                cartViewModel.previousSelectedProduct = homeViewModel.selectedIndex
+                productID = homeViewModel.productList.value!![homeViewModel.selectedIndex].productID
+            }
             val productIndex = productID.substring(productID.length - 4).toInt()
             val productSelected = homeViewModel.productList.value!![productIndex]
             val productImage = readProductImage(productID.lowercase().plus(".jpg"))
